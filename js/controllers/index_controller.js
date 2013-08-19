@@ -2,7 +2,7 @@
   'use strict';
 
   Donna.controllers.controller( 'IndexController', ['$scope', '$http', function($scope, $http) {
-    OAuth.initialize('Your twingl OAuth.io token');
+    OAuth.initialize('fbdd3fcc54daa46da490850cdf55f3ea8b711e0215cd837447f474a4788b5864');
 
     //Using popup (option 1)
     OAuth.popup('twingl', function(error, result) {
