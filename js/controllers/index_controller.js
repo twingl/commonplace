@@ -2,7 +2,7 @@
   'use strict';
 
   Donna.controllers.controller( 'IndexController', ['$scope', '$http', function($scope, $http) {
-    OAuth.initialize('fbdd3fcc54daa46da490850cdf55f3ea8b711e0215cd837447f474a4788b5864');
+    OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
     //Using popup (option 1)
     OAuth.popup('twingl', function(error, result) {
@@ -19,6 +19,15 @@
                console.log(data, status, headers, config);
              });
         console.log("Access token:", result);
+
+        $scope.highlights = [];
+
+        $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine').success(
+            function(data) {
+              $scope.highlights = data;
+              console.log(data)
+            }
+          );
       }
     });
 
