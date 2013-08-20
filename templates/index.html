@@ -1,10 +1,10 @@
 <div class="body__container">
-  <masonry item-selector=".card">
-    <div masonry-brick class="card" ng-repeat="highlight in highlights">
+  <div masonry>
+    <div class="card masonry-brick" ng-repeat="highlight in highlights">
       <i class="icon-remove card--remove" ng-click="deleteHighlight(highlight.id)"></i>
       <blockquote class="card__quote">{{highlight.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{highlight.context}}">{{highlight.context}}</a></div>
       <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}}</div>
     </div>
-  </masonry>
+  </div>
 </div>
