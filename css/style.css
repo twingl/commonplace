@@ -34,7 +34,7 @@ a, a:visited {
     padding-right: 25px;
     padding-top: 20px;
     padding-bottom: 60px;
-    float: left;
+    display: inline-block;
 }
 
     .card--remove {
