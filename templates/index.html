@@ -1,1 +1,8 @@
-Hello world!
+<ol>
+  <li ng-repeat="highlight in highlights">
+    <p>{{highlight.quote}}</p>
+    &mdash; <a href="{{highlight.context}}">{{highlight.context}}</a>
+    <small><p ng-repeat="comment in highlight.comments">{{comment.body}}</p></small>
+    <button ng-click="deleteHighlight(highlight.id)">Delete</button>
+  </li>
+</ol>

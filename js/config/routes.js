@@ -1,10 +1,10 @@
 ( function() {
   'use strict';
 
-  Donna.app.config(['$routeProvider', function($routeProvider) {
+  Commonplace.app.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when( '/', {
-      templateUrl: Donna.templates.index,
+      templateUrl: Commonplace.templates.index,
       controller: 'IndexController'
     });
 

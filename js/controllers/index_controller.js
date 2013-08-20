@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Donna.controllers.controller( 'IndexController', ['$scope', '$http', function($scope, $http) {
+  Commonplace.controllers.controller( 'IndexController', ['$scope', '$http', function($scope, $http) {
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
     //Using popup (option 1)
@@ -28,10 +28,19 @@
               console.log(data)
             }
           );
+
+        // removes a highlight from the API, but doesn't update the DOM
+        $scope.deleteHighlight = function(id) {
+          console.log(id);
+          $http.delete('http://api.twin.gl/flux/highlights/' + id).success(
+            function(data) {
+              console.log(data);
+          })
+        }
+
       }
     });
 
-    console.log("Hello world!");
   }]);
 
 })();

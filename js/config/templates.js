@@ -1,9 +1,9 @@
 ( function() {
   'use strict';
 
-  window.Donna = window.Donna || {};
+  window.Commonplace = window.Commonplace || {};
 
-  Donna.templates = {
+  Commonplace.templates = {
     index: "/templates/index.html"
   };
 

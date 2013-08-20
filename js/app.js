@@ -1,18 +1,18 @@
 ( function() {
   'use strict';
 
-  window.Donna = window.Donna || {};
+  window.Commonplace = window.Commonplace || {};
 
-  Donna.app = angular.module( 'donna', [
+  Commonplace.app = angular.module( 'Commonplace', [
     'factories',
     'filters',
     'controllers',
     'directives'
   ]);
 
-  Donna.factories   = angular.module('factories',   []);
-  Donna.filters     = angular.module('filters',     []);
-  Donna.controllers = angular.module('controllers', []);
-  Donna.directives  = angular.module('directives',  []);
+  Commonplace.factories   = angular.module('factories',   []);
+  Commonplace.filters     = angular.module('filters',     []);
+  Commonplace.controllers = angular.module('controllers', []);
+  Commonplace.directives  = angular.module('directives',  []);
 
 })();
