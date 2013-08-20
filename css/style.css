@@ -31,7 +31,7 @@ a, a:visited {
 }
 
 .card {
-    width: 400px;
+    width: 500px;
     padding: 25px;
 }
 
@@ -45,7 +45,7 @@ a, a:visited {
         font-family: serif;
         font-style: normal;
         font-size: 4em;
-        color: #bbb;
+        color: #ddd;
         content: "\201C";
         line-height: 0px;
         float: left;
@@ -55,6 +55,8 @@ a, a:visited {
     }
 
     .card__quote {
+        color: #808080;
+        width: 400px;
         font-style: italic;
     }
 
@@ -62,7 +64,7 @@ a, a:visited {
         font-family: serif;
         font-style: normal;
         font-size: 4em;
-        color: #bbb;
+        color: #ddd;
         content: "\201D";
         line-height: 0px;
         float: right;
@@ -71,16 +73,23 @@ a, a:visited {
         bottom: -30px;
     }
 
-    .card__attribution, .card__attribution a {
-        color: #888;
+    .card__attribution {
+        color: #808080;
+        font-size: .8em;
+        width: 80%;
+        padding-left: 40px;
+    }
+
+    .card__attribution a {
+        color: #808080;
         font-size: .8em;
     }
 
     .card__comment {
-        padding-top: 20px;
-        color: #7798ac;
-        font-style: italic;
         font-size: .9em;
+        padding-top: 30px;
+        width: 80%;
+        padding-left: 50px;
     }
 
 hr {
