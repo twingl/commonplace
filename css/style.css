@@ -1,3 +1,9 @@
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
 html,
 button,
 input,
@@ -14,6 +20,7 @@ body {
     font-size: 1em;
     line-height: 1.4;
     text-rendering: optimizeLegibility;
+    background-color: #f7f7f3;
 }
 
 a, a:visited {
@@ -29,11 +36,14 @@ a, a:visited {
 }
 
 .card {
-    width: 400px;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 20px;
-    padding-bottom: 60px;
+    width: 48%;
+    margin: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.75%;
+    padding-bottom: 1.5%;
+    background-color: #fff;
+    box-shadow: 1px 1px #e6e9e9;
 }
 
     .card--remove {
