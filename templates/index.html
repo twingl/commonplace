@@ -1,8 +1,12 @@
-<ol>
-  <li ng-repeat="highlight in highlights">
-    <p>{{highlight.quote}}</p>
-    &mdash; <a href="{{highlight.context}}">{{highlight.context}}</a>
-    <small><p ng-repeat="comment in highlight.comments">{{comment.body}}</p></small>
-    <button ng-click="deleteHighlight(highlight.id)">Delete</button>
-  </li>
-</ol>
+<div class="body__container">
+  <ol class="card-list">
+    <li ng-repeat="highlight in highlights">
+      <div class="card">
+        <i class="icon-remove card--remove" ng-click="deleteHighlight(highlight.id)"></i>
+        <blockquote class="card__quote">{{highlight.quote}}</blockquote>
+        <div class="card__attribution">&mdash; <a href="{{highlight.context}}">{{highlight.context}}</a></div>
+        <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}}</div>
+      </div>
+    </li>
+  </ol>
+</div>
