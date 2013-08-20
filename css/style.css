@@ -7,7 +7,7 @@ textarea {
 }
 
 body {
-    margin: 0px;
+    margin: 0;
     font-family: 'Whitney SSm A', 'Whitney SSm B';
     font-weight: 400;
     font-style: normal;
@@ -21,7 +21,7 @@ a, a:visited {
 }
 
 .body__container {
-    width: 960px;
+    width: 75%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 40px;
