@@ -22,6 +22,7 @@
 
         $scope.highlights = [];
 
+        // pulls all the current user's highlights
         $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine').success(
             function(data) {
               $scope.highlights = data;
@@ -29,9 +30,16 @@
             }
           );
 
+        // adds a comment to a highlight
+        $scope.addComment = function(id, comment) {
+          $http.post('http://api.twin.gl/flux/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
+            function(data) {
+              console.log(data);
+          })
+        }
+
         // removes a highlight from the API, but doesn't update the DOM
         $scope.deleteHighlight = function(id) {
-          console.log(id);
           $http.delete('http://api.twin.gl/flux/highlights/' + id).success(
             function(data) {
               console.log(data);
