@@ -102,6 +102,21 @@ a, a:visited {
         padding-left: 50px;
     }
 
+.new-comment {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+    .new-comment__body {
+        width: 100%;
+        resize: vertical;
+    }
+
+    .new-comment__submit {
+
+    }
+
 hr {
     display: block;
     height: 1px;

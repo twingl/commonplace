@@ -26,15 +26,18 @@
         $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine').success(
             function(data) {
               $scope.highlights = data;
-              console.log(data)
             }
           );
+
+        // $scope.dateCreator = function(time_string){
+        //   var date = new Date(time_string);
+        //   console.log(date);
+        // }
 
         // adds a comment to a highlight
         $scope.addComment = function(id, comment) {
           $http.post('http://api.twin.gl/flux/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
             function(data) {
-              console.log(data);
           })
         }
 
