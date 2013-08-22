@@ -73,10 +73,11 @@
         }
 
         // removes a highlight from the API, but doesn't update the DOM
-        $scope.deleteHighlight = function(id) {
+        $scope.deleteHighlight = function(index, id) {
+          $scope.highlights.splice(-index-1, 1);
           $http.delete('http://api.twin.gl/flux/highlights/' + id).success(
             function(data) {
-              console.log(data);
+              //TODO: fail gracefully (i.e. push highlight back into highlights array)
           })
         }
 
