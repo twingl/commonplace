@@ -24,6 +24,7 @@
               $http.get('http://api.twin.gl/flux/highlights/' + $scope.highlights[i].id + '/twinglings').success(function(data2) {
                 for (var j = 0; j < data2.length; j++) {
                   var currentTwingling = {
+                    id: data2[j].id,
                     start: {},
                     end: {},
                     created: data2[j].created
