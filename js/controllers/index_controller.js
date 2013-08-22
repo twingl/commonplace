@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.controllers.controller( 'IndexController', ['$scope', '$http', function($scope, $http) {
+  Commonplace.controllers.controller('IndexController', ['$scope', '$http', function($scope, $http) {
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
     //Using popup (option 1)
@@ -27,6 +27,7 @@
         $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine').success(
             function(data) {
               $scope.highlights = data;
+              console.log($scope.highlights);
             }
           );
 
@@ -43,19 +44,21 @@
           end_id: ""
         }
 
-        $scope.newTwingling = function (type, id) {
+        $scope.newTwingling = function (id) {
           if ($scope.twingling.start_id === "") {
             $scope.twingling.start_id = id;
+            $('.card__connect--swing').addClass('animated swing');
           }
-          else {
+          else if ($scope.twingling.start_id !== id) {
+            $('.card__connect--swing').removeClass('animated swing');
             $scope.twingling.end_id = id;
             $http.post('http://api.twin.gl/flux/twinglings', $scope.twingling).success(function() {
               console.log("\nTwingled:")
               console.log($scope.twingling);
               $scope.twingling = {
-                start_type: "",
+                start_type: "highlights",
                 start_id: "",
-                end_type: "",
+                end_type: "highlights",
                 end_id: ""
               }
             });

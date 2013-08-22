@@ -9,7 +9,7 @@
       <div class="card__attribution">&mdash; <a href="{{highlight.context}}">{{highlight.context}}</a></div>
       <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
       <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
-      <i class="icon-bolt card__connect" ng-click="newTwingling(highlight.type, highlight.id)"></i>
+      <div class="card__connect--swing"><i class="icon-bolt card__connect" ng-click="newTwingling(highlight.id)"></i></div>
       <div class="new-comment" ng-show="comment.showThis">
         <textarea class="new-comment__body" ng-model="comment.new"></textarea>
         <button class="new-comment__submit" ng-click="addComment(highlight.id, comment.new)">Add Comment</button>
