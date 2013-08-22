@@ -4,6 +4,8 @@
   Commonplace.controllers.controller( 'IndexController', ['$scope', '$http', function($scope, $http) {
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
+    //NB NEED TO CHANGE FROM SANDBOX TO *API* WHEN READY
+
     //Using popup (option 1)
     OAuth.popup('twingl', function(error, result) {
       //handle error with error
@@ -26,6 +28,7 @@
         $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine').success(
             function(data) {
               $scope.highlights = data;
+              console.log($scope.highlights);
             }
           );
 
@@ -33,6 +36,33 @@
         //   var date = new Date(time_string);
         //   console.log(date);
         // }
+
+        //adds a twingling between two highlights
+        $scope.twingling = {
+          start_type: "highlights",
+          start_id: "",
+          end_type: "highlights",
+          end_id: ""
+        }
+
+        $scope.newTwingling = function (type, id) {
+          if ($scope.twingling.start_id === "") {
+            $scope.twingling.start_id = id;
+          }
+          else {
+            $scope.twingling.end_id = id;
+            $http.post('http://api.twin.gl/flux/twinglings', $scope.twingling).success(function() {
+              console.log("\nTwingled:")
+              console.log($scope.twingling);
+              $scope.twingling = {
+                start_type: "",
+                start_id: "",
+                end_type: "",
+                end_id: ""
+              }
+            });
+          }
+        }
 
         // adds a comment to a highlight
         $scope.addComment = function(id, comment) {

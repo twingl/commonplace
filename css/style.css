@@ -102,6 +102,12 @@ a, a:visited {
         padding-left: 50px;
     }
 
+    .card__connect {
+        position: relative;
+        float: right;
+        color: purple;
+    }
+
 .new-comment {
     width: 100%;
     padding-top: 20px;

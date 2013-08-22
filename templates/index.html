@@ -1,4 +1,8 @@
 <div class="body__container">
+  <div>
+    Source: <input ng-model="twingling.start_id">
+    Destination: <input ng-model="twingling.end_id">
+  </div>
   <div masonry>
     <div class="card masonry-brick" ng-repeat="highlight in highlights | orderBy:'-created'">
       <i class="icon-remove card--remove" ng-click="deleteHighlight(highlight.id)"></i>
@@ -6,6 +10,7 @@
       <div class="card__attribution">&mdash; <a href="{{highlight.context}}">{{highlight.context}}</a></div>
       <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
       <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
+      <i class="icon-bolt card__connect" ng-click="newTwingling(highlight.type, highlight.id)"></i>
       <div class="new-comment" ng-show="comment.showThis">
         <textarea class="new-comment__body" ng-model="comment.new"></textarea>
         <button class="new-comment__submit" ng-click="addComment(highlight.id, comment.new)">Add Comment</button>
