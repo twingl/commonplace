@@ -1,8 +1,7 @@
 <div class="body__container">
-  <div>
-    Source: <input ng-model="twingling.start_id">
-    Destination: <input ng-model="twingling.end_id">
-  </div>
+
+  <a href="/#/twinglings">Switch to Twinglings View</a>
+
   <div masonry>
     <div class="card masonry-brick" ng-repeat="highlight in highlights | orderBy:'-created'">
       <i class="icon-remove card--remove" ng-click="deleteHighlight(highlight.id)"></i>
@@ -17,4 +16,5 @@
       </div>
     </div>
   </div>
+
 </div>

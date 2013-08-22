@@ -4,7 +4,8 @@
   window.Commonplace = window.Commonplace || {};
 
   Commonplace.templates = {
-    index: "/templates/index.html"
+    index: "/templates/index.html",
+    twinglings: "/templates/twinglings.html"
   };
 
 })();

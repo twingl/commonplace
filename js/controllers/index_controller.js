@@ -4,8 +4,6 @@
   Commonplace.controllers.controller( 'IndexController', ['$scope', '$http', function($scope, $http) {
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
-    //NB NEED TO CHANGE FROM SANDBOX TO *API* WHEN READY
-
     //Using popup (option 1)
     OAuth.popup('twingl', function(error, result) {
       //handle error with error
@@ -21,6 +19,7 @@
                console.log(data, status, headers, config);
              });
         console.log("Access token:", result);
+        /* END CONFIGURATION STUFF */
 
         $scope.highlights = [];
 
@@ -28,7 +27,6 @@
         $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine').success(
             function(data) {
               $scope.highlights = data;
-              console.log($scope.highlights);
             }
           );
 

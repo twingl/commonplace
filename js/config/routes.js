@@ -8,6 +8,11 @@
       controller: 'IndexController'
     });
 
+    $routeProvider.when( '/twinglings', {
+      templateUrl: Commonplace.templates.twinglings,
+      controller: 'TwinglingController'
+    });
+
   }]);
 
 })();

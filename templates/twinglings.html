@@ -1,0 +1,17 @@
+<div class="body__container">
+
+  <a href="/#/index">Switch to Highlights View</a>
+
+  <div class="two-col" ng-repeat="twingling in twinglings | orderBy:'-created'">
+    <hr>
+    <div class="left card">
+      <blockquote class="card__quote">{{twingling.start.quote}}</blockquote>
+      <div class="card__comment">{{twingling.start.text}}</div>
+    </div>
+    <div class="right card">
+      <blockquote class="card__quote">{{twingling.end.quote}}</blockquote>
+      <div class="card__comment">{{twingling.end.text}}</div>
+    </div>
+  </div>
+
+</div>

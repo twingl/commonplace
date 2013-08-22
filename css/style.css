@@ -131,3 +131,19 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.two-col > div {
+    width: 400px;
+}
+
+.two-col {
+    clear: both;
+}
