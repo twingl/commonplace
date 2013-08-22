@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.controllers.controller('IndexController', ['$scope', '$http', function($scope, $http) {
+  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
     //Using popup (option 1)
@@ -31,10 +31,19 @@
             }
           );
 
-        // $scope.dateCreator = function(time_string){
-        //   var date = new Date(time_string);
-        //   console.log(date);
-        // }
+        //time-chunking
+        var selectedDate = new Date();
+        $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+
+        $scope.flickBackOnePage = function() {
+          selectedDate.setDate(selectedDate.getDate() -1);
+          $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+        }
+
+        $scope.flickForwardOnePage = function() {
+          selectedDate.setDate(selectedDate.getDate() +1);
+          $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+        }
 
         //adds a twingling between two highlights
         $scope.twingling = {

@@ -1,9 +1,13 @@
 <div class="body__container">
 
   <a href="/#/twinglings">Switch to Twinglings View</a>
+  <br>
+  Back One Day: <i class="icon-chevron-left" ng-click="flickBackOnePage()"></i>
+  <br>
+  Forward One Day: <i class="icon-chevron-right" ng-click="flickForwardOnePage()"></i>
 
   <div masonry>
-    <div class="card masonry-brick" ng-repeat="highlight in highlights | orderBy:'-created'">
+    <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:{ created: timeChunk } | orderBy:'-created'">
       <i class="icon-remove card--remove" ng-click="deleteHighlight($index, highlight.id)"></i>
       <blockquote class="card__quote">{{highlight.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{highlight.context}}">{{highlight.context}}</a></div>
