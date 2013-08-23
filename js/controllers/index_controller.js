@@ -24,7 +24,7 @@
         $scope.highlights = [];
 
         // pulls all the current user's highlights
-        $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine').success(
+        $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine&;expand=comments').success(
             function(data) {
               $scope.highlights = data;
               console.log($scope.highlights);
