@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
+  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$filter', '$location', function($scope, $http, $filter, $location) {
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
     //Using popup (option 1)
@@ -43,6 +43,11 @@
         $scope.flickForwardOnePage = function() {
           selectedDate.setDate(selectedDate.getDate() +1);
           $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+        }
+
+        //redirect to the current highlight's twinglings view
+        $scope.showTwinglings = function (id) {
+          $location.path('/highlights/' + id);
         }
 
         //adds a twingling between two highlights
