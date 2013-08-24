@@ -35,8 +35,27 @@ a, a:visited {
     padding-bottom: 40px;
 }
 
+.content {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.naviagtion {
+    width: 2.5%;
+    height: 100%;
+}
+
+.navigation__back {
+    float: left;
+}
+
+.navigation__forward {
+    float: right;
+}
+
 .card {
-    width: 48%;
+    width: 47%;
     margin: 1%;
     padding-left: 1%;
     padding-right: 1%;
