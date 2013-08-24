@@ -99,9 +99,11 @@
         }
 
         // adds a comment to a highlight
-        $scope.addComment = function(id, comment) {
+        $scope.addComment = function(index, id, comment) {
+          $scope.highlights[$scope.highlights.length-1-index].comments.push({body: comment});
           $http.post('http://api.twin.gl/flux/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
             function(data) {
+              //TODO: fail gracefully
           })
         }
 

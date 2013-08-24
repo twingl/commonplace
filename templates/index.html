@@ -26,7 +26,7 @@
       </div>
       <div class="new-comment" ng-show="comment.showThis">
         <textarea class="new-comment__body" ng-model="comment.new"></textarea>
-        <button class="new-comment__submit" ng-click="addComment(highlight.id, comment.new)">Add Comment</button>
+        <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
       </div>
     </div>
   </div>
