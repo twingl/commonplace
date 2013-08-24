@@ -34,13 +34,22 @@
               if ($scope.highlight.twinglings.length !== 0) {
                 for (var i = 0; i <= $scope.highlight.twinglings.length - 1; i++) {
                   var end_object_id = $scope.highlight.twinglings[i].end_id;
+                  var twingledHighlightObject = {};
 
                   if (end_object_id !== $scope.highlight.id) {
-                    $scope.twinglings.push($scope.highlight.twinglings[i].end_object);
+                    twingledHighlightObject = $scope.highlight.twinglings[i].end_object;
                   }
                   else {
-                    $scope.twinglings.push($scope.highlight.twinglings[i].start_object);
+                    twingledHighlightObject = $scope.highlight.twinglings[i].start_object;
                   }
+
+                  //pull twingled highlight's comments
+                  $http.get('http://api.twin.gl/flux/highlights/' + twingledHighlightObject.id + '/comments').success(
+            function(comments) {
+                    twingledHighlightObject.comments = comments;
+                  });
+
+                  $scope.twinglings.push(twingledHighlightObject);
                 };
               }
 

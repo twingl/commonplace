@@ -18,6 +18,7 @@
     <div class="card masonry-brick" ng-repeat="twingling in twinglings">
       <blockquote class="card__quote">{{twingling.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{twingling.context_url}}">{{twingling.context_url}}</a></div>
+      <div class="card__comment" ng-repeat="comment in twingling.comments">{{comment.body}} <hr></div>
       <i class="icon-reply-all" ng-click="navigateTo(twingling.created)"></i>
     </div>
   </div>
