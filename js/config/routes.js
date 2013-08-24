@@ -3,7 +3,7 @@
 
   Commonplace.app.config(['$routeProvider', function($routeProvider) {
 
-    $routeProvider.when( '/', {
+    $routeProvider.when( '/:date', {
       templateUrl: Commonplace.templates.index,
       controller: 'IndexController'
     });
@@ -17,8 +17,6 @@
       templateUrl: Commonplace.templates.twinglings,
       controller: 'TwinglingController'
     });
-
-    $routeProvider.otherwise({ redirectTo: '/' });
 
   }]);
 

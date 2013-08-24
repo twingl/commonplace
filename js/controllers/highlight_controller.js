@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  Commonplace.controllers.controller('HighlightController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+  Commonplace.controllers.controller('HighlightController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
     //Using popup (option 1)
@@ -46,9 +46,13 @@
 
             }
           );
-
       }
     });
+
+    $scope.navigateTo = function (date) {
+      var dateFormatted = $filter('date')(date, 'yyyy-MM-dd');
+      $location.path('/' + dateFormatted);
+    };
 
   }]);
 
