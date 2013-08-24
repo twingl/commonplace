@@ -102,6 +102,21 @@ a, a:visited {
         padding-left: 50px;
     }
 
+    .card--actions {
+        height: 17px;
+        width: 100%;
+    }
+
+    .card--show-comments {
+        width: 13px;
+        float: left;
+    }
+
+    .card--twinglings {
+        width: 60px;
+        float: right;
+    }
+
     .card__connect {
         color: purple;
     }

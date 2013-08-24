@@ -24,7 +24,7 @@
         $scope.highlights = [];
 
         // pulls all the current user's highlights
-        $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine&;expand=comments').success(
+        $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine&;expand=comments,twinglings').success(
             function(data) {
               $scope.highlights = data;
               console.log($scope.highlights);
@@ -48,6 +48,16 @@
         //redirect to the current highlight's twinglings view
         $scope.showTwinglings = function (id) {
           $location.path('/highlights/' + id);
+        }
+
+        //displays the number of twinglings of a card
+        $scope.twinglingCount = function (count) {
+          if (count > 0) {
+            return count;
+          }
+          else {
+            return "";
+          }
         }
 
         //adds a twingling between two highlights

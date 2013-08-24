@@ -12,9 +12,18 @@
       <blockquote class="card__quote">{{highlight.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url}}</a></div>
       <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
-      <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
-      <i class="icon-code-fork" ng-click="showTwinglings(highlight.id)"></i>
-      <div class="card__connect--swing"><i class="icon-bolt card__connect" ng-click="newTwingling(highlight.id)"></i></div>
+      <div class="card--actions">
+        <div class="card--show-comments">
+          <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
+        </div>
+        <div class="card--twinglings">
+          <i class="icon-code-fork" ng-click="showTwinglings(highlight.id)"></i>
+          {{twinglingCount(highlight.twinglings.length)}}
+          <div class="card__connect--swing">
+            <i class="icon-bolt card__connect" ng-click="newTwingling(highlight.id)"></i>
+          </div>
+        </div>
+      </div>
       <div class="new-comment" ng-show="comment.showThis">
         <textarea class="new-comment__body" ng-model="comment.new"></textarea>
         <button class="new-comment__submit" ng-click="addComment(highlight.id, comment.new)">Add Comment</button>
