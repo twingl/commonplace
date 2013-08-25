@@ -7,20 +7,25 @@
     var selectedDate = "";
 
     if ($routeParams.date === ""){
-      selectedDate = new Date();
+      var now = new Date();
+      selectedDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+      console.log(selectedDate)
       $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
     }
     else {
       selectedDate = new Date($routeParams.date);
-      $scope.timeChunk = $routeParams.date;
+      selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(),  selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
+      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
     }
 
     $scope.flickBackOnePage = function() {
+      //selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(),  selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
       selectedDate.setDate(selectedDate.getDate() -1);
       $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
     }
 
     $scope.flickForwardOnePage = function() {
+      //selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(),  selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
       selectedDate.setDate(selectedDate.getDate() +1);
       $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
     }
@@ -175,7 +180,10 @@
     //jump-to-page
     $scope.navigateTo = function (date) {
       $scope.showSearchResults = false;
-      $scope.timeChunk = $filter('date')(date, 'yyyy-MM-dd');
+      var selectedDate = new Date (date);
+      selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(), selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
+      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+      console.log($scope.timeChunk);
     };
 
   }]);
