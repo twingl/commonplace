@@ -54,6 +54,41 @@
           $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
         }
 
+        //search
+        $scope.searchResults = [];
+
+        $scope.search = function(term) {
+          var searchTerm = term.split(' ').join('+');
+          $http.get('http://api.twin.gl/flux/search?q=' + searchTerm).success(
+            function(results) {
+              if (results.length !== 0) {
+                for (var i = 0; i < results.length; i++) {
+
+                  if (results[i].result_type === "highlights") {
+                    $http.get('http://api.twin.gl/flux/highlights/' + results[i].result_object.id + '?expand=comments,twinglings').success(
+              function(highlight) {
+                      $scope.searchResults.push(highlight);
+                    });
+                  }
+
+                  else if (results[i].result_type === "comments") {
+                    $http.get('http://api.twin.gl/flux/highlights/' + results[i].result_object.commented_id + '?expand=comments,twinglings').success(
+              function(highlight) {
+                      $scope.searchResults.push(highlight);
+                    });
+                  }
+
+                  else {
+                    console.log('Error: Unrecognised search result object type.')
+                  }
+                };
+              }
+              else {
+                alert('There were no results matching your search term');
+              }
+          });
+        }
+
         //redirect to the current highlight's twinglings view
         $scope.showTwinglings = function (id) {
           $location.path('/highlights/' + id);
@@ -118,6 +153,13 @@
 
       }
     });
+
+    //jump-to-page
+    $scope.navigateTo = function (date) {
+      console.log(date);
+      var dateFormatted = $filter('date')(date, 'yyyy-MM-dd');
+      $location.path('/' + dateFormatted);
+    };
 
   }]);
 

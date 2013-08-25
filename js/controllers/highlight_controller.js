@@ -58,6 +58,7 @@
       }
     });
 
+    //jump-to-page
     $scope.navigateTo = function (date) {
       var dateFormatted = $filter('date')(date, 'yyyy-MM-dd');
       $location.path('/' + dateFormatted);

@@ -35,6 +35,15 @@ a, a:visited {
     padding-bottom: 40px;
 }
 
+.search {
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.search__input {
+    width: 100px;
+}
+
 .content {
     width: 95%;
     margin-left: auto;

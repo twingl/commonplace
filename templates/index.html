@@ -1,5 +1,20 @@
 <div class="body__container">
 
+  <div class="search">
+    <form ng-submit="search(searchTerm)">
+      <i class="icon-search"></i>
+      <input type="search" class="search__input" ng-model="searchTerm" placeholder="...">
+    </form>
+    <div class="search__results">
+      <div class="card" ng-repeat="result in searchResults">
+        <blockquote class="card__quote">{{result.quote}}</blockquote>
+        <div class="card__attribution">&mdash; <a href="{{result.context_url}}">{{result.context_url}}</a></div>
+        <div class="card__comment" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
+        <i class="icon-reply-all" ng-click="navigateTo(result.created)"></i>
+      </div>
+    </div>
+  </div>
+
   <div class="navigation navigation__back">
     <i class="icon-chevron-left icon-2x" ng-click="flickBackOnePage()"></i>
   </div>
