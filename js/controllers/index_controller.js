@@ -2,6 +2,29 @@
   'use strict';
 
   Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
+    //time-chunking
+    $scope.timeChunk = "";
+    var selectedDate = "";
+
+    if ($routeParams.date === ""){
+      selectedDate = new Date();
+      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+    }
+    else {
+      selectedDate = new Date($routeParams.date);
+      $scope.timeChunk = $routeParams.date;
+    }
+
+    $scope.flickBackOnePage = function() {
+      selectedDate.setDate(selectedDate.getDate() -1);
+      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+    }
+
+    $scope.flickForwardOnePage = function() {
+      selectedDate.setDate(selectedDate.getDate() +1);
+      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+    }
+
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
 
     //Using popup (option 1)
@@ -30,29 +53,6 @@
               console.log($scope.highlights);
             }
           );
-
-        //time-chunking
-        $scope.timeChunk = "";
-        var selectedDate = "";
-
-        if ($routeParams.date === ""){
-          selectedDate = new Date();
-          $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
-        }
-        else {
-          selectedDate = new Date($routeParams.date);
-          $scope.timeChunk = $routeParams.date;
-        }
-
-        $scope.flickBackOnePage = function() {
-          selectedDate.setDate(selectedDate.getDate() -1);
-          $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
-        }
-
-        $scope.flickForwardOnePage = function() {
-          selectedDate.setDate(selectedDate.getDate() +1);
-          $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
-        }
 
         //search
         $scope.searchResults = [];
@@ -103,6 +103,7 @@
               else {
                 alert('There were no results matching your search term');
               }
+              $scope.showSearchResults = true;
           });
         }
 
@@ -173,9 +174,8 @@
 
     //jump-to-page
     $scope.navigateTo = function (date) {
-      console.log(date);
-      var dateFormatted = $filter('date')(date, 'yyyy-MM-dd');
-      $location.path('/' + dateFormatted);
+      $scope.showSearchResults = false;
+      $scope.timeChunk = $filter('date')(date, 'yyyy-MM-dd');
     };
 
   }]);

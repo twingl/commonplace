@@ -5,7 +5,7 @@
       <i class="icon-search"></i>
       <input type="search" class="search__input" ng-model="searchTerm" placeholder="...">
     </form>
-    <div class="search__results">
+    <div class="search__results" ng-show="showSearchResults">
       <div class="card" ng-repeat="result in searchResults">
         <blockquote class="card__quote">{{result.quote}}</blockquote>
         <div class="card__attribution">&mdash; <a href="{{result.context_url}}">{{result.context_url}}</a></div>
