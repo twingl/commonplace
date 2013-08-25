@@ -58,6 +58,7 @@
         $scope.searchResults = [];
 
         $scope.search = function(term) {
+          $scope.searchResults.length = 0; //clears previous search results
           var searchTerm = term.split(' ').join('+');
           $http.get('http://api.twin.gl/flux/search?q=' + searchTerm).success(
             function(results) {
@@ -67,14 +68,30 @@
                   if (results[i].result_type === "highlights") {
                     $http.get('http://api.twin.gl/flux/highlights/' + results[i].result_object.id + '?expand=comments,twinglings').success(
               function(highlight) {
-                      $scope.searchResults.push(highlight);
+                      var found = false;
+                      for (var j = 0; j < $scope.searchResults.length; j++) {
+                        if ($scope.searchResults[j].id === highlight.id) {
+                          found = true;
+                        }
+                      };
+                      if (!found){
+                        $scope.searchResults.push(highlight);
+                      }
                     });
                   }
 
                   else if (results[i].result_type === "comments") {
                     $http.get('http://api.twin.gl/flux/highlights/' + results[i].result_object.commented_id + '?expand=comments,twinglings').success(
               function(highlight) {
-                      $scope.searchResults.push(highlight);
+                      var found = false;
+                      for (var j = 0; j < $scope.searchResults.length; j++) {
+                        if ($scope.searchResults[j].id === highlight.id) {
+                          found = true;
+                        }
+                      };
+                      if (!found){
+                        $scope.searchResults.push(highlight);
+                      }
                     });
                   }
 
