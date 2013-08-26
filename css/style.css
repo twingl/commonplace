@@ -27,21 +27,41 @@ a, a:visited {
     text-decoration: underline;
 }
 
-.body__container {
+.search {
+    width: 100%;
+    padding-bottom: 20px;
+}
+    .search__form {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .search__input {
+        width: 200px;
+    }
+
+    .search-results__background {
+        width: 100%;
+        background-color: #e3e3d4;
+    }
+
+    .search-results__list {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+.commonplace__container {
     width: 75%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 40px;
     padding-bottom: 40px;
-}
-
-.search {
-    width: 100%;
-    padding-bottom: 20px;
-}
-
-.search__input {
-    width: 100px;
 }
 
 .content {
@@ -73,6 +93,9 @@ a, a:visited {
     background-color: #fff;
     box-shadow: 1px 1px #e6e9e9;
 }
+    .card--search {
+        width: 31%;
+    }
 
     .card--remove {
         position: relative;
@@ -93,9 +116,19 @@ a, a:visited {
         top: 0px;
     }
 
+    .card__quote--search:before {
+        font-size: 3em;
+        left: -25px;
+        top: 5px;
+    }
+
     .card__quote {
         color: #808080;
         font-style: italic;
+    }
+
+    .card__quote--search {
+        font-size: .7em;
     }
 
     .card__quote:after {
@@ -111,6 +144,12 @@ a, a:visited {
         bottom: -30px;
     }
 
+    .card__quote--search:after {
+        font-size: 3em;
+        right: -20px;
+        bottom: -20px;
+    }
+
     .card__attribution {
         color: #808080;
         font-size: .8em;
@@ -118,9 +157,12 @@ a, a:visited {
         padding-left: 40px;
     }
 
+    .card__attribution--search {
+        font-size: .6em;
+    }
+
     .card__attribution a {
         color: #808080;
-        font-size: .8em;
     }
 
     .card__comment {
@@ -130,17 +172,27 @@ a, a:visited {
         padding-left: 50px;
     }
 
-    .card--actions {
+    .card__comment--search {
+        font-size: .7em;
+    }
+
+    .card__actions {
         height: 17px;
         width: 100%;
     }
 
-    .card--show-comments {
+    .card__actions--search {
+        width: 16px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card__show-comments {
         width: 13px;
         float: left;
     }
 
-    .card--twinglings {
+    .card__twinglings {
         width: 60px;
         float: right;
     }

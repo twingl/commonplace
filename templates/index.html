@@ -1,19 +1,21 @@
-<div class="body__container">
-
-  <div class="search">
-    <form ng-submit="search(searchTerm)">
-      <i class="icon-search"></i>
-      <input type="search" class="search__input" ng-model="searchTerm" placeholder="...">
-    </form>
-    <div class="search__results" ng-show="showSearchResults">
-      <div class="card" ng-repeat="result in searchResults">
-        <blockquote class="card__quote">{{result.quote}}</blockquote>
-        <div class="card__attribution">&mdash; <a href="{{result.context_url}}">{{result.context_url}}</a></div>
-        <div class="card__comment" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
-        <i class="icon-reply-all" ng-click="navigateTo(result.created)"></i>
+<div class="search">
+  <form class="search__form" ng-submit="search(searchTerm)">
+    <i class="icon-search"></i>
+    <input type="search" class="search__input" ng-model="searchTerm">
+  </form>
+  <div class="search-results__background" ng-show="showSearchResults">
+    <div class="search-results__list" masonry>
+      <div class="card card--search masonry-brick" ng-repeat="result in searchResults">
+        <blockquote class="card__quote card__quote--search">{{result.quote}}</blockquote>
+        <div class="card__attribution card__attribution--search">&mdash; <a href="{{result.context_url}}">{{result.context_url}}</a></div>
+        <div class="card__comment card__comment--search" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
+        <div class="card__actions card__actions--search"><i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
       </div>
     </div>
   </div>
+</div>
+
+<div class="commonplace__container">
 
   <div class="navigation navigation__back">
     <i class="icon-chevron-left icon-2x" ng-click="flickBackOnePage()"></i>
@@ -25,11 +27,11 @@
       <blockquote class="card__quote">{{highlight.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url}}</a></div>
       <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
-      <div class="card--actions">
-        <div class="card--show-comments">
+      <div class="card__actions">
+        <div class="card__show-comments">
           <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
         </div>
-        <div class="card--twinglings">
+        <div class="card__twinglings">
           <i class="icon-code-fork" ng-click="showTwinglings(highlight.id)"></i>
           {{twinglingCount(highlight.twinglings.length)}}
           <div class="card__connect--swing">
