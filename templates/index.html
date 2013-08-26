@@ -1,9 +1,10 @@
 <div class="search">
   <form class="search__form" ng-submit="search(searchTerm)">
     <i class="icon-search"></i>
-    <input type="search" class="search__input" ng-model="searchTerm">
+    <input type="search" class="search__input" ng-model="searchTerm" autofocus="true">
   </form>
   <div class="search-results__background" ng-show="showSearchResults">
+    <div class="search--hide"><i class="icon-remove icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
     <div class="search-results__list" masonry>
       <div class="card card--search masonry-brick" ng-repeat="result in searchResults">
         <blockquote class="card__quote card__quote--search">{{result.quote}}</blockquote>
@@ -23,7 +24,7 @@
 
   <div class="content" masonry>
     <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:{ created: timeChunk } | orderBy:'-created'">
-      <i class="icon-remove card--remove" ng-click="deleteHighlight($index, highlight.id)"></i>
+      <i class="icon-trash card--remove" ng-click="deleteHighlight($index, highlight.id)"></i>
       <blockquote class="card__quote">{{highlight.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url}}</a></div>
       <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>

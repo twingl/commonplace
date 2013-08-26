@@ -104,11 +104,11 @@
                     console.log('Error: Unrecognised search result object type.')
                   }
                 };
+                $scope.showSearchResults = true;
               }
               else {
                 alert('There were no results matching your search term');
               }
-              $scope.showSearchResults = true;
           });
         }
 
