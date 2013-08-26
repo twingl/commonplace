@@ -1,10 +1,15 @@
 <div class="search">
   <form class="search__form" ng-submit="search(searchTerm)">
-    <i class="icon-search"></i>
-    <input type="search" class="search__input" ng-model="searchTerm" autofocus="true">
+    <div class="search-box">
+      <i class="icon-search search-box__icon"></i>
+      <input type="search" class="search-box__input" ng-model="searchTerm" autofocus="true">
+    </div>
   </form>
-  <div class="search-results__background" ng-show="showSearchResults">
+  <div class="search-results" ng-show="showSearchResults">
     <div class="search--hide"><i class="icon-collapse-top icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
+    <div class="search-results--notice" ng-show="showSearchNotice">
+        <h3>... There were no results matching your search term.</h3>
+    </div>
     <div class="search-results__list" masonry>
       <div class="card card--search masonry-brick" ng-repeat="result in searchResults">
         <blockquote class="card__quote card__quote--search">{{result.quote}}</blockquote>

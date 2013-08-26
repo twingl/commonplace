@@ -83,6 +83,7 @@
                         $scope.searchResults.push(highlight);
                       }
                     });
+                    $scope.showSearchNotice = false;
                   }
 
                   else if (results[i].result_type === "comments") {
@@ -98,17 +99,19 @@
                         $scope.searchResults.push(highlight);
                       }
                     });
+                    $scope.showSearchNotice = false;
                   }
 
                   else {
                     console.log('Error: Unrecognised search result object type.')
+                    $scope.showSearchNotice = true;
                   }
                 };
-                $scope.showSearchResults = true;
               }
               else {
-                alert('There were no results matching your search term');
+                $scope.showSearchNotice = true;
               }
+              $scope.showSearchResults = true;
           });
         }
 
