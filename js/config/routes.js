@@ -3,24 +3,24 @@
 
   Commonplace.app.config(['$routeProvider', function($routeProvider) {
 
-    $routeProvider.
+    $routeProvider
 
-      when( '/:date', {
+      .when( '/:date', {
         templateUrl: Commonplace.templates.index,
         controller: 'IndexController'
-      }).
+      })
 
-      when( '/highlights/:highlight_id', {
+      .when( '/highlights/:highlight_id', {
         templateUrl: Commonplace.templates.highlights,
         controller: 'HighlightController'
-      }).
+      })
 
-      when( '/twinglings', {
+      .when( '/twinglings', {
         templateUrl: Commonplace.templates.twinglings,
         controller: 'TwinglingController'
-      }).
+      })
 
-      otherwise ({
+      .otherwise ({
         redirectTo: '/'
       });
 
