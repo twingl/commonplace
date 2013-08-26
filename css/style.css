@@ -160,6 +160,9 @@ a, a:visited {
         color: #808080;
         font-size: .8em;
         width: 80%;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow: ellipsis;
         padding-left: 40px;
     }
 
