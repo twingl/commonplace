@@ -8,7 +8,7 @@
     <div class="search-results__list" masonry>
       <div class="card card--search masonry-brick" ng-repeat="result in searchResults">
         <blockquote class="card__quote card__quote--search">{{result.quote}}</blockquote>
-        <div class="card__attribution card__attribution--search">&mdash; <a href="{{result.context_url}}">{{result.context_url}}</a></div>
+        <div class="card__attribution card__attribution--search">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
         <div class="card__comment card__comment--search" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
         <div class="card__actions card__actions--search"><i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
       </div>
@@ -26,7 +26,7 @@
     <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:{ created: timeChunk } | orderBy:'-created'">
       <i class="icon-remove card--remove" ng-click="deleteHighlight($index, highlight.id)"></i>
       <blockquote class="card__quote">{{highlight.quote}}</blockquote>
-      <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url}}</a></div>
+      <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
       <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
       <div class="card__actions">
         <div class="card__show-comments">

@@ -159,7 +159,7 @@ a, a:visited {
     .card__attribution {
         color: #808080;
         font-size: .8em;
-        width: 80%;
+        width: 70%;
         white-space:nowrap;
         overflow:hidden;
         text-overflow: ellipsis;
@@ -257,12 +257,4 @@ hr {
 
 .right {
     float: right;
-}
-
-.two-col > div {
-    width: 400px;
-}
-
-.two-col {
-    clear: both;
 }
