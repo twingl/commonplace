@@ -111,6 +111,18 @@ a, a:visited {
     padding-bottom: 80px;
 }
 
+.expanded__nav {
+    float: left;
+    width: 5%;
+    padding-top: 75px;
+    padding-left: 75px;
+    color: #ccc;
+}
+
+    .expanded__nav:hover {
+        color: #000;
+    }
+
 .expanded__twinglings {
     width: 100%;
     background-color: #e3e3d4;
@@ -139,11 +151,21 @@ a, a:visited {
 
 .navigation__back {
     float: left;
+    color: #ccc;
 }
+
+    .navigation__back:hover {
+        color: #000;
+    }
 
 .navigation__forward {
     float: right;
+    color: #ccc;
 }
+
+    .navigation__forward:hover {
+        color: #000;
+    }
 
 .card {
     width: 47%;

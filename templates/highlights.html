@@ -1,6 +1,8 @@
+<div class="expanded__nav">
+  <i class="icon-chevron-sign-left icon-3x" ng-click="navigateTo(highlight.created)"></i>
+</div>
+
 <div class="expanded__context">
-  <a ng-click="navigateTo(highlight.created)">Back</a>
-  <br><br>
   <blockquote class="card__quote">{{highlight.quote}}</blockquote>
   <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
   <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>

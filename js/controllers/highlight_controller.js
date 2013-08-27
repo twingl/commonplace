@@ -57,10 +57,12 @@
               //pulls other highlights from that article
               $http.get('http://api.twin.gl/flux/highlights?context=' + $scope.highlight.context_url + '&;expand=comments').success(
                     function(highlights) {
+                      console.log('http://api.twin.gl/flux/highlights?context=' + $scope.highlight.context_url + '&;expand=comments');
                       var temp = highlights;
                       for (var i = 0; i < temp.length; i++) {
                         if (temp[i].id === $scope.highlight.id) {
                           temp.splice(i,1);
+                          break;
                         }
                       };
                       $scope.highlights = temp;
