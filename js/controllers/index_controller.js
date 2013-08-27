@@ -3,31 +3,50 @@
 
   Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
     //time-chunking
-    $scope.timeChunk = "";
-    var selectedDate = "";
+    $scope.timeSlice = {
+      beginning: null,
+      end: null
+    };
 
-    if ($routeParams.date === ""){
-      var now = new Date();
-      selectedDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
-      console.log(selectedDate)
-      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
-    }
-    else {
+    var selectedDate = new Date();
+    
+    if ($routeParams.date !== "") {
       selectedDate = new Date($routeParams.date);
-      selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(),  selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
-      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
     }
+
+    $scope.timeSlice.beginning = new Date(selectedDate);
+    $scope.timeSlice.beginning.setHours(0,0,0,0);
+    $scope.timeSlice.end = new Date(selectedDate);
+    $scope.timeSlice.end.setHours(23,59,59,999);
+
+    // Helper to check if the current item is within the slice bounds
+    $scope.inTimeSlice = function(item) {
+      var date = new Date(item.created);
+      return (date > $scope.timeSlice.beginning && date < $scope.timeSlice.end);
+    }
+
+    //jump-to-page
+    //FIXME the following should use the URL param to handle navigation
+    $scope.navigateTo = function (date) {
+      $scope.showSearchResults = false;
+
+      date = new Date(date);
+      $scope.timeSlice.beginning.setDate(date.getDate());
+      $scope.timeSlice.beginning.setMonth(date.getMonth());
+      $scope.timeSlice.beginning.setFullYear(date.getFullYear());
+      $scope.timeSlice.end.setDate(date.getDate());
+      $scope.timeSlice.end.setMonth(date.getMonth());
+      $scope.timeSlice.end.setFullYear(date.getFullYear());
+    };
 
     $scope.flickBackOnePage = function() {
-      //selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(),  selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
-      selectedDate.setDate(selectedDate.getDate() -1);
-      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+      $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() - 1 );
+      $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() - 1 );
     }
 
     $scope.flickForwardOnePage = function() {
-      //selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(),  selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
-      selectedDate.setDate(selectedDate.getDate() +1);
-      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
+      $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() + 1 );
+      $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() + 1 );
     }
 
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
@@ -179,15 +198,6 @@
 
       }
     });
-
-    //jump-to-page
-    $scope.navigateTo = function (date) {
-      $scope.showSearchResults = false;
-      var selectedDate = new Date (date);
-      selectedDate = new Date(selectedDate.getUTCFullYear(), selectedDate.getUTCMonth(), selectedDate.getUTCDate(), selectedDate.getUTCHours(), selectedDate.getUTCMinutes(), selectedDate.getUTCSeconds());
-      $scope.timeChunk = $filter('date')(selectedDate, 'yyyy-MM-dd');
-      console.log($scope.timeChunk);
-    };
 
   }]);
 

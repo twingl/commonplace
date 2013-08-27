@@ -28,7 +28,7 @@
   </div>
 
   <div class="content" masonry>
-    <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:{ created: timeChunk } | orderBy:'-created'">
+    <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
       <i class="icon-remove card--remove" ng-click="deleteHighlight($index, highlight.id)"></i>
       <blockquote class="card__quote">{{highlight.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
