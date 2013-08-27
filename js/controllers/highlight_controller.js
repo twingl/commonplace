@@ -23,8 +23,9 @@
 
         $scope.highlight = {};
         $scope.twinglings = [];
+        $scope.highlights = [];
 
-        // pulls all the current user's highlights
+        // pulls the current user's selecyed highlight
         $http.get('http://api.twin.gl/flux/highlights/' + $routeParams.highlight_id + '?expand=comments,twinglings').success(
             function(data) {
               $scope.highlight = data;
@@ -53,9 +54,20 @@
                 };
               }
 
-            }
-          );
-      }
+              //pulls other highlights from that article
+              $http.get('http://api.twin.gl/flux/highlights?context=' + $scope.highlight.context_url + '&;expand=comments').success(
+                    function(highlights) {
+                      var temp = highlights;
+                      for (var i = 0; i < temp.length; i++) {
+                        if (temp[i].id === $scope.highlight.id) {
+                          temp.splice(i,1);
+                        }
+                      };
+                      $scope.highlights = temp;
+                    });
+
+            });
+        }
     });
 
     //jump-to-page

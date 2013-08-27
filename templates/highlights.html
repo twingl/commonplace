@@ -1,5 +1,4 @@
-<div class="body__container">
-
+<div class="expanded__context">
   <a ng-click="navigateTo(highlight.created)">Back</a>
   <br><br>
   <blockquote class="card__quote">{{highlight.quote}}</blockquote>
@@ -10,17 +9,24 @@
     <textarea class="new-comment__body" ng-model="comment.new"></textarea>
     <button class="new-comment__submit" ng-click="addComment(highlight.id, comment.new)">Add Comment</button>
   </div> -->
-  <br><br>
-  <hr>
-  <br><br>
+</div>
 
-  <div masonry>
+<div class="expanded__twinglings">
+  <div class="expanded__twinglings__container" masonry>
     <div class="card masonry-brick" ng-repeat="twingling in twinglings">
       <blockquote class="card__quote">{{twingling.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{twingling.context_url}}">{{twingling.context_url | ShortenedURL}}</a></div>
       <div class="card__comment" ng-repeat="comment in twingling.comments">{{comment.body}} <hr></div>
-      <i class="icon-reply-all" ng-click="navigateTo(twingling.created)"></i>
+      <div class="card__actions card__actions--min"><i class="icon-reply-all card--jump" ng-click="navigateTo(twingling.created)"></i></div>
     </div>
   </div>
+</div>
 
+<div class="expanded__highlights" masonry>
+  <div class="card card--min masonry-brick" ng-repeat="highlight in highlights">
+    <blockquote class="card__quote card__quote--min">{{highlight.quote}}</blockquote>
+    <div class="card__attribution card__attribution--min">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
+    <div class="card__comment card__comment--min" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
+    <div class="card__actions card__actions--min"><i class="icon-reply-all card--jump" ng-click="navigateTo(highlight.created)"></i>
+  </div>
 </div>

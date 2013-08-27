@@ -11,11 +11,11 @@
         <h3>... There were no results matching your search term.</h3>
     </div>
     <div class="search-results__list" masonry>
-      <div class="card card--search masonry-brick" ng-repeat="result in searchResults">
-        <blockquote class="card__quote card__quote--search">{{result.quote}}</blockquote>
-        <div class="card__attribution card__attribution--search">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
-        <div class="card__comment card__comment--search" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
-        <div class="card__actions card__actions--search"><i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
+      <div class="card card--min masonry-brick" ng-repeat="result in searchResults">
+        <blockquote class="card__quote card__quote--min">{{result.quote}}</blockquote>
+        <div class="card__attribution card__attribution--min">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
+        <div class="card__comment card__comment--min" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
+        <div class="card__actions card__actions--min"><i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
       </div>
     </div>
   </div>

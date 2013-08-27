@@ -103,6 +103,35 @@ a, a:visited {
     margin-right: auto;
 }
 
+.expanded__context {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+.expanded__twinglings {
+    width: 100%;
+    background-color: #e3e3d4;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+    .expanded__twinglings__container {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.expanded__highlights {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 .naviagtion {
     width: 2.5%;
     height: 100%;
@@ -126,7 +155,7 @@ a, a:visited {
     background-color: #fff;
     box-shadow: 1px 1px #e6e9e9;
 }
-    .card--search {
+    .card--min {
         width: 31%;
     }
 
@@ -149,7 +178,7 @@ a, a:visited {
         top: 0px;
     }
 
-    .card__quote--search:before {
+    .card__quote--min:before {
         font-size: 3em;
         left: -25px;
         top: 5px;
@@ -160,7 +189,7 @@ a, a:visited {
         font-style: italic;
     }
 
-    .card__quote--search {
+    .card__quote--min {
         font-size: .7em;
     }
 
@@ -177,7 +206,7 @@ a, a:visited {
         bottom: -30px;
     }
 
-    .card__quote--search:after {
+    .card__quote--min:after {
         font-size: 3em;
         right: -20px;
         bottom: -20px;
@@ -193,7 +222,7 @@ a, a:visited {
         padding-left: 40px;
     }
 
-    .card__attribution--search {
+    .card__attribution--min {
         font-size: .6em;
     }
 
@@ -208,7 +237,7 @@ a, a:visited {
         padding-left: 50px;
     }
 
-    .card__comment--search {
+    .card__comment--min {
         font-size: .7em;
     }
 
@@ -217,7 +246,7 @@ a, a:visited {
         width: 100%;
     }
 
-    .card__actions--search {
+    .card__actions--min {
         width: 16px;
         margin-left: auto;
         margin-right: auto;
