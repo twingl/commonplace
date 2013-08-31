@@ -2,6 +2,9 @@
   'use strict';
 
   Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
+
+    $scope.highlights = [];
+
     //time-chunking
     $scope.timeSlice = {
       beginning: null,
@@ -25,6 +28,17 @@
       return (date > $scope.timeSlice.beginning && date < $scope.timeSlice.end);
     }
 
+    // Helper for avoiding blank pages
+    $scope.pageContentCheck = function (direction) {
+      var pageItemCount = ($filter('filter')($scope.highlights, $scope.inTimeSlice)).length;
+      if (pageItemCount === 0 && direction === "forward") {
+        $scope.flickForwardOnePage();
+      }
+      else if (pageItemCount === 0 && direction !== "forward") {
+        $scope.flickBackOnePage();
+      }
+    }
+
     //jump-to-page
     //FIXME the following should use the URL param to handle navigation
     $scope.navigateTo = function (date) {
@@ -42,11 +56,13 @@
     $scope.flickBackOnePage = function() {
       $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() - 1 );
       $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() - 1 );
+      $scope.pageContentCheck('back');
     }
 
     $scope.flickForwardOnePage = function() {
       $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() + 1 );
       $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() + 1 );
+      $scope.pageContentCheck('forward');
     }
 
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
@@ -68,13 +84,13 @@
         console.log("Access token:", result);
         /* END CONFIGURATION STUFF */
 
-        $scope.highlights = [];
-
         // pulls all the current user's highlights
         $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine&;expand=comments,twinglings').success(
             function(data) {
               $scope.highlights = data;
               console.log($scope.highlights);
+              // if initial page is blank (as in no activity today), go back until there is content
+              $scope.pageContentCheck('back');
             }
           );
 
