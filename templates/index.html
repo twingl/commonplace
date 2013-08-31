@@ -13,10 +13,18 @@
     <div class="search-results__list" masonry>
       <div class="card card--min masonry-brick" ng-repeat="result in searchResults">
         <blockquote class="card__quote card__quote--min">{{result.quote}}</blockquote>
-        <div class="card__attribution card__attribution--min">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
+        <div class="card__attribution">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
         <div class="card__comment card__comment--min" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
-        <div class="card__actions card__actions--min"><i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
-      </div>
+        <div class="card__actions">
+          <i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
+          <div class="card__twinglings">
+            <i class="icon-code-fork search-results_twingling" ng-click="showTwinglings(result.id)"></i>
+            <sup>{{twinglingCount(result.twinglings.length)}}</sup>
+            <div class="card__connect--swing">
+              <i class="icon-bolt card__connect" ng-click="newTwingling(result.id)"></i>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </div>
@@ -39,7 +47,7 @@
         </div>
         <div class="card__twinglings">
           <i class="icon-code-fork" ng-click="showTwinglings(highlight.id)"></i>
-          {{twinglingCount(highlight.twinglings.length)}}
+          <sup>{{twinglingCount(highlight.twinglings.length)}}</sup>
           <div class="card__connect--swing">
             <i class="icon-bolt card__connect" ng-click="newTwingling(highlight.id)"></i>
           </div>

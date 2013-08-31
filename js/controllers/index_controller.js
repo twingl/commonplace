@@ -9,7 +9,7 @@
     };
 
     var selectedDate = new Date();
-    
+
     if ($routeParams.date !== "") {
       selectedDate = new Date($routeParams.date);
     }

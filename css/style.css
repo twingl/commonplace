@@ -89,6 +89,10 @@ a, a:visited {
             padding-bottom: 40px;
         }
 
+        .search-results_twingling {
+            color: #aaa;
+        }
+
 .commonplace__container {
     width: 75%;
     margin-left: auto;
