@@ -83,7 +83,7 @@
         window.access_token = result;
         $http.defaults.headers.common['Authorization'] = 'Bearer '+result.access_token;
 
-        $http.get('http://api.twin.gl/flux/users/me')
+        $http.get('http://api.twin.gl/v1/users/me')
              .success( function(data, status, headers, config) {
                console.log(data, status, headers, config);
              });
@@ -91,7 +91,7 @@
         /* END CONFIGURATION STUFF */
 
         // pulls all the current user's highlights
-        $http.get('http://api.twin.gl/flux/highlights?context=twingl://mine&;expand=comments,twinglings').success(
+        $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
             function(data) {
               $scope.highlights = data;
               console.log($scope.highlights);
@@ -106,13 +106,13 @@
         $scope.search = function(term) {
           $scope.searchResults.length = 0; //clears previous search results
           var searchTerm = term.split(' ').join('+');
-          $http.get('http://api.twin.gl/flux/search?q=' + searchTerm).success(
+          $http.get('http://api.twin.gl/v1/search?q=' + searchTerm).success(
             function(results) {
               if (results.length !== 0) {
                 for (var i = 0; i < results.length; i++) {
 
                   if (results[i].result_type === "highlights") {
-                    $http.get('http://api.twin.gl/flux/highlights/' + results[i].result_object.id + '?expand=comments,twinglings').success(
+                    $http.get('http://api.twin.gl/v1/highlights/' + results[i].result_object.id + '?expand=comments,twinglings').success(
               function(highlight) {
                       var found = false;
                       for (var j = 0; j < $scope.searchResults.length; j++) {
@@ -128,7 +128,7 @@
                   }
 
                   else if (results[i].result_type === "comments") {
-                    $http.get('http://api.twin.gl/flux/highlights/' + results[i].result_object.commented_id + '?expand=comments,twinglings').success(
+                    $http.get('http://api.twin.gl/v1/highlights/' + results[i].result_object.commented_id + '?expand=comments,twinglings').success(
               function(highlight) {
                       var found = false;
                       for (var j = 0; j < $scope.searchResults.length; j++) {
@@ -187,7 +187,7 @@
           else if ($scope.twingling.start_id !== id) {
             $('.card__connect--swing').removeClass('animated swing');
             $scope.twingling.end_id = id;
-            $http.post('http://api.twin.gl/flux/twinglings', $scope.twingling).success(function() {
+            $http.post('http://api.twin.gl/v1/twinglings', $scope.twingling).success(function() {
               console.log("\nTwingled:")
               console.log($scope.twingling);
               $scope.twingling = {
@@ -203,7 +203,7 @@
         // adds a comment to a highlight
         $scope.addComment = function(index, id, comment) {
           $scope.highlights[$scope.highlights.length-1-index].comments.push({body: comment});
-          $http.post('http://api.twin.gl/flux/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
+          $http.post('http://api.twin.gl/v1/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
             function(data) {
               //TODO: fail gracefully
           })
@@ -212,7 +212,7 @@
         // removes a highlight from the API, but doesn't update the DOM
         $scope.deleteHighlight = function(index, id) {
           $scope.highlights.splice(-index-1, 1);
-          $http.delete('http://api.twin.gl/flux/highlights/' + id).success(
+          $http.delete('http://api.twin.gl/v1/highlights/' + id).success(
             function(data) {
               //TODO: fail gracefully (i.e. push highlight back into highlights array)
           })

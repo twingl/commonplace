@@ -14,7 +14,7 @@
         window.access_token = result;
         $http.defaults.headers.common['Authorization'] = 'Bearer '+result.access_token;
 
-        $http.get('http://api.twin.gl/flux/users/me')
+        $http.get('http://api.twin.gl/v1/users/me')
              .success( function(data, status, headers, config) {
                console.log(data, status, headers, config);
              });
@@ -26,7 +26,7 @@
         $scope.highlights = [];
 
         // pulls the current user's selecyed highlight
-        $http.get('http://api.twin.gl/flux/highlights/' + $routeParams.highlight_id + '?expand=comments,twinglings').success(
+        $http.get('http://api.twin.gl/v1/highlights/' + $routeParams.highlight_id + '?expand=comments,twinglings').success(
             function(data) {
               $scope.highlight = data;
               console.log(data);
@@ -45,7 +45,7 @@
                   }
 
                   //pull twingled highlight's comments
-                  $http.get('http://api.twin.gl/flux/highlights/' + twingledHighlightObject.id + '/comments').success(
+                  $http.get('http://api.twin.gl/v1/highlights/' + twingledHighlightObject.id + '/comments').success(
             function(comments) {
                     twingledHighlightObject.comments = comments;
                   });
@@ -55,9 +55,9 @@
               }
 
               //pulls other highlights from that article
-              $http.get('http://api.twin.gl/flux/highlights?context=' + $scope.highlight.context_url + '&;expand=comments').success(
+              $http.get('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&;expand=comments').success(
                     function(highlights) {
-                      console.log('http://api.twin.gl/flux/highlights?context=' + $scope.highlight.context_url + '&;expand=comments');
+                      console.log('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&;expand=comments');
                       var temp = highlights;
                       for (var i = 0; i < temp.length; i++) {
                         if (temp[i].id === $scope.highlight.id) {
