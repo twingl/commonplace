@@ -53,16 +53,22 @@
       $scope.timeSlice.end.setFullYear(date.getFullYear());
     };
 
+    // TODO: will need to change these page flipping IF statements,
+    // once things like creating new comments / twinglings repeats the card on today's date
     $scope.flickBackOnePage = function() {
-      $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() - 1 );
-      $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() - 1 );
-      $scope.pageContentCheck('back');
+      if ($scope.timeSlice.beginning > new Date($scope.highlights[0].created)) {
+        $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() - 1 );
+        $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() - 1 );
+        $scope.pageContentCheck('back');
+      }
     }
 
     $scope.flickForwardOnePage = function() {
-      $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() + 1 );
-      $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() + 1 );
-      $scope.pageContentCheck('forward');
+      if ($scope.timeSlice.end < new Date($scope.highlights[$scope.highlights.length].created)) {
+        $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() + 1 );
+        $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() + 1 );
+        $scope.pageContentCheck('forward');
+      }
     }
 
     OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
