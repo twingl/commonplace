@@ -27,12 +27,11 @@
 
         // pulls the current user's selecyed highlight
         $http.get('http://api.twin.gl/v1/highlights/' + $routeParams.highlight_id + '?expand=comments,twinglings').success(
-            function(data) {
-              $scope.highlight = data;
-              console.log(data);
+            function(highlight) {
+              $scope.highlight = highlight;
 
               //remove current highlight from twingling pair
-              if ($scope.highlight.twinglings.length !== 0) {
+              if (highlight.twinglings.length !== 0) {
                 for (var i = 0; i <= $scope.highlight.twinglings.length - 1; i++) {
                   var end_object_id = $scope.highlight.twinglings[i].end_id;
                   var twingledHighlightId = "";
