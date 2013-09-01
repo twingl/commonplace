@@ -64,7 +64,7 @@
     }
 
     $scope.flickForwardOnePage = function() {
-      if ($scope.timeSlice.end < new Date($scope.highlights[$scope.highlights.length].created)) {
+      if ($scope.timeSlice.end < new Date($scope.highlights[$scope.highlights.length-1].created)) {
         $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() + 1 );
         $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() + 1 );
         $scope.pageContentCheck('forward');
