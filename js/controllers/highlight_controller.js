@@ -35,29 +35,29 @@
               if ($scope.highlight.twinglings.length !== 0) {
                 for (var i = 0; i <= $scope.highlight.twinglings.length - 1; i++) {
                   var end_object_id = $scope.highlight.twinglings[i].end_id;
+                  var twingledHighlightId = "";
                   var twingledHighlightObject = {};
 
                   if (end_object_id !== $scope.highlight.id) {
-                    twingledHighlightObject = $scope.highlight.twinglings[i].end_object;
+                    twingledHighlightId = end_object_id;
+                    //pull twingled highlight's comments
                   }
                   else {
-                    twingledHighlightObject = $scope.highlight.twinglings[i].start_object;
+                    twingledHighlightId = $scope.highlight.twinglings[i].start_id;
+                    //pull twingled highlight's comments
                   }
 
-                  //pull twingled highlight's comments
-                  $http.get('http://api.twin.gl/v1/highlights/' + twingledHighlightObject.id + '/comments').success(
-            function(comments) {
-                    twingledHighlightObject.comments = comments;
-                  });
-
-                  $scope.twinglings.push(twingledHighlightObject);
+                  $http.get('http://api.twin.gl/v1/highlights/' + twingledHighlightId + '?expand=comments').success(
+                  function(twingledHighlight) {
+                          twingledHighlightObject = twingledHighlight;
+                          $scope.twinglings.push(twingledHighlightObject);
+                        });
                 };
               }
 
               //pulls other highlights from that article
               $http.get('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&;expand=comments').success(
                     function(highlights) {
-                      console.log('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&;expand=comments');
                       var temp = highlights;
                       for (var i = 0; i < temp.length; i++) {
                         if (temp[i].id === $scope.highlight.id) {
