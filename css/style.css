@@ -35,6 +35,10 @@ i {
     cursor: pointer;
 }
 
+    i:hover {
+            color: #000;
+    }
+
 a, a:visited {
     text-decoration: underline;
 }
@@ -131,10 +135,6 @@ a, a:visited {
     color: #ccc;
 }
 
-    .expanded__nav:hover {
-        color: #000;
-    }
-
 .expanded__twinglings {
     width: 100%;
     background-color: #e3e3d4;
@@ -157,27 +157,24 @@ a, a:visited {
 }
 
 .naviagtion {
-    width: 2.5%;
-    height: 100%;
+    width: 100%;
 }
 
 .navigation__back {
+    position: relative;
     float: left;
+    top: 75px;
+    left: -50px;
     color: #ccc;
 }
-
-    .navigation__back:hover {
-        color: #000;
-    }
 
 .navigation__forward {
+    position: relative;
     float: right;
+    top: 75px;
+    right: -50px;
     color: #ccc;
 }
-
-    .navigation__forward:hover {
-        color: #000;
-    }
 
 .card {
     width: 47%;
@@ -203,8 +200,12 @@ a, a:visited {
         top: -30px;
         right: -20px;
         float: right;
-        color: red;
+        color: #e5e5e5;
     }
+
+        .card--remove:hover {
+            color: red;
+        }
 
     .card__quote:before {
         font-family: serif;
@@ -304,6 +305,7 @@ a, a:visited {
     .card__show-comments {
         width: 13px;
         float: left;
+        color: #bbb;
     }
 
     .card__twinglings {
@@ -317,8 +319,12 @@ a, a:visited {
     }
 
     .card__connect {
-        color: purple;
+        color: #813D63;
     }
+
+        .card__connect:hover {
+            color: purple;
+        }
 
     .card__connect--swing {
         position: relative;

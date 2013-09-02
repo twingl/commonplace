@@ -1,4 +1,5 @@
 <div tabindex="0" ui-keydown="{37: 'keyPress($event)'}" ui-keyup="{39: 'keyPress($event)'}"> <!-- TODO: autofoucs and disable when in search box -->
+
   <div class="search">
     <form class="search__form" ng-submit="search(searchTerm)">
       <div class="search-box">
@@ -31,10 +32,16 @@
     </div>
   </div>
 
+
   <div class="commonplace__container">
 
-    <div class="navigation navigation__back">
-      <i class="icon-chevron-left icon-3x" ng-click="flickBackOnePage()"></i>
+    <div class="navigation">
+      <div class="navigation navigation__back">
+        <i class="icon-chevron-left icon-3x" ng-click="flickBackOnePage()"></i>
+      </div>
+      <div class="navigation navigation__forward">
+        <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
+      </div>
     </div>
 
     <div class="content" masonry>
@@ -62,9 +69,6 @@
       </div>
     </div>
 
-    <div class="navigation navigation__forward">
-      <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
-    </div>
-
   </div>
+
 </div>
