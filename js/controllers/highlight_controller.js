@@ -39,7 +39,7 @@
                     //pull twingled highlight's comments
                   }
 
-                  $http.get('http://api.twin.gl/v1/highlights/' + twingledHighlightId + '?expand=comments').success(
+                  $http.get('http://api.twin.gl/v1/highlights/' + twingledHighlightId + '?expand=comments,twinglings').success(
                   function(twingledHighlight) {
                           twingledHighlightObject = twingledHighlight;
                           $scope.twinglings.push(twingledHighlightObject);
@@ -64,6 +64,16 @@
       function(error) { //error
         console.log("There was a problem!", error);
       });
+
+    //displays the number of twinglings of a card (an example of a shared function to be added to a service)
+    $scope.twinglingCount = function (count) {
+      if (count > 0) {
+        return count;
+      }
+      else {
+        return "";
+      }
+    }
 
     //jump-to-page
     $scope.navigateTo = function (date) {

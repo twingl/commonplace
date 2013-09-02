@@ -294,6 +294,11 @@ a, a:visited {
         float: right;
     }
 
+    .card__twinglings--expanded {
+        width: 20px;
+        float: right;
+    }
+
     .card__connect {
         color: purple;
     }

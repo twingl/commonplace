@@ -21,7 +21,12 @@
       <blockquote class="card__quote">{{twingling.quote}}</blockquote>
       <div class="card__attribution">&mdash; <a href="{{twingling.context_url}}">{{twingling.context_url | ShortenedURL}}</a></div>
       <div class="card__comment" ng-repeat="comment in twingling.comments">{{comment.body}} <hr></div>
-      <div class="card__actions card__actions--min"><i class="icon-reply-all card--jump" ng-click="navigateTo(twingling.created)"></i></div>
+      <div class="card__actions">
+        <i class="icon-reply-all card--jump" ng-click="navigateTo(twingling.created)"></i>
+        <div class="card__twinglings card__twinglings--expanded">
+          <i class="icon-code-fork search-results_twingling" ng-click="showTwinglings(result.id)"></i><sup>{{twinglingCount(twingling.twinglings.length)}}</sup>
+        </div>
+      </div>
     </div>
   </div>
 </div>
