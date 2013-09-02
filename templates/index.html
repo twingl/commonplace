@@ -1,8 +1,9 @@
+<div tabindex="0" ui-keydown="{37: 'keyPress($event)'}">
 <div class="search">
   <form class="search__form" ng-submit="search(searchTerm)">
     <div class="search-box">
-      <i class="icon-search search-box__icon"></i>
-      <input type="search" class="search-box__input" ng-model="searchTerm" autofocus="true">
+      <i class="icon-search searc-box__icon"></i>
+      <input type="search" class="search-box__input" ng-model="searchTerm" tabindex="1">
     </div>
   </form>
   <div class="search-results" ng-show="showSearchResults">
@@ -25,6 +26,7 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
@@ -64,4 +66,5 @@
     <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
   </div>
 
+</div>
 </div>

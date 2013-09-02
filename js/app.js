@@ -8,7 +8,8 @@
     'filters',
     'controllers',
     'directives',
-    'wu.masonry'
+    'wu.masonry',
+    'ui.keypress'
   ]);
 
   Commonplace.factories   = angular.module('factories',   []);

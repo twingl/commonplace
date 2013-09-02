@@ -53,6 +53,17 @@
       $scope.timeSlice.end.setFullYear(date.getFullYear());
     };
 
+    //keystroke navigation
+    $scope.keyPress = function($event) {
+      if ($event.keyCode === 37) {
+        $scope.flickBackOnePage();
+      }
+      else if ($event.keyCode === 39) {
+        $scope.flickForwardOnePage();
+      }
+      $event.preventDefault();
+    }
+
     // TODO: will need to change these page flipping IF statements,
     // once things like creating new comments / twinglings repeats the card on today's date
     $scope.flickBackOnePage = function() {
