@@ -8,6 +8,10 @@
             box-sizing: border-box;
 }
 
+*:focus {
+    outline: none;
+}
+
 html,
 button,
 input,
@@ -25,10 +29,6 @@ body {
     line-height: 1.4;
     text-rendering: optimizeLegibility;
     background-color: #f7f7f3;
-}
-
-input:focus, textarea:focus {
-    outline: none;
 }
 
 a, a:visited {

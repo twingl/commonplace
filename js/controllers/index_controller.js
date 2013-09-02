@@ -222,6 +222,7 @@
         //search
         $scope.searchResults = [];
       },
+
       function(error) { //error
         console.log("There was a problem!", error);
       });

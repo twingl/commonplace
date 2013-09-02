@@ -59,7 +59,6 @@
                       };
                       $scope.highlights = temp;
                     });
-
             });
       },
       function(error) { //error
