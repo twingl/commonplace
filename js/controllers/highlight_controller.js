@@ -48,7 +48,7 @@
               }
 
               //pulls other highlights from that article
-              $http.get('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&;expand=comments').success(
+              $http.get('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&;expand=comments,twinglings').success(
                     function(highlights) {
                       var temp = highlights;
                       for (var i = 0; i < temp.length; i++) {
@@ -64,6 +64,11 @@
       function(error) { //error
         console.log("There was a problem!", error);
       });
+
+    //redirect to the current highlight's twinglings view
+    $scope.showTwinglings = function (id) {
+      $location.path('/highlights/' + id);
+    }
 
     //displays the number of twinglings of a card (an example of a shared function to be added to a service)
     $scope.twinglingCount = function (count) {

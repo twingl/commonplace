@@ -194,6 +194,10 @@ a, a:visited {
         margin: 1%;
     }
 
+    .card--origin {
+        width: 30%;
+    }
+
     .card--remove {
         position: relative;
         top: -30px;

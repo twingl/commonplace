@@ -24,7 +24,7 @@
       <div class="card__actions">
         <i class="icon-reply-all card--jump" ng-click="navigateTo(twingling.created)"></i>
         <div class="card__twinglings card__twinglings--expanded">
-          <i class="icon-code-fork search-results_twingling" ng-click="showTwinglings(result.id)"></i><sup>{{twinglingCount(twingling.twinglings.length)}}</sup>
+          <i class="icon-code-fork search-results_twingling" ng-click="showTwinglings(twingling.id)"></i><sup>{{twinglingCount(twingling.twinglings.length)}}</sup>
         </div>
       </div>
     </div>
@@ -32,10 +32,15 @@
 </div>
 
 <div class="expanded__highlights" masonry>
-  <div class="card card--min masonry-brick" ng-repeat="highlight in highlights">
-    <blockquote class="card__quote card__quote--min">{{highlight.quote}}</blockquote>
+  <div class="card card--origin masonry-brick" ng-repeat="highlight in highlights">
+    <div class="card__quote card__quote--min">{{highlight.quote}}</div>
     <div class="card__attribution card__attribution--min">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
     <div class="card__comment card__comment--min" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
-    <div class="card__actions card__actions--min"><i class="icon-reply-all card--jump" ng-click="navigateTo(highlight.created)"></i>
+    <div class="card__actions card__actions--min">
+      <i class="icon-reply-all card--jump" ng-click="navigateTo(highlight.created)"></i>
+      <div class="card__twinglings card__twinglings--expanded">
+        <i class="icon-code-fork search-results_twingling" ng-click="showTwinglings(highlight.id)"></i><sup>{{twinglingCount(highlight.twinglings.length)}}</sup>
+      </div>
+    </div>
   </div>
 </div>
