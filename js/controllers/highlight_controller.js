@@ -1,24 +1,17 @@
 (function() {
   'use strict';
 
-  Commonplace.controllers.controller('HighlightController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
-    OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
-
-    //Using popup (option 1)
-    OAuth.popup('twingl', function(error, result) {
-      //handle error with error
-      //use result.access_token in your API request
-      if (error) {
-        console.log("There was a problem!");
-      } else {
-        window.access_token = result;
-        $http.defaults.headers.common['Authorization'] = 'Bearer '+result.access_token;
+  Commonplace.controllers.controller('HighlightController', ['$auth', '$scope', '$http', '$routeParams', '$filter', '$location', function($auth, $scope, $http, $routeParams, $filter, $location) {
+    $auth.authenticate().then(
+      function(token) { //success
+        window.access_token = token;
+        $http.defaults.headers.common['Authorization'] = 'Bearer '+token.access_token;
 
         $http.get('http://api.twin.gl/v1/users/me')
              .success( function(data, status, headers, config) {
                console.log(data, status, headers, config);
              });
-        console.log("Access token:", result);
+        console.log("Access token:", token);
         /* END CONFIGURATION STUFF */
 
         $scope.highlight = {};
@@ -68,8 +61,10 @@
                     });
 
             });
-        }
-    });
+      },
+      function(error) { //error
+        console.log("There was a problem!", error);
+      });
 
     //jump-to-page
     $scope.navigateTo = function (date) {
