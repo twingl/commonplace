@@ -1,19 +1,13 @@
 (function() {
   'use strict';
 
-  Commonplace.controllers.controller('TwinglingController', ['$scope', '$http',
-    function($scope, $http) {
-      OAuth.initialize('vriVw-S06p3A34LnSbGoZ2p0Fhw');
+  Commonplace.controllers.controller('TwinglingController', ['$auth', '$scope', '$http',
+    function($auth, $scope, $http) {
 
-      //Using popup (option 1)
-      OAuth.popup('twingl', function(error, result) {
-        //handle error with error
-        //use result.access_token in your API request
-        if (error) {
-          console.log("An error occurs.");
-        } else {
-          window.access_token = result;
-          $http.defaults.headers.common['Authorization'] = 'Bearer ' + result.access_token;
+      $auth.authenticate().then(
+        function(token) { //success
+          window.access_token = token;
+          $http.defaults.headers.common['Authorization'] = 'Bearer ' + token.access_token;
           /* END CONFIGURATION STUFF */
 
           $scope.highlights = [];
@@ -41,8 +35,11 @@
               });
             };
           });
-        }
-      });
+        },
+        function(error) { //error
+          console.log("There was a problem!", error);
+        });
+
     }
   ]);
 })();
