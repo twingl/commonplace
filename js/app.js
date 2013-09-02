@@ -9,6 +9,7 @@
     'controllers',
     'directives',
     'wu.masonry',
+    'ngCookies',
     'ui.keypress'
   ]);
 
