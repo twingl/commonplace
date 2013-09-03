@@ -1,4 +1,4 @@
-<div tabindex="0" ui-keydown="{37: 'keyPress($event)'}" ui-keyup="{39: 'keyPress($event)'}"> <!-- TODO: autofoucs and disable when in search box -->
+<div tabindex="0" ui-keydown="{37: 'keyPress($event)', 39: 'keyPress($event)'}"> <!-- TODO: disable when in search box -->
 
   <div class="search">
     <form class="search__form" ng-submit="search(searchTerm)">
@@ -22,8 +22,8 @@
             <div class="card__twinglings">
               <i class="icon-code-fork search-results_twingling" ng-click="showTwinglings(result.id)"></i>
               <sup>{{twinglingCount(result.twinglings.length)}}</sup>
-              <div class="card__connect--swing">
-                <i class="icon-bolt card__connect" ng-click="newTwingling(result.id)"></i>
+              <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(result.id, $index) }">
+                <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(result.id, $index), 'card__connect--swing__end' : twinglingEnd(result.id, $index) }" ng-click="newTwingling('results', result.id, $index)"></i>
               </div>
             </div>
           </div>
@@ -57,8 +57,8 @@
           <div class="card__twinglings">
             <i class="icon-code-fork" ng-click="showTwinglings(highlight.id)"></i>
             <sup>{{twinglingCount(highlight.twinglings.length)}}</sup>
-            <div class="card__connect--swing">
-              <i class="icon-bolt card__connect" ng-click="newTwingling(highlight.id)"></i>
+            <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(highlight.id, $index) }">
+              <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(highlight.id, $index), 'card__connect--swing__end' : twinglingEnd(highlight.id, $index) }" ng-click="newTwingling('highlights', highlight.id, $index)"></i>
             </div>
           </div>
         </div>

@@ -326,20 +326,28 @@ a, a:visited {
             color: purple;
         }
 
-    .card__connect--swing {
-        position: relative;
-        float: right;
-        width: 8px;
-        -webkit-animation-duration: 3s;
-        -webkit-animation-delay: 0s;
-        -webkit-animation-iteration-count: infinite;
-        -moz-animation-duration: 3s;
-        -moz-animation-delay: 0s;
-        -moz-animation-iteration-count: infinite;
-        -animation-duration: 3s;
-        -animation-delay: 0s;
-        -animation-iteration-count: infinite;
-    }
+        .card__connect--swing__start {
+            color: orange;
+        }
+
+        .card__connect--swing__end {
+            color: green;
+        }
+
+        .card__connect--swing {
+            position: relative;
+            float: right;
+            width: 8px;
+            -webkit-animation-duration: 3s;
+            -webkit-animation-delay: 0s;
+            -webkit-animation-iteration-count: infinite;
+            -moz-animation-duration: 3s;
+            -moz-animation-delay: 0s;
+            -moz-animation-iteration-count: infinite;
+            -animation-duration: 3s;
+            -animation-delay: 0s;
+            -animation-iteration-count: infinite;
+        }
 
 .new-comment {
     width: 100%;
