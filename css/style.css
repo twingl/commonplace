@@ -229,8 +229,6 @@ a, a:visited {
     .card__quote {
         color: #808080;
         font-style: italic;
-        text-align: justify;
-        text-justify: inter-word;
     }
 
     .card__quote--min {
@@ -248,8 +246,8 @@ a, a:visited {
         line-height: 0px;
         float: right;
         position: relative;
-        right: -35px;
-        bottom: -30px;
+        right: -25px;
+        bottom: -35px;
     }
 
     .card__quote--min:after {

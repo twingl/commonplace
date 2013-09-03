@@ -208,12 +208,9 @@
         $scope.twingling.end_id = id;
 
         //increase real time twingl count
-        console.log($scope.highlights);
-        console.log($scope.twingling);
         if (origin == 'highlights') {
           $scope.highlights[$scope.highlights.length-1-$scope.selectedStartIndex].twinglings.push($scope.twingling);
           $scope.highlights[$scope.highlights.length-1-index].twinglings.push($scope.twingling);
-          console.log($scope.highlights);
         }
         else {
           $scope.results[$scope.highlights.length-1-$scope.selectedStartIndex].twinglings.push($scope.twingling);
