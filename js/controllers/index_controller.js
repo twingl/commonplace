@@ -132,6 +132,7 @@
             $scope.showSearchNotice = true;
           }
           $scope.showSearchResults = true;
+          console.log($scope.searchResults);
       });
     }
 
@@ -197,7 +198,7 @@
     }
 
     $scope.newTwingling = function (origin, id, index) {
-      if ($scope.twingling.start_id === "") {
+      if ($scope.twingling.start_id == "") {
         $scope.selectedStartIndex = index;
         $scope.selectedStartId = id;
         $scope.twinglingInProgress = true;
@@ -213,8 +214,8 @@
           $scope.highlights[$scope.highlights.length-1-index].twinglings.push($scope.twingling);
         }
         else {
-          $scope.results[$scope.highlights.length-1-$scope.selectedStartIndex].twinglings.push($scope.twingling);
-          $scope.results[$scope.highlights.length-1-index].twinglings.push($scope.twingling);
+          $scope.results[$scope.results.length-1-$scope.selectedStartIndex].twinglings.push($scope.twingling);
+          $scope.results[$scope.results.length-1-index].twinglings.push($scope.twingling);
         }
 
         $http.post('http://api.twin.gl/v1/twinglings', $scope.twingling).success(function() {
@@ -264,7 +265,14 @@
         $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
             function(data) {
               $scope.highlights = data;
+
+              //sort according to date created
+              $scope.highlights.sort(function(a,b) {
+                return new Date(a.created) - new Date(b.created);
+              });
+
               console.log($scope.highlights);
+              
               // if initial page is blank (as in no activity today), go back until there is content
               $scope.pageContentCheck('back');
             }
