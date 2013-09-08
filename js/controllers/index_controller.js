@@ -161,6 +161,7 @@
 
     //twingling animation variables for ng-class
     $scope.twinglingInProgress = false;
+    $scope.selectedStartOrigin = "";
     $scope.selectedStartIndex = -1;
     $scope.selectedStartId = -1;
 
@@ -198,26 +199,37 @@
     }
 
     $scope.newTwingling = function (origin, id, index) {
+      //if highlight is the start point...
       if ($scope.twingling.start_id == "") {
+        $scope.selectedStartOrigin = origin;
         $scope.selectedStartIndex = index;
         $scope.selectedStartId = id;
         $scope.twinglingInProgress = true;
         $scope.twingling.start_id = id;
       }
+      //if highlight is the end point (and if end point != start point)...
       else if ($scope.twingling.start_id !== id) {
         $scope.twinglingInProgress = false;
         $scope.twingling.end_id = id;
+        console.log($scope.twingling);
 
-        //increase real time twingl count
-        if (origin == 'highlights') {
+        //increase real time twingl count: start point
+        if ($scope.selectedStartOrigin == 'highlights') {
           $scope.highlights[$scope.highlights.length-1-$scope.selectedStartIndex].twinglings.push($scope.twingling);
+        }
+        else if ($scope.selectedStartOrigin == 'results') {
+          $scope.searchResults[$scope.selectedStartIndex].twinglings.push($scope.twingling);
+        }
+
+        //increase real time twingl count: end point
+        if (origin == 'highlights') {
           $scope.highlights[$scope.highlights.length-1-index].twinglings.push($scope.twingling);
         }
-        else {
-          $scope.results[$scope.results.length-1-$scope.selectedStartIndex].twinglings.push($scope.twingling);
-          $scope.results[$scope.results.length-1-index].twinglings.push($scope.twingling);
+        else if (origin == 'results') {
+          $scope.searchResults[index].twinglings.push($scope.twingling);
         }
 
+        //post twingling object
         $http.post('http://api.twin.gl/v1/twinglings', $scope.twingling).success(function() {
           $scope.twingling = {
             start_type: "highlights",
@@ -226,7 +238,10 @@
             end_id: ""
           }
           console.log('Twingling successfully created!');
+          $scope.twinglingInProgress = false;
+          $scope.selectedStartOrigin = "";
           $scope.selectedStartIndex = -1;
+          $scope.selectedStartId = -1;
         });
       }
     }
@@ -272,7 +287,7 @@
               });
 
               console.log($scope.highlights);
-              
+
               // if initial page is blank (as in no activity today), go back until there is content
               $scope.pageContentCheck('back');
             }
