@@ -1,16 +1,27 @@
-<div tabindex="0" ui-keydown="{37: 'keyPress($event)', 39: 'keyPress($event)'}"> <!-- TODO: disable when in search box -->
+<div class="header">
+  <ul>
+    <li class="header__nav header__logo">
+      <a href="/"><h4 class="header__logo__text">Commonplace</h4></a>
+    </li>
+    <li class="header__nav header__search">
+      <div class="header__serach__box">
+        <form ng-submit="search(searchTerm)">
+            <i class="icon-search search-box__icon" ng-click="search(searchTerm)"></i>
+            <input type="search" class="search-box__input" ng-model="searchTerm" tabindex="1" placeholder="Search..." autofocus>
+        </form>
+      </div>
+    </li>
+    <li class="header__nav header__sign-out">
+      <i class="icon-signout header__sign-out__icon" ng-click="signOut()"></i> <a href="" ng-click="signOut()">Sign Out</a>
+    </li>
+  </ul>
+</div>
 
-  <a href="" ng-click="signOut()">Sign Out</a>
+<div tabindex="0" ui-keydown="{37: 'keyPress($event)', 39: 'keyPress($event)'}">
 
   <div class="search">
-    <form class="search__form" ng-submit="search(searchTerm)">
-      <div class="search-box">
-        <i class="icon-search search-box__icon"></i>
-        <input type="search" class="search-box__input" ng-model="searchTerm" tabindex="1" autofocus>
-      </div>
-    </form>
     <div class="search-results" ng-show="showSearchResults">
-      <div class="search--hide"><i class="icon-collapse-top icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
+      <div class="search--hide"><i class="icon-remove icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
       <div class="search-results--notice" ng-show="showSearchNotice">
           <h3>... There were no results matching your search term.</h3>
       </div>
@@ -37,18 +48,21 @@
 
   <div class="commonplace__container">
 
-    <div class="navigation">
-      <div class="navigation navigation__back">
+    <div class="naviagtion__container">
+      <div class="navigation__chevron">
         <i class="icon-chevron-left icon-3x" ng-click="flickBackOnePage()"></i>
       </div>
-      <div class="navigation navigation__forward">
+      <div class="navigation__date">
+        <h1 class="navigation__date__text">[Monday]</h1>
+      </div>
+      <div class="navigation__chevron">
         <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
       </div>
     </div>
 
     <div class="content" masonry>
       <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
-        <i class="icon-remove card--remove" ng-click="deleteHighlight($index, highlight.id)"></i>
+        <i class="icon-remove-sign card--remove" ng-click="deleteHighlight($index, highlight.id)"></i>
         <blockquote class="card__quote">{{highlight.quote}}</blockquote>
         <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
         <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>

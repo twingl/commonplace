@@ -1,3 +1,48 @@
+<div class="header">
+  <ul>
+    <li class="header__nav header__logo">
+      <a href="/"><h4 class="header__logo__text">Commonplace</h4></a>
+    </li>
+    <li class="header__nav header__search">
+      <div class="header__serach__box">
+        <form ng-submit="search(searchTerm)">
+            <i class="icon-search search-box__icon" ng-click="search(searchTerm)"></i>
+            <input type="search" class="search-box__input" ng-model="searchTerm" tabindex="1" placeholder="Search..." autofocus>
+        </form>
+      </div>
+    </li>
+    <li class="header__nav header__sign-out">
+      <i class="icon-signout header__sign-out__icon" ng-click="signOut()"></i> <a href="" ng-click="signOut()">Sign Out</a>
+    </li>
+  </ul>
+</div>
+
+<div class="search">
+  <div class="search-results" ng-show="showSearchResults">
+    <div class="search--hide"><i class="icon-remove icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
+    <div class="search-results--notice" ng-show="showSearchNotice">
+        <h3>... There were no results matching your search term.</h3>
+    </div>
+    <div class="search-results__list" masonry>
+      <div class="card card--min masonry-brick" ng-repeat="result in searchResults">
+        <div class="card__quote card__quote--min">{{result.quote}}</div>
+        <div class="card__attribution card__attribution--min">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
+        <div class="card__comment card__comment--min" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
+        <div class="card__actions card__actions--min">
+          <i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
+          <div class="card__twinglings">
+            <i class="icon-code-fork search-results_twingling" ng-click="showTwinglings(result.id)"></i>
+            <sup>{{twinglingCount(result.twinglings.length)}}</sup>
+            <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(result.id, $index) }">
+              <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(result.id, $index), 'card__connect--swing__end' : twinglingEnd(result.id, $index) }" ng-click="newTwingling('results', result.id, $index)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="expanded__nav">
   <i class="icon-chevron-sign-left icon-3x" ng-click="navigateTo(highlight.created)"></i>
 </div>

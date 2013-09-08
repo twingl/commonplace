@@ -43,8 +43,82 @@ a, a:visited {
     text-decoration: underline;
 }
 
+ul {
+    list-style: none;
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    margin-top: 0px;
+    background-color: #ffffff;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #e5e5e5;
+}
+
+    .header a, a:visited {
+        text-decoration: none;
+    }
+
+    .header__nav {
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: #e5e5e5;
+    }
+
+    .header__logo {
+        width: 10%;
+        float: left;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+        .header__logo__text {
+            text-align: center;
+            color: gray;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+    .header__search {
+        float: left;
+        width: 80%;
+    }
+
+        .header__serach__box {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+                .search-box__icon {
+                    color: #ccc;
+                }
+
+                .search-box__input {
+                    font-size: 1em;
+                    height: 45px;
+                    width: 98%;
+                    border-style: none;
+                    margin-top: -50px;
+                }
+
+    .header__sign-out {
+        width: 10%;
+        float: right;
+        text-align: center;
+        font-size: .85em;
+    }
+
+        .header__sign-out__icon {
+            color: #ccc;
+        }
+
 .search {
     width: 100%;
+    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -53,36 +127,6 @@ a, a:visited {
         padding-top: 20px;
         padding-left: 100px;
     }
-
-    .search__form {
-        width: 65%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-
-        .search-box {
-            width: 250px;
-            background-color: #fefefd;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            box-shadow: 1px 1px #e6e9e9;
-        }
-
-            .search-box__icon {
-                color: #ccc;
-            }
-
-            .search-box__input {
-                font-size: .9em;
-                height: 20px;
-                width: 91%;
-                background-color: #fefefd;
-                border-style: none;
-            }
 
     .search-results {
         width: 100%;
@@ -109,7 +153,6 @@ a, a:visited {
     width: 65%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
     padding-bottom: 40px;
 }
 
@@ -156,25 +199,30 @@ a, a:visited {
     padding-bottom: 100px;
 }
 
-.naviagtion {
+.naviagtion__container {
     width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 60px;
+    /*^ that much padding feels wrong, but 'works'*/
 }
 
-.navigation__back {
-    position: relative;
+.navigation__chevron {
     float: left;
-    top: 75px;
-    left: -50px;
     color: #ccc;
+    width: 5%;
 }
 
-.navigation__forward {
-    position: relative;
-    float: right;
-    top: 75px;
-    right: -50px;
-    color: #ccc;
+.navigation__date {
+    float: left;
+    text-align: center;
+    width: 90%;
 }
+
+    .navigation__date__text {
+        margin-top: 2px;
+        margin-bottom: 0px;
+    }
 
 .card {
     width: 47%;
