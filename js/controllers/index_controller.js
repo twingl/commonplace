@@ -84,6 +84,7 @@
 
     $scope.search = function(term) {
       $scope.searchResults.length = 0; //clears previous search results
+      var tempSearchResults = [];
       var searchTerm = term.split(' ').join('+');
       $http.get('http://api.twin.gl/v1/search?q=' + searchTerm).success(
         function(results) {
@@ -94,13 +95,19 @@
                 $http.get('http://api.twin.gl/v1/highlights/' + results[i].result_object.id + '?expand=comments,twinglings').success(
           function(highlight) {
                   var found = false;
-                  for (var j = 0; j < $scope.searchResults.length; j++) {
-                    if ($scope.searchResults[j].id === highlight.id) {
+                  for (var j = 0; j < tempSearchResults.length; j++) {
+                    if (tempSearchResults[j].id === highlight.id) {
                       found = true;
                     }
                   };
                   if (!found){
-                    $scope.searchResults.push(highlight);
+                    //sorts highlights' comments according to date created
+                    if (highlight.comments.length > 1) {
+                      highlight.comments.sort(function(a,b) {
+                        return new Date(a.created) - new Date(b.created);
+                      });
+                    };
+                    tempSearchResults.push(highlight);
                   }
                 });
                 $scope.showSearchNotice = false;
@@ -110,13 +117,19 @@
                 $http.get('http://api.twin.gl/v1/highlights/' + results[i].result_object.commented_id + '?expand=comments,twinglings').success(
           function(highlight) {
                   var found = false;
-                  for (var j = 0; j < $scope.searchResults.length; j++) {
-                    if ($scope.searchResults[j].id === highlight.id) {
+                  for (var j = 0; j < tempSearchResults.length; j++) {
+                    if (tempSearchResults[j].id === highlight.id) {
                       found = true;
                     }
                   };
                   if (!found){
-                    $scope.searchResults.push(highlight);
+                    //sorts highlights' comments according to date created
+                    if (highlight.comments.length > 1) {
+                      highlight.comments.sort(function(a,b) {
+                        return new Date(a.created) - new Date(b.created);
+                      });
+                    };
+                    tempSearchResults.push(highlight);
                   }
                 });
                 $scope.showSearchNotice = false;
@@ -127,12 +140,16 @@
                 $scope.showSearchNotice = true;
               }
             };
+
+            $scope.searchResults = tempSearchResults;
+            console.log($scope.searchResults);
+
           }
           else {
             $scope.showSearchNotice = true;
           }
+
           $scope.showSearchResults = true;
-          console.log($scope.searchResults);
       });
     }
 
@@ -288,9 +305,11 @@
 
               //sorts highlights' comments according to date created
               for (var i = 0; i < tempHighlights.length; i++) {
-                tempHighlights[i].comments.sort(function(a,b) {
-                  return new Date(a.created) - new Date(b.created);
-                });
+                if (tempHighlights[i].comments.length > 1) {
+                  tempHighlights[i].comments.sort(function(a,b) {
+                    return new Date(a.created) - new Date(b.created);
+                  });
+                }
               };
 
               $scope.highlights = tempHighlights;
