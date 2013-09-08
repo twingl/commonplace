@@ -279,13 +279,21 @@
         // pulls all the current user's highlights
         $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
             function(data) {
-              $scope.highlights = data;
+              var tempHighlights = data;
 
-              //sort according to date created
-              $scope.highlights.sort(function(a,b) {
+              //sorts highlights according to date created
+              tempHighlights.sort(function(a,b) {
                 return new Date(a.created) - new Date(b.created);
               });
 
+              //sorts highlights' comments according to date created
+              for (var i = 0; i < tempHighlights.length; i++) {
+                tempHighlights[i].comments.sort(function(a,b) {
+                  return new Date(a.created) - new Date(b.created);
+                });
+              };
+
+              $scope.highlights = tempHighlights;
               console.log($scope.highlights);
 
               // if initial page is blank (as in no activity today), go back until there is content
