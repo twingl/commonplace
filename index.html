@@ -25,6 +25,7 @@
     <script src="/js/app.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/config/templates.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/config/routes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/controllers/authentication_controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/controllers/index_controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/controllers/highlight_controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/controllers/twingling_controller.js" type="text/javascript" charset="utf-8"></script>
@@ -38,5 +39,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   </head>
 
-  <body ng-view></body>
+  <body ng-controller="AuthenticationController">
+    <div ng-view></div>
+  </body>
 </html>

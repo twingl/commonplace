@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.controllers.controller('IndexController', ['$auth', '$scope', '$http', '$routeParams', '$filter', '$location', function($auth, $scope, $http, $routeParams, $filter, $location) {
+  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
 
     $scope.highlights = [];
 
@@ -281,52 +281,45 @@
       })
     }
 
-    $auth.authenticate().then(
-      function(token) { //success
-        window.access_token = token;
-        $http.defaults.headers.common['Authorization'] = 'Bearer '+token.access_token;
 
-        $http.get('http://api.twin.gl/v1/users/me')
-             .success( function(data, status, headers, config) {
-               console.log(data, status, headers, config);
-             });
-        console.log("Access token:", token);
-        /* END CONFIGURATION STUFF */
 
-        // pulls all the current user's highlights
-        $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
-            function(data) {
-              var tempHighlights = data;
 
-              //sorts highlights according to date created
-              tempHighlights.sort(function(a,b) {
+    
+    $http.get('http://api.twin.gl/v1/users/me')
+         .success( function(data, status, headers, config) {
+           console.log(data, status, headers, config);
+         });
+    /* END CONFIGURATION STUFF */
+
+    // pulls all the current user's highlights
+    $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
+        function(data) {
+          var tempHighlights = data;
+
+          //sorts highlights according to date created
+          tempHighlights.sort(function(a,b) {
+            return new Date(a.created) - new Date(b.created);
+          });
+
+          //sorts highlights' comments according to date created
+          for (var i = 0; i < tempHighlights.length; i++) {
+            if (tempHighlights[i].comments.length > 1) {
+              tempHighlights[i].comments.sort(function(a,b) {
                 return new Date(a.created) - new Date(b.created);
               });
-
-              //sorts highlights' comments according to date created
-              for (var i = 0; i < tempHighlights.length; i++) {
-                if (tempHighlights[i].comments.length > 1) {
-                  tempHighlights[i].comments.sort(function(a,b) {
-                    return new Date(a.created) - new Date(b.created);
-                  });
-                }
-              };
-
-              $scope.highlights = tempHighlights;
-              console.log($scope.highlights);
-
-              // if initial page is blank (as in no activity today), go back until there is content
-              $scope.pageContentCheck('back');
             }
-          );
+          };
 
-        //search
-        $scope.searchResults = [];
-      },
+          $scope.highlights = tempHighlights;
+          console.log($scope.highlights);
 
-      function(error) { //error
-        console.log("There was a problem!", error);
-      });
+          // if initial page is blank (as in no activity today), go back until there is content
+          $scope.pageContentCheck('back');
+        }
+      );
+
+    //search
+    $scope.searchResults = [];
 
   }]);
 

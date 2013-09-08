@@ -1,5 +1,7 @@
 <div tabindex="0" ui-keydown="{37: 'keyPress($event)', 39: 'keyPress($event)'}"> <!-- TODO: disable when in search box -->
 
+  <a href="" ng-click="signOut()">Sign Out</a>
+
   <div class="search">
     <form class="search__form" ng-submit="search(searchTerm)">
       <div class="search-box">
