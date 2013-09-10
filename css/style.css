@@ -87,7 +87,7 @@ ul {
         width: 80%;
     }
 
-        .header__serach__box {
+        .header__search__box {
             width: 90%;
             margin-left: auto;
             margin-right: auto;
@@ -120,39 +120,46 @@ ul {
     width: 100%;
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #e3e3d4;
 }
+
+    .search-header {
+
+    }
+
+    .search__title {
+        text-align: center;
+        margin: 0px;
+        padding-top: 40px;
+    }
 
     .search--hide {
         width: 35px;
-        padding-top: 20px;
+        padding-top: 0px;
         padding-left: 100px;
     }
 
-    .search-results {
-        width: 100%;
-        background-color: #e3e3d4;
+    .search-results--notice {
+        text-align: center;
+        padding-bottom: 10px;
     }
 
-        .search-results--notice {
-            text-align: center;
-            padding-bottom: 10px;
-        }
+    .search-results__list {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 40px;
+    }
 
-        .search-results__list {
-            width: 70%;
-            margin-left: auto;
-            margin-right: auto;
-            padding-bottom: 40px;
-        }
-
-        .search-results_twingling {
-            color: #aaa;
-        }
+    .search-results_twingling {
+        color: #aaa;
+    }
 
 .commonplace__container {
     width: 65%;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 80px;
     padding-bottom: 40px;
 }
 
@@ -181,9 +188,15 @@ ul {
 .expanded__twinglings {
     width: 100%;
     background-color: #e3e3d4;
-    padding-top: 100px;
+    padding-top: 80px;
     padding-bottom: 100px;
 }
+
+    .expanded__twinglings__title {
+        text-align: center;
+        margin: 0px;
+        padding-bottom: 40px;
+    }
 
     .expanded__twinglings__container {
         width: 75%;
@@ -198,6 +211,12 @@ ul {
     padding-top: 100px;
     padding-bottom: 100px;
 }
+
+    .expanded__highlights__title {
+        text-align: center;
+        margin: 0px;
+        padding-bottom: 40px;
+    }
 
 .naviagtion__container {
     width: 100%;
