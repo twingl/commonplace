@@ -173,8 +173,8 @@ ul {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 40px;
-    padding-bottom: 80px;
+    padding-top: 100px;
+    padding-bottom: 70px;
 }
 
 .expanded__nav {
@@ -188,7 +188,7 @@ ul {
 .expanded__twinglings {
     width: 100%;
     background-color: #e3e3d4;
-    padding-top: 80px;
+    padding-top: 70px;
     padding-bottom: 100px;
 }
 
@@ -222,7 +222,7 @@ ul {
     width: 100%;
     height: 50px;
     padding-top: 10px;
-    padding-bottom: 60px;
+    padding-bottom: 70px;
     /*^ that much padding feels wrong, but 'works'*/
 }
 
@@ -264,8 +264,8 @@ ul {
 
     .card--remove {
         position: relative;
-        top: -30px;
-        right: -20px;
+        top: -25px;
+        right: -15px;
         float: right;
         color: #e5e5e5;
     }
@@ -297,6 +297,14 @@ ul {
         color: #808080;
         font-style: italic;
     }
+
+        .card__quote__link {
+            text-decoration: none;
+        }
+
+        .card__quote__link:hover {
+            text-decoration: underline;
+        }
 
     .card__quote--min {
         font-size: .8em;
