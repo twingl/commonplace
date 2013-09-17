@@ -1,3 +1,55 @@
+<a name="v0.4.0"></a>
+## v0.4.0 (2013-09-03)
+
+
+#### Features
+
+* **app:** new options attribute ([ad9b92e5](http://github.com/passy/angular-masonry/commit/ad9b92e5d9254e273ac0810253fca23e6fe4b88b), closes [#10](http://github.com/passy/angular-masonry/issues/10))
+
+
+#### Breaking Changes
+
+* Options can no longer be specified via the `options` attribute.
+
+Before:
+
+    <masonry options="{my: 'option'}"></masonry>
+
+After:
+
+    <masonry masonry-options="{my: 'option'}"></masonry>
+
+([ad9b92e5](http://github.com/passy/angular-masonry/commit/ad9b92e5d9254e273ac0810253fca23e6fe4b88b))
+
+<a name="v0.3.6"></a>
+### v0.3.6 (2013-09-03)
+
+
+#### Bug Fixes
+
+* **app:** pre-link instead of post-link ([7fe3e85f](http://github.com/passy/angular-masonry/commit/7fe3e85f678909d4b35901910dae0c4f59406c77), closes [#11](http://github.com/passy/angular-masonry/issues/11))
+
+
+#### Features
+
+* **app:** emit create/destroy events ([6adea921](http://github.com/passy/angular-masonry/commit/6adea921710113f1c0d86339fce919c09ea9c910))
+
+<a name="v0.3.5"></a>
+### v0.3.5 (2013-08-21)
+
+
+#### Features
+
+* **app:** emit create/destroy events ([6adea921](http://github.com/passy/angular-masonry/commit/6adea921710113f1c0d86339fce919c09ea9c910))
+
+<a name="v0.3.4"></a>
+### v0.3.4 (2013-08-20)
+
+
+#### Features
+
+* **build:** include DI annotations in build ([a1051997](http://github.com/passy/angular-masonry/commit/a1051997001c0791e6c3deff2cdee5ec4c2ebe96), closes [#6](http://github.com/passy/angular-masonry/issues/6))
+
 <a name="v0.3.3"></a>
 ### v0.3.3 (2013-08-07)
 
