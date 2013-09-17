@@ -25,7 +25,7 @@
     <div class="search-results--notice" ng-show="showSearchNotice">
         <h3>... There were no results matching your search term.</h3>
     </div>
-    <div class="search-results__list" masonry>
+    <div class="search-results__list" masonry='{ transitionDuration: "0" }'>
       <div class="card card--min masonry-brick" ng-repeat="result in searchResults">
         <a href="" ng-click="showTwinglings(result.id)" class="card__quote__link"><div class="card__quote card__quote--min">{{result.quote}}</div></a>
         <div class="card__attribution card__attribution--min">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <div class="content" masonry>
+    <div class="content" masonry='{ transitionDuration: "0" }'>
       <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
         <i class="icon-remove-sign card--remove" ng-click="deleteHighlight($index, highlight.id)" title="Delete Highlight"></i>
         <a href="" ng-click="showTwinglings(highlight.id)" class="card__quote__link">

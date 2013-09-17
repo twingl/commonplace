@@ -23,7 +23,7 @@
   <div class="search-results--notice" ng-show="showSearchNotice">
       <h3>... There were no results matching your search term.</h3>
   </div>
-  <div class="search-results__list" masonry>
+    <div class="search-results__list" masonry='{ transitionDuration: "0" }'>
     <div class="card card--min masonry-brick" ng-repeat="result in searchResults">
       <a href="" ng-click="showTwinglings(result.id)" class="card__quote__link"><div class="card__quote card__quote--min">{{result.quote}}</div></a>
       <div class="card__attribution card__attribution--min">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
@@ -65,7 +65,7 @@
 
 <div class="expanded__twinglings">
   <h1 class="expanded__twinglings__title">Connected Twinglings</h1>
-  <div class="expanded__twinglings__container" masonry>
+  <div class="expanded__twinglings__container" masonry='{ transitionDuration: "0" }'>
     <div class="card masonry-brick" ng-repeat="twingling in twinglings">
       <a href="" ng-click="showTwinglings(twingling.id)" class="card__quote__link"><blockquote class="card__quote">{{twingling.quote}}</blockquote></a>
       <div class="card__attribution">&mdash; <a href="{{twingling.context_url}}">{{twingling.context_url | ShortenedURL}}</a></div>
@@ -89,7 +89,7 @@
 
 <div class="expanded__highlights">
   <h1 class="expanded__highlights__title">Other Article Highlights</h1>
-  <div masonry>
+  <div masonry='{ transitionDuration: "0" }'>
     <div class="card card--origin masonry-brick" ng-repeat="highlight in highlights">
       <a href="" ng-click="showTwinglings(highlight.id)" class="card__quote__link"><div class="card__quote card__quote--min">{{highlight.quote}}</div></a>
       <div class="card__attribution card__attribution--min">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
