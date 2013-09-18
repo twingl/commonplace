@@ -8,6 +8,7 @@
     $scope.highlights = [];
 
     // pulls the current user's selecyed highlight
+    $scope.$parent.loadingState = true;
     $http.get('http://api.twin.gl/v1/highlights/' + $routeParams.highlight_id + '?expand=comments,twinglings').success(
         function(highlight) {
           $scope.highlight = highlight;
@@ -47,6 +48,7 @@
                     }
                   };
                   $scope.highlights = temp;
+                  $scope.$parent.loadingState = false;
                 });
         });
 

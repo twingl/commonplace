@@ -280,18 +280,10 @@
           //TODO: fail gracefully (i.e. push highlight back into highlights array)
       })
     }
-
-
-
-
-    
-    $http.get('http://api.twin.gl/v1/users/me')
-         .success( function(data, status, headers, config) {
-           console.log(data, status, headers, config);
-         });
     /* END CONFIGURATION STUFF */
 
     // pulls all the current user's highlights
+    $scope.$parent.loadingState = true;
     $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
         function(data) {
           var tempHighlights = data;
@@ -315,6 +307,8 @@
 
           // if initial page is blank (as in no activity today), go back until there is content
           $scope.pageContentCheck('back');
+          console.log($scope);
+          $scope.$parent.loadingState = false;
         }
       );
 

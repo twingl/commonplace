@@ -3,6 +3,13 @@
 
   Commonplace.controllers.controller( 'AuthenticationController', ['$scope', 'Auth', '$route', '$location', function($scope, Auth, $route, $location) {
 
+    $scope.loadingState      = false;
+    $scope.loadingStateClass = '';
+
+    $scope.$watch('loadingState', function(newVal, oldVal) {
+      $scope.loadingStateClass = (newVal) ? 'show' : '';
+    });
+
     $scope.signIn = function() {
       Auth.authenticate().then(
         function(token) { //success

@@ -29,6 +29,7 @@ textarea {
 }
 
 body {
+    position: relative;
     margin: 0;
     font-family: 'Whitney SSm A', 'Whitney SSm B';
     font-weight: 400;
@@ -38,6 +39,28 @@ body {
     text-rendering: optimizeLegibility;
     background-color: #e9e9df;
 }
+
+#loading-visor {
+  background: rgba(255, 255, 255, 0.6);
+  display   : none;
+  z-index   : 65535;
+
+  position  : absolute;
+  width     : 100%;
+  height    : 100%;
+  top       : 50px;
+}
+#loading-visor.show { display: block; }
+    #loading-visor p {
+      position    :  fixed;
+      width       :  100px;
+      height      :  50px;
+      left        :  50%;
+      margin-left : -50px;
+      top         :  50%;
+      margin-top  : -25px;
+    }
+
 
 i {
     cursor: pointer;
