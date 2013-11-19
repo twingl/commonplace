@@ -29,11 +29,11 @@
       <div class="card__attribution card__attribution--min">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
       <div class="card__comment card__comment--min" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
       <div class="card__actions card__actions--min">
-        <div class="testA testA--min">
+        <div class="card__actions__left">
           <i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
           <span class="card__label">Jump To This Date</span>
         </div>
-        <div class="testB testB--min">
+        <div class="card__actions__right">
           <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(result.id, $index) }">
             <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(result.id, $index), 'card__connect--swing__end' : twinglingEnd(result.id, $index) }" ng-click="newTwingling('results', result.id, $index)"></i>
             <sup class="superscript--small">{{twinglingCount(result.twinglings.length)}}</sup>
@@ -71,16 +71,13 @@
       <div class="card__attribution">&mdash; <a href="{{twingling.context_url}}">{{twingling.context_url | ShortenedURL}}</a></div>
       <div class="card__comment" ng-repeat="comment in twingling.comments">{{comment.body}} <hr></div>
       <div class="card__actions">
-        <div class="testA">
+        <div class="card__actions__left">
           <i class="icon-reply-all card--jump" ng-click="navigateTo(twingling.created)"></i>
-          <span class="card__label">Jump To This Date</span>
+          <span class="card__label">Jump to this Date</span>
         </div>
-        <div class="testB">
-          <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(twingling.id, $index) }">
-            <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(twingling.id, $index), 'card__connect--swing__end' : twinglingEnd(twingling.id, $index) }" ng-click="newTwingling('results', twingling.id, $index)"></i>
-            <sup class="superscript--small">{{twinglingCount(twingling.twinglings.length)}}</sup>
-          </div>
-          &nbsp;<span class="card__label">Add Twingling</span>
+        <div class="card__actions__right">
+            <i class="icon-minus-sign twingling--remove" ng-click="removeTwingling(twingling.id, $index)"></i>
+          <span class="card__label">Remove this Twingling</span>
         </div>
       </div>
     </div>

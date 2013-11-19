@@ -413,35 +413,32 @@ sup {
         margin-right: auto;
     }
 
+        .card__actions__left {
+            float: left;
+        }
+
+        .card__actions__right {
+            float: right;
+            padding-left: 15px;
+        }
+
         .card__actions--min {
             padding-top: 20px;
             padding-bottom: 20px;
+        }
+
+    .twingling--remove {
+        color: #d4d4d4;
+    }
+
+        .twingling--remove:hover {
+            color: red;
         }
 
     .card__label {
         font-size: .4em;
         color: #bbb;
     }
-
-    /*TO FIX, this is previously card-actions*/
-
-        .testA {
-            float: left;
-            width: 70%;
-        }
-
-            .testA--min {
-                width: 58%;
-            }
-
-        .testB {
-            float: right;
-            width: 30%;
-        }
-
-            .testB--min {
-                width: 42%;
-            }
 
     .card__twinglings--expanded {
         width: 20px;
