@@ -94,18 +94,7 @@
       <a href="" ng-click="showTwinglings(highlight.id)" class="card__quote__link"><div class="card__quote card__quote--min">{{highlight.quote}}</div></a>
       <div class="card__attribution card__attribution--min">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
       <div class="card__comment card__comment--min" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
-      <div class="card__actions card__actions--min">
-        <div class="testA testA--min">
-          <i class="icon-reply-all card--jump" ng-click="navigateTo(highlight.created)"></i>
-          <span class="card__label">Jump To This Date</span>
-        </div>
-        <div class="testB testB--min">
-          <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(highlight.id, $index) }">
-            <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(highlight.id, $index), 'card__connect--swing__end' : twinglingEnd(highlight.id, $index) }" ng-click="newTwingling('results', highlight.id, $index)"></i>
-            <sup class="superscript--small">{{twinglingCount(highlight.twinglings.length)}}</sup>
-          </div>
-          &nbsp;<span class="card__label">Add Twingling</span>
-        </div>
+      <br>
       </div>
     </div>
   </div>
