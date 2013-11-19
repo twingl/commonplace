@@ -19,7 +19,6 @@
               var end_object_id = $scope.highlight.twinglings[i].end_id;
               var twinglingID = $scope.highlight.twinglings[i].id;
               var twingledHighlightId = "";
-              var twingledHighlightObject = {};
 
               if (end_object_id !== $scope.highlight.id) {
                 twingledHighlightId = end_object_id;
@@ -28,22 +27,22 @@
                 twingledHighlightId = $scope.highlight.twinglings[i].start_id;
               }
 
-              //pull twingled highlight's comments
-              $http.get('http://api.twin.gl/v1/highlights/' + twingledHighlightId + '?expand=comments').success(
-              function(twingledHighlight) {
-                twingledHighlightObject = twingledHighlight;
+              var f = function (twinglingID) {
+                //pull twingled highlight's comments
+                $http.get('http://api.twin.gl/v1/highlights/' + twingledHighlightId + '?expand=comments').success(
+                function(twingledHighlight) {
+                  var twingledHighlightObject = twingledHighlight;
 
-                //HELP HERE PLZ
-                twingledHighlightObject.twinglingID = twinglingID;
-
-                $scope.twinglings.push(twingledHighlightObject);
-              });
+                  twingledHighlightObject.twinglingID = twinglingID;
+                  $scope.twinglings.push(twingledHighlightObject);
+                });
+              }; f(twinglingID);
 
             };
           }
 
           //pulls other highlights from that article
-          $http.get('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&;expand=comments,twinglings').success(
+          $http.get('http://api.twin.gl/v1/highlights?context=' + $scope.highlight.context_url + '&expand=comments,twinglings').success(
                 function(highlights) {
                   var temp = highlights;
                   for (var i = 0; i < temp.length; i++) {
