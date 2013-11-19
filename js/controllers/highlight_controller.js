@@ -167,8 +167,14 @@
     }
 
     //removes a twingling's relationship with the current highlight
-    $scope.removeTwingling = function (twinglingID, index) {
-      console.log(twinglingID, index);
+    $scope.deleteTwingling = function (twinglingID, index) {
+      //removes the card from the "Connected Twinglings" section of the 'deep view'
+      $scope.twinglings.splice(index, 1);
+      //deletes the twingling relationship from the API
+      $http.delete('http://api.twin.gl/v1/twinglings/' + twinglingID).success(
+        function(data) {
+          //TODO: fail gracefully (i.e. push highlight back into twinglings array)
+      })
     }
 
     //jump-to-page
