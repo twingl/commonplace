@@ -1,5 +1,5 @@
 /*!
- * Outlayer v1.1.2
+ * Outlayer v1.1.9
  * the brains and guts of a layout library
  */
 
@@ -71,6 +71,13 @@ var indexOf = Array.prototype.indexOf ? function( ary, obj ) {
     return -1;
   };
 
+function removeFrom( obj, ary ) {
+  var index = indexOf( ary, obj );
+  if ( index !== -1 ) {
+    ary.splice( index, 1 );
+  }
+}
+
 // http://jamesroberts.name/blog/2010/02/22/string-functions-for-javascript-trim-to-camel-case-to-dashed-and-to-underscore/
 function toDashed( str ) {
   return str.replace( /(.)([A-Z])/g, function( match, $1, $2 ) {
@@ -112,7 +119,7 @@ function Outlayer( element, options ) {
 
   // options
   this.options = extend( {}, this.options );
-  extend( this.options, options );
+  this.option( options );
 
   // add id for Outlayer.getFromElement
   var id = ++GUID;
@@ -157,6 +164,14 @@ Outlayer.prototype.options = {
 // inherit EventEmitter
 extend( Outlayer.prototype, EventEmitter.prototype );
 
+/**
+ * set options
+ * @param {Object} opts
+ */
+Outlayer.prototype.option = function( opts ) {
+  extend( this.options, opts );
+};
+
 Outlayer.prototype._create = function() {
   // get items from children
   this.reloadItems();
@@ -175,16 +190,16 @@ Outlayer.prototype._create = function() {
 // goes through all children again and gets bricks in proper order
 Outlayer.prototype.reloadItems = function() {
   // collection of item elements
-  this.items = this._getItems( this.element.children );
+  this.items = this._itemize( this.element.children );
 };
 
 
 /**
- * get item elements to be used in layout
+ * turn elements into Outlayer.Items to be used in layout
  * @param {Array or NodeList or HTMLElement} elems
  * @returns {Array} items - collection of new Outlayer Items
  */
-Outlayer.prototype._getItems = function( elems ) {
+Outlayer.prototype._itemize = function( elems ) {
 
   var itemElems = this._filterFindItemElements( elems );
   var Item = this.settings.item;
@@ -193,7 +208,7 @@ Outlayer.prototype._getItems = function( elems ) {
   var items = [];
   for ( var i=0, len = itemElems.length; i < len; i++ ) {
     var elem = itemElems[i];
-    var item = new Item( elem, this, this.options.itemOptions );
+    var item = new Item( elem, this );
     items.push( item );
   }
 
@@ -534,10 +549,7 @@ Outlayer.prototype.unstamp = function( elems ) {
   for ( var i=0, len = elems.length; i < len; i++ ) {
     var elem = elems[i];
     // filter out removed stamp elements
-    var index = indexOf( this.stamps, elem );
-    if ( index !== -1 ) {
-      this.stamps.splice( index, 1 );
-    }
+    removeFrom( elem, this.stamps );
     this.unignore( elem );
   }
 
@@ -652,6 +664,7 @@ Outlayer.prototype.onresize = function() {
   var _this = this;
   function delayed() {
     _this.resize();
+    delete _this.resizeTimeout;
   }
 
   this.resizeTimeout = setTimeout( delayed, 100 );
@@ -669,8 +682,6 @@ Outlayer.prototype.resize = function() {
   }
 
   this.layout();
-
-  delete this.resizeTimeout;
 };
 
 
@@ -682,12 +693,11 @@ Outlayer.prototype.resize = function() {
  * @returns {Array} items - Outlayer.Items
 **/
 Outlayer.prototype.addItems = function( elems ) {
-  var items = this._getItems( elems );
-  if ( !items.length ) {
-    return;
-  }
+  var items = this._itemize( elems );
   // add items to collection
-  this.items = this.items.concat( items );
+  if ( items.length ) {
+    this.items = this.items.concat( items );
+  }
   return items;
 };
 
@@ -710,7 +720,7 @@ Outlayer.prototype.appended = function( elems ) {
  * @param {Array or NodeList or Element} elems
  */
 Outlayer.prototype.prepended = function( elems ) {
-  var items = this._getItems( elems );
+  var items = this._itemize( elems );
   if ( !items.length ) {
     return;
   }
@@ -719,6 +729,7 @@ Outlayer.prototype.prepended = function( elems ) {
   this.items = items.concat( previousItems );
   // start new layout
   this._resetLayout();
+  this._manageStamps();
   // layout new stuff without transition
   this.layoutItems( items, true );
   this.reveal( items );
@@ -813,8 +824,7 @@ Outlayer.prototype.remove = function( elems ) {
     var item = removeItems[i];
     item.remove();
     // remove item from collection
-    var index = indexOf( this.items, item );
-    this.items.splice( index, 1 );
+    removeFrom( item, this.items );
   }
 };
 

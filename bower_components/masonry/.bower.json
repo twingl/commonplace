@@ -1,6 +1,6 @@
 {
   "name": "masonry",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Cascading grid layout library",
   "main": "masonry.js",
   "dependencies": {
@@ -12,11 +12,11 @@
     "qunit": "1.12"
   },
   "homepage": "https://github.com/desandro/masonry",
-  "_release": "3.1.1",
+  "_release": "3.1.2",
   "_resolution": {
     "type": "version",
-    "tag": "v3.1.1",
-    "commit": "f44bbd5f7f5859b174c83b44a9594ee0d31e5126"
+    "tag": "v3.1.2",
+    "commit": "801a4e5b5237bfef2ea4166584ba895d342ac4ef"
   },
   "_source": "git://github.com/desandro/masonry.git",
   "_target": "~3.1.0",

@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.1.1
+ * Masonry v3.1.2
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -9,9 +9,6 @@
 ( function( window ) {
 
 'use strict';
-
-// vars
-// var document = window.document;
 
 // -------------------------- helpers -------------------------- //
 
@@ -53,25 +50,30 @@ function masonryDefinition( Outlayer, getSize ) {
   };
 
   Masonry.prototype.measureColumns = function() {
-    var container = this._getSizingContainer();
+    this.getContainerWidth();
     // if columnWidth is 0, default to outerWidth of first item
-    var firstItem = this.items[0];
-    var firstItemElem = firstItem && firstItem.element;
     if ( !this.columnWidth ) {
+      var firstItem = this.items[0];
+      var firstItemElem = firstItem && firstItem.element;
       // columnWidth fall back to item of first element
-      this.columnWidth = firstItemElem ? getSize( firstItemElem ).outerWidth :
-        // or size of container
-        this.size.innerWidth;
+      this.columnWidth = firstItemElem && getSize( firstItemElem ).outerWidth ||
+        // if first elem has no width, default to size of container
+        this.containerWidth;
     }
+
     this.columnWidth += this.gutter;
 
-    this._containerWidth = getSize( container ).innerWidth;
-    this.cols = Math.floor( ( this._containerWidth + this.gutter ) / this.columnWidth );
+    this.cols = Math.floor( ( this.containerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
   };
 
-  Masonry.prototype._getSizingContainer = function() {
-    return this.options.isFitWidth ? this.element.parentNode : this.element;
+  Masonry.prototype.getContainerWidth = function() {
+    // container is parent if fit width
+    var container = this.options.isFitWidth ? this.element.parentNode : this.element;
+    // check that this.size and size are there
+    // IE8 triggers resize on body size change, so they might not be
+    var size = getSize( container );
+    this.containerWidth = size && size.innerWidth;
   };
 
   Masonry.prototype._getItemLayoutPosition = function( item ) {
@@ -106,7 +108,7 @@ function masonryDefinition( Outlayer, getSize ) {
    * @returns {Array} colGroup
    */
   Masonry.prototype._getColGroup = function( colSpan ) {
-    if ( colSpan === 1 ) {
+    if ( colSpan < 2 ) {
       // if brick spans only one column, use all the column Ys
       return this.colYs;
     }
@@ -174,18 +176,13 @@ function masonryDefinition( Outlayer, getSize ) {
   // Any changes in Outlayer.resize need to be manually added here
   Masonry.prototype.resize = function() {
     // don't trigger if size did not change
-    var container = this._getSizingContainer();
-    var size = getSize( container );
-    // check that this.size and size are there
-    // IE8 triggers resize on body size change, so they might not be
-    var hasSizes = this.size && size;
-    if ( hasSizes && size.innerWidth === this._containerWidth ) {
+    var previousWidth = this.containerWidth;
+    this.getContainerWidth();
+    if ( previousWidth === this.containerWidth ) {
       return;
     }
 
     this.layout();
-
-    delete this.resizeTimeout;
   };
 
   return Masonry;
