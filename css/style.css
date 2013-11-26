@@ -118,41 +118,26 @@ hr {
     z-index: 10;
     width: 100%;
     height: 50px;
-    margin-top: 0px;
     background-color: #ffffff;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-    .header a, a:visited {
-        text-decoration: none;
-    }
-
     .header__nav {
-        border-right-style: solid;
-        border-right-width: 1px;
-        border-right-color: #e5e5e5;
+        display: inline-block;
         height: 100%;
+        border-right: 1px solid #e5e5e5;
     }
 
     .header__logo {
-        width: 15%;
-        float: left;
-        padding-top: 14px;
-        padding-bottom: 0px;
+        width: 10%;
     }
 
-        .header__logo__text {
-            text-align: center;
-            color: #888;
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
+    .header-logo__img {
+        height: 30px;
+    }
 
     .header__search {
-        float: left;
-        width: 75%;
+        width: 80%;
         padding-top: 13px;
     }
 
@@ -174,8 +159,12 @@ hr {
                     margin-top: -50px;
                 }
 
+    .header a, a:visited {
+        text-decoration: none;
+    }
+
     .header__sign-out {
-        width: 10%;
+        width: 9%;
         float: right;
         text-align: center;
         font-size: .85em;
