@@ -66,11 +66,6 @@
       }
     }
 
-    //redirect to the current highlight's twinglings view
-    $scope.showTwinglings = function (id) {
-      $location.path('/highlights/' + id);
-    }
-
     //adds a twingling between two highlights
     $scope.twingling = {
       start_type: "highlights",
@@ -177,10 +172,10 @@
       })
     }
 
-    //jump-to-page
-    $scope.navigateTo = function (date) {
+    //convert date to URL parmeter accepted format
+    $scope.formatDate = function (date) {
       var dateFormatted = $filter('date')(date, 'yyyy-MM-dd');
-      $location.path('/' + dateFormatted);
+      return (dateFormatted);
     };
 
   }]);

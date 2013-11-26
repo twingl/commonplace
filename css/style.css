@@ -106,7 +106,10 @@ hr {
     float: right;
 }
 
-
+.remove-underline {
+    text-decoration: none;
+    color: inherit;
+}
 
 
 
@@ -255,7 +258,7 @@ hr {
     width: 65%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 80px;
+    padding-top: 50px;
     padding-bottom: 40px;
 }
 
@@ -269,14 +272,14 @@ hr {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 100px;
+    padding-top: 60px;
     padding-bottom: 70px;
 }
 
 .expanded__nav {
     float: left;
     width: 5%;
-    padding-top: 75px;
+    padding-top: 50px;
     padding-left: 75px;
     color: #ccc;
 }
@@ -476,7 +479,12 @@ hr {
             padding-left: 15px;
         }
 
+        .card__actions__right__min {
+            padding-left: 13px;
+        }
+
         .card__actions--min {
+            margin-left: 7px;
             padding-top: 20px;
             padding-bottom: 20px;
         }

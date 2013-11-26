@@ -39,19 +39,13 @@
       }
     }
 
-    //jump-to-page
-    //FIXME the following should use the URL param to handle navigation
-    $scope.navigateTo = function (date) {
-      $scope.showSearchResults = false;
 
-      date = new Date(date);
-      $scope.timeSlice.beginning.setDate(date.getDate());
-      $scope.timeSlice.beginning.setMonth(date.getMonth());
-      $scope.timeSlice.beginning.setFullYear(date.getFullYear());
-      $scope.timeSlice.end.setDate(date.getDate());
-      $scope.timeSlice.end.setMonth(date.getMonth());
-      $scope.timeSlice.end.setFullYear(date.getFullYear());
+    //convert date to URL parmeter accepted format
+    $scope.formatDate = function (date) {
+      var dateFormatted = $filter('date')(date, 'yyyy-MM-dd');
+      return (dateFormatted);
     };
+
 
     //keystroke navigation
     $scope.keyPress = function($event) {
@@ -151,11 +145,6 @@
 
           $scope.showSearchResults = true;
       });
-    }
-
-    //redirect to the current highlight's twinglings view
-    $scope.showTwinglings = function (id) {
-      $location.path('/highlights/' + id);
     }
 
     //displays the number of twinglings of a card

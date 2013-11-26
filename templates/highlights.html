@@ -1,6 +1,6 @@
 <div class="header">
   <div class="header__nav header-logo">
-    <a href="/" class="header-logo__img"></a>
+    <a href="/" class="header-logo__img">Twingl</a>
   </div>
   <div class="header__nav header__search">
     <div class="header__search__box">
@@ -15,45 +15,16 @@
   </div>
 </div>
 
-<div class="search" ng-show="showSearchResults">
-  <div class="search-header">
-    <div class="search--hide"><i class="icon-remove icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
-    <h1 class="search__title">Search Results</h1>
-  </div>
-  <div class="search-results--notice" ng-show="showSearchNotice">
-      <h3>... There were no results matching your search term.</h3>
-  </div>
-    <div class="search-results__list" masonry='{ transitionDuration: "0" }'>
-    <div class="card card--min masonry-brick" ng-repeat="result in searchResults">
-      <a href="" ng-click="showTwinglings(result.id)" class="card__quote__link"><div class="card__quote card__quote--min">{{result.quote}}</div></a>
-      <div class="card__attribution card__attribution--min">&mdash; <a href="{{result.context_url}}">{{result.context_url | ShortenedURL}}</a></div>
-      <div class="card__comment card__comment--min" ng-repeat="comment in result.comments">{{comment.body}} <hr></div>
-      <div class="card__actions card__actions--min">
-        <div class="card__actions__left">
-          <i class="icon-reply-all card--jump" ng-click="navigateTo(result.created)"></i>
-          <span class="card__label">Jump to this Date</span>
-        </div>
-        <div class="card__actions__right">
-          <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(result.id, $index) }">
-            <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(result.id, $index), 'card__connect--swing__end' : twinglingEnd(result.id, $index) }" ng-click="newTwingling('results', result.id, $index)"></i>
-            <sup class="superscript--small">{{twinglingCount(result.twinglings.length)}}</sup>
-          </div>
-          &nbsp;<span class="card__label">Add Twingling</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- DEEP VIEW SEARCH NEEDED HERE -->
 
 <div class="expanded__nav">
-  <i class="icon-chevron-sign-left icon-3x" ng-click="navigateTo(highlight.created)"></i>
+  <a href="/#/{{formatDate(highlight.created)}}" class="remove-underline"><i class="icon-chevron-sign-left icon-3x"></i></a>
 </div>
 
 <div class="expanded__context">
     <blockquote class="card__quote">{{highlight.quote}}</blockquote>
     <div class="card__attribution">&mdash;
-      <a href="{{highlight.context_url}}"> {{highlight.context_url | ShortenedURL}}</a>
+      <a href="{{highlight.context_url}}" class="remove-underline"> {{highlight.context_url | ShortenedURL}}</a>
     </div>
     <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
     <!-- <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
@@ -67,12 +38,12 @@
   <h1 class="expanded__twinglings__title">Connected Twinglings</h1>
   <div class="expanded__twinglings__container" masonry='{ transitionDuration: "0" }'>
     <div class="card masonry-brick" ng-repeat="twingling in twinglings">
-      <a href="" ng-click="showTwinglings(twingling.id)" class="card__quote__link"><blockquote class="card__quote">{{twingling.quote}}</blockquote></a>
+      <a href="/#/highlights/{{twingling.id}}" class="card__quote__link"><blockquote class="card__quote">{{twingling.quote}}</blockquote></a>
       <div class="card__attribution">&mdash; <a href="{{twingling.context_url}}">{{twingling.context_url | ShortenedURL}}</a></div>
       <div class="card__comment" ng-repeat="comment in twingling.comments">{{comment.body}} <hr></div>
       <div class="card__actions">
         <div class="card__actions__left">
-          <i class="icon-reply-all card--jump" ng-click="navigateTo(twingling.created)"></i>
+          <a href="/#/{{formatDate(twingling.created)}}" class="remove-underline"><i class="icon-reply-all card--jump"></i></a>
           <span class="card__label">Jump to this Date</span>
         </div>
         <div class="card__actions__right">
@@ -88,7 +59,7 @@
   <h1 class="expanded__highlights__title">Other Article Highlights</h1>
   <div masonry='{ transitionDuration: "0" }'>
     <div class="card card--origin masonry-brick" ng-repeat="highlight in highlights">
-      <a href="" ng-click="showTwinglings(highlight.id)" class="card__quote__link"><div class="card__quote card__quote--min">{{highlight.quote}}</div></a>
+      <a href="/#/highlights/{{highlight.id}}" class="card__quote__link"><div class="card__quote card__quote--min">{{highlight.quote}}</div></a>
       <div class="card__attribution card__attribution--min">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
       <div class="card__comment card__comment--min" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
       <br>
