@@ -35,7 +35,7 @@
 </div>
 
 <div class="expanded__twinglings">
-  <h1 class="expanded__twinglings__title">Connected Twinglings</h1>
+  <h1 class="expanded__twinglings__title">Related Quotes (Twinglings)</h1>
   <div class="expanded__twinglings__container" masonry='{ transitionDuration: "0" }'>
     <div class="card masonry-brick" ng-repeat="twingling in twinglings">
       <a href="/#/highlights/{{twingling.id}}" class="card__quote__link"><blockquote class="card__quote">{{twingling.quote}}</blockquote></a>
@@ -56,7 +56,7 @@
 </div>
 
 <div class="expanded__highlights">
-  <h1 class="expanded__highlights__title">Other Article Highlights</h1>
+  <h1 class="expanded__highlights__title">Other Quotes from this Article</h1>
   <div masonry='{ transitionDuration: "0" }'>
     <div class="card card--origin masonry-brick" ng-repeat="highlight in highlights">
       <a href="/#/highlights/{{highlight.id}}" class="card__quote__link"><div class="card__quote card__quote--min">{{highlight.quote}}</div></a>
