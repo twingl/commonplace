@@ -128,16 +128,25 @@ hr {
         border-right: 1px solid #e5e5e5;
     }
 
-    .header__logo {
+    .header-logo {
         width: 10%;
+        float: left;
     }
 
-    .header-logo__img {
-        height: 30px;
-    }
+        .header-logo__img {
+            display: block;
+            height: 100%;
+            width: 100%;
+            background-image: url(../img/twingl_logo.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            text-indent: -200%;
+            background-position: 50%;
+        }
 
     .header__search {
         width: 80%;
+        float: left;
         padding-top: 13px;
     }
 
