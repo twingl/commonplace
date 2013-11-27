@@ -62,32 +62,31 @@
       </div>
     </div>
 
-    <div class="content" masonry='{ transitionDuration: "0" }'>
-      <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
-        <i class="icon-remove-sign card--remove" ng-click="deleteHighlight($index, highlight.id)" title="Delete Highlight"></i>
-        <a href="/#/highlights/{{highlight.id}}" class="card__quote__link">
-          <blockquote class="card__quote">{{highlight.quote}}</blockquote>
-        </a>
-        <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
-        <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
-        <div class="card__actions">
-          <div class="card__actions__left">
-            <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
-            <span class="card__label">Add Comment</span>
+    <!-- The Payload -->
+    <div class="content">
+      <div class="card">    
+         <div class="card-quote-container">    
+          <blockquote class="primary__quote">
+              <p>The quote</p>
+            <b class="source"><a href="website">the website</a></b></blockquote>
           </div>
-          <div class="card__actions__right">
-            <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(highlight.id, $index) }">
-              <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(highlight.id, $index), 'card__connect--swing__end' : twinglingEnd(highlight.id, $index) }" ng-click="newTwingling('highlights', highlight.id, $index)"></i>
-              <sup class="superscript--small">{{twinglingCount(highlight.twinglings.length)}}</sup>
-            </div>
-            &nbsp;<span class="card__label">Add Twingling</span>
+        
+        <div class="timeline-entry-group">
+              <div class="timeline-entry">
+                  <div class="timeline-entry__metadata">
+                    <i class="icon  icon--large" data-icon=""></i>
+                  </div>
+                  <div class="timeline-entry__body">A comment</div>
+              </div>
+              <div class="timeline-entry">
+                  <div class="timeline-entry__metadata">
+                    <i class="icon  icon--large" data-icon=""></i>
+                  </div>
+                  <div class="timeline-entry__body">Another comment</div>
+              </div>
+              <div class="new-comment-row"><button>Add Comment</button></div> 
           </div>
         </div>
-        <div class="new-comment" ng-show="comment.showThis">
-          <textarea class="new-comment__body" ng-model="comment.new"></textarea>
-          <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
-        </div>
-      </div>
     </div>
 
   </div>
