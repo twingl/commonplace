@@ -98,18 +98,13 @@ hr {
 /*------------------------------------*\
     $OBJECTS
 \*------------------------------------*/
-.left {
-    float: left;
-}
-
-.right {
-    float: right;
-}
 
 .remove-underline {
     text-decoration: none;
     color: inherit;
 }
+
+
 
 
 
@@ -268,55 +263,8 @@ hr {
     margin-right: auto;
 }
 
-.expanded__context {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 60px;
-    padding-bottom: 70px;
-}
 
-.expanded__nav {
-    float: left;
-    width: 5%;
-    padding-top: 50px;
-    padding-left: 75px;
-    color: #ccc;
-}
-
-.expanded__twinglings {
-    width: 100%;
-    background-color: #e3e3d4;
-    padding-top: 70px;
-    padding-bottom: 100px;
-}
-
-    .expanded__twinglings__title {
-        text-align: center;
-        margin: 0px;
-        padding-bottom: 40px;
-    }
-
-    .expanded__twinglings__container {
-        width: 75%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-.expanded__highlights {
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 70px;
-    padding-bottom: 100px;
-}
-
-    .expanded__highlights__title {
-        text-align: center;
-        margin: 0px;
-        padding-bottom: 40px;
-    }
-
+/* Commonplace Navigation */
 .naviagtion__container {
     width: 100%;
     height: 50px;
@@ -325,53 +273,28 @@ hr {
     /*^ that much padding feels wrong, but 'works'*/
 }
 
-.navigation__chevron {
-    float: left;
-    color: #ccc;
-    width: 5%;
-}
-
-.navigation__date {
-    float: left;
-    text-align: center;
-    width: 90%;
-}
-
-    .navigation__date__text {
-        margin-top: 2px;
-        margin-bottom: 0px;
+    .navigation__chevron {
+        float: left;
+        color: #ccc;
+        width: 5%;
     }
 
-.card {
-    width: 47%;
-    margin: 1.5%;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
-    padding-top: 3%;
-    padding-bottom: 2%;
-    background-color: #fefefd;
-    box-shadow: 1px 1px #e3e3d4;
-}
-    .card--min {
-        width: 30.5%;
-        margin: 1%;
+    .navigation__date {
+        float: left;
+        text-align: center;
+        width: 90%;
     }
 
-    .card--origin {
-        width: 30%;
-    }
-
-    .card--remove {
-        position: relative;
-        top: -18px;
-        right: -10px;
-        float: right;
-        color: #e5e5e5;
-    }
-
-        .card--remove:hover {
-            color: red;
+        .navigation__date__text {
+            margin-top: 2px;
+            margin-bottom: 0px;
         }
+
+
+/* Highlight Cards */
+.card {
+
+}
 
     .card__quote:before {
         font-family: serif;
@@ -384,31 +307,6 @@ hr {
         position: relative;
         left: -35px;
         top: 5px;
-    }
-
-    .card__quote--min:before {
-        font-size: 3em;
-        left: -22px;
-        top: 5px;
-    }
-
-    .card__quote {
-        color: #808080;
-        font-style: italic;
-    }
-
-        .card__quote__link {
-            text-decoration: none;
-        }
-
-        .card__quote__link:hover {
-            text-decoration: underline;
-        }
-
-    .card__quote--min {
-        font-size: .8em;
-        padding-left: 5%;
-        padding-right: 5%;
     }
 
     .card__quote:after {
@@ -424,129 +322,15 @@ hr {
         bottom: -35px;
     }
 
-    .card__quote--min:after {
-        font-size: 3em;
-        right: -20px;
-        bottom: -20px;
-    }
-
-    .card__attribution {
-        color: #808080;
-        font-size: .8em;
-        width: 70%;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow: ellipsis;
-        padding-left: 40px;
-    }
-
-    .card__attribution--min {
-        font-size: .6em;
-        padding-top: 2%;
-        padding-left: 5%;
-    }
-
-    .card__attribution a {
-        color: #808080;
-    }
-
-    .card__comment {
-        font-size: .9em;
-        padding-top: 30px;
-        width: 80%;
-        padding-left: 50px;
-    }
-
-    .card__comment--min {
-        font-size: .7em;
-        padding-left: 30px;
-    }
-
-    .card__actions {
-        height: 50px;
-        width: 90%;
-        padding-top: 15px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-        .card__actions__left {
-            float: left;
-        }
-
-        .card__actions__right {
-            float: right;
-            padding-left: 15px;
-        }
-
-        .card__actions__right__min {
-            padding-left: 13px;
-        }
-
-        .card__actions--min {
-            margin-left: 7px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-
-    .twingling--remove {
-        color: #d4d4d4;
-    }
-
-        .twingling--remove:hover {
-            color: red;
-        }
-
-    .card__label {
-        font-size: .4em;
-        color: #bbb;
-    }
-
-    .card__twinglings--expanded {
-        width: 20px;
-        float: right;
-    }
-
-    .card__connect {
-        color: #813D63;
-    }
-
-        .card__connect:hover {
-            color: purple;
-        }
-
-        .card__connect--swing__start {
-            color: orange;
-        }
-
-        .card__connect--swing__end {
-            color: green;
-        }
-
-        .card__connect--swing {
-            float: left;
-            -webkit-animation-duration: 3s;
-            -webkit-animation-delay: 0s;
-            -webkit-animation-iteration-count: infinite;
-            -moz-animation-duration: 3s;
-            -moz-animation-delay: 0s;
-            -moz-animation-iteration-count: infinite;
-            -animation-duration: 3s;
-            -animation-delay: 0s;
-            -animation-iteration-count: infinite;
-        }
-
-.new-comment {
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-    .new-comment__body {
-        width: 100%;
-        resize: vertical;
-    }
-
-    .new-comment__submit {
-
+    .card__connect--swing {
+        float: left;
+        -webkit-animation-duration: 3s;
+        -webkit-animation-delay: 0s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-duration: 3s;
+        -moz-animation-delay: 0s;
+        -moz-animation-iteration-count: infinite;
+        -animation-duration: 3s;
+        -animation-delay: 0s;
+        -animation-iteration-count: infinite;
     }
