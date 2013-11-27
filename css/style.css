@@ -249,49 +249,46 @@ hr {
     }
 
 
-.commonplace__container {
-    width: 65%;
-    margin-left: auto;
-    margin-right: auto;
+.commonplace-container {
+    width: 100%;
     padding-top: 50px;
     padding-bottom: 40px;
 }
 
-.content {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 
 /* Commonplace Navigation */
-.naviagtion__container {
-    width: 100%;
+.naviagtion-container {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
     height: 50px;
-    padding-top: 10px;
-    padding-bottom: 70px;
-    /*^ that much padding feels wrong, but 'works'*/
 }
 
     .navigation__chevron {
         float: left;
         color: #ccc;
-        width: 5%;
+        width: 6%;
     }
 
     .navigation__date {
         float: left;
+        width: 88%;
         text-align: center;
-        width: 90%;
     }
 
-        .navigation__date__text {
-            margin-top: 2px;
-            margin-bottom: 0px;
+        .navigation__date > h1 {
+            margin: 0px;
         }
 
 
 /* Highlight Cards */
+.payload-container {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 .card {
 
 }

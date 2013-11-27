@@ -48,14 +48,14 @@
   </div>
 
 
-  <div class="commonplace__container">
+  <div class="commonplace-container">
 
-    <div class="naviagtion__container">
+    <div class="naviagtion-container">
       <div class="navigation__chevron">
         <i class="icon-chevron-left icon-3x" ng-click="flickBackOnePage()"></i>
       </div>
       <div class="navigation__date">
-        <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} <span color="grey">({{timeSlice.beginning | date:'MMMM, d'}})</span></h1>
+        <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h1>
       </div>
       <div class="navigation__chevron">
         <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
@@ -63,7 +63,7 @@
     </div>
 
     <!-- The Payload -->
-    <div class="content">
+    <div class="payload-container">
       <div class="card">    
          <div class="card-quote-container">    
           <blockquote class="primary__quote">
