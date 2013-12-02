@@ -49,7 +49,7 @@ body {
     font-size: 1em;
     line-height: 1.4;
     text-rendering: optimizeLegibility;
-    background-color: #fdfbfa;
+    background-color: #f3e9db;
 }
 
 i {
@@ -308,11 +308,16 @@ hr {
     }
 
     .card-quote-container {
-        background-color: #faf6ef;
+        background-color: #f9f6ee;
+        border: 1px solid #f9f6ee;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
         .primary__quote {
             margin: 0px;
+            padding-left: 7%;
+            padding-right: 7%;
         }
 
         .primary__quote p:before {
@@ -325,7 +330,7 @@ hr {
             float: left;
             position: relative;
             left: -35px;
-            top: 5px;
+            top: 15px;
         }
 
         .primary__quote p:after {
@@ -335,10 +340,9 @@ hr {
             color: #ddd;
             content: "\201D";
             line-height: 0px;
-            float: right;
             position: relative;
-            right: -25px;
-            bottom: -35px;
+            right: -5px;
+            bottom: -37px;
         }
 
 /*        .card__connect--swing {
@@ -356,7 +360,10 @@ hr {
 
 
     .timeline-entry-group {
-        background-color: #fbf8f4;
+        background-color: #f6f0e5;
+        border: 1px solid #f6f0e5;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 
         .timeline-entry {
