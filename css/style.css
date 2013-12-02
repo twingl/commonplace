@@ -93,6 +93,7 @@ hr {
 
 button {
     background: none;
+    cursor: pointer;
 }
 
 
@@ -388,6 +389,9 @@ button {
         }
 
             .card-actions-row button {
+                text-transform: uppercase;
+                font-weight: 600;
+                color: #aaa;
                 border: 1px solid #aaa;
             }
 
