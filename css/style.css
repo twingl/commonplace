@@ -314,6 +314,14 @@ hr {
         border-top-right-radius: 10px;
     }
 
+        .primary__quote {
+            font-size: 1.1em;
+            font-style: normal;
+            padding-left: 35px;
+            padding-right: 35px;
+            margin: 0px;
+        }
+
         .primary__quote p:before {
             font-family: serif;
             font-style: normal;
@@ -323,39 +331,22 @@ hr {
             line-height: 0px;
             float: left;
             position: relative;
-            left: -45px;
-            top: 20px;
+            left: -43px;
+            top: 15px;
         }
 
-        .primary__quote {
-            font-size: 1.1em;
-            margin: 0px;
-            padding-left: 7%;
-            padding-right: 7%;
+        .primary__quote p {
+           margin: 20px 0px 7px 0px;
         }
 
         .source {
             font-style: italic;
-            font-size: .9em;
+            font-size: .8em;
         }
 
         .source a {
             color: inherit;
         }
-
-
-/*        .card__connect--swing {
-            float: left;
-            -webkit-animation-duration: 3s;
-            -webkit-animation-delay: 0s;
-            -webkit-animation-iteration-count: infinite;
-            -moz-animation-duration: 3s;
-            -moz-animation-delay: 0s;
-            -moz-animation-iteration-count: infinite;
-            -animation-duration: 3s;
-            -animation-delay: 0s;
-            -animation-iteration-count: infinite;
-        }*/
 
 
     .timeline-entry-group {
@@ -366,5 +357,42 @@ hr {
     }
 
         .timeline-entry {
-            padding: 10px;
+            padding: 10px 0px 20px 0px;
         }
+
+            .timeline-entry__metadata {
+                float: left;
+                text-align: right;
+                width: 5%;
+                padding-right: 10px;
+            }
+
+                .timeline-entry__metadata i {
+                    font-size: 1.5em;
+                    color: #aaa;
+                }
+
+            .timeline-entry__body {
+                float: right;
+                font-size: 1em;
+                width: 95%;
+            }
+
+        .card-actions-row {
+            clear: both;
+            padding-top: 20px;
+            padding-left: 30px;
+        }
+
+        /*      .card__connect--swing {
+                    float: left;
+                    -webkit-animation-duration: 3s;
+                    -webkit-animation-delay: 0s;
+                    -webkit-animation-iteration-count: infinite;
+                    -moz-animation-duration: 3s;
+                    -moz-animation-delay: 0s;
+                    -moz-animation-iteration-count: infinite;
+                    -animation-duration: 3s;
+                    -animation-delay: 0s;
+                    -animation-iteration-count: infinite;
+                }*/
