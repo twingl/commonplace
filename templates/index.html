@@ -5,7 +5,7 @@
   <div class="header__nav header__search">
     <div class="header__search__box">
       <form ng-submit="search(searchTerm)">
-          <i class="icon-search search-box__icon" ng-click="search(searchTerm)"></i>
+          <span class="typcn  typcn-zoom <!-- search-box__icon -->" ng-click="search(searchTerm)"></span>
           <input type="search" class="search-box__input" ng-model="searchTerm" tabindex="1" placeholder="Search..." autofocus>
       </form>
     </div>
@@ -52,41 +52,37 @@
 
     <div class="naviagtion-container">
       <div class="navigation__chevron">
-        <i class="icon-chevron-left icon-3x" ng-click="flickBackOnePage()"></i>
+        <i class="typcn  typcn-chevron-left" ng-click="flickBackOnePage()"></i>
       </div>
       <div class="navigation__date">
         <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h1>
       </div>
       <div class="navigation__chevron">
-        <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
+        <i class="typcn  typcn-chevron-right" ng-click="flickForwardOnePage()"></i>
       </div>
     </div>
 
     <!-- The Payload -->
     <div class="payload-container">
-      <div class="card">    
-         <div class="card-quote-container">    
+      <div class="card" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
+         <div class="card-quote-container">
           <blockquote class="primary__quote">
-              <p>The quote</p>
-            <b class="source"><a href="website">the website</a></b></blockquote>
+            <p>{{highlight.quote}}</p>
+            <b class="source"><a href="{{highlight.context_url}}"  target="_blank">{{highlight.context_url | ShortenedURL}}</a></b>
+          </blockquote>
           </div>
-        
-        <div class="timeline-entry-group">
-              <div class="timeline-entry">
-                  <div class="timeline-entry__metadata">
-                    <i class="icon  icon--large" data-icon=""></i>
-                  </div>
-                  <div class="timeline-entry__body">A comment</div>
+
+          <!-- Hardcoding comment entires for now, will generalise to include twinglings for example in the next iteration -->
+          <div class="timeline-entry-group">
+            <div class="timeline-entry" ng-repeat="comment in highlight.comments">
+              <div class="timeline-entry__metadata">
+                <i class="typcn  typcn-message"></i>
               </div>
-              <div class="timeline-entry">
-                  <div class="timeline-entry__metadata">
-                    <i class="icon  icon--large" data-icon=""></i>
-                  </div>
-                  <div class="timeline-entry__body">Another comment</div>
-              </div>
-              <div class="new-comment-row"><button>Add Comment</button></div> 
+              <div class="timeline-entry__body">{{comment.body}} <small>[Edit] [Delete]</small></div>
+            </div>
+            <div class="card-actions-row"><button>Add Comment</button><button>Add Twingling</button></div>
           </div>
-        </div>
+      </div>
     </div>
 
   </div>
