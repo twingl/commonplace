@@ -323,26 +323,14 @@ hr {
         .primary__quote p:before {
             font-family: serif;
             font-style: normal;
-            font-size: 4em;
+            font-size: 5em;
             color: #ddd;
             content: "\201C";
             line-height: 0px;
             float: left;
             position: relative;
-            left: -35px;
-            top: 15px;
-        }
-
-        .primary__quote p:after {
-            font-family: serif;
-            font-style: normal;
-            font-size: 4em;
-            color: #ddd;
-            content: "\201D";
-            line-height: 0px;
-            position: relative;
-            right: -5px;
-            bottom: -37px;
+            left: -45px;
+            top: 20px;
         }
 
 /*        .card__connect--swing {
