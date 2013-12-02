@@ -297,14 +297,14 @@ hr {
 
 
 .card {
-    max-width: 650px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 60px;
 }
 
     .card > div {
-        padding: 10px 20px 10px 20px;
+        padding: 10px 20px 25px 20px;
     }
 
     .card-quote-container {
@@ -313,12 +313,6 @@ hr {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
-
-        .primary__quote {
-            margin: 0px;
-            padding-left: 7%;
-            padding-right: 7%;
-        }
 
         .primary__quote p:before {
             font-family: serif;
@@ -332,6 +326,23 @@ hr {
             left: -45px;
             top: 20px;
         }
+
+        .primary__quote {
+            font-size: 1.1em;
+            margin: 0px;
+            padding-left: 7%;
+            padding-right: 7%;
+        }
+
+        .source {
+            font-style: italic;
+            font-size: .9em;
+        }
+
+        .source a {
+            color: inherit;
+        }
+
 
 /*        .card__connect--swing {
             float: left;
