@@ -262,6 +262,24 @@ hr {
     padding-bottom: 40px;
 }
 
+@media(max-width: 1200px) {
+    .commonplace__container {
+        width: 75%;
+    }
+}
+
+@media(max-width: 960px) {
+    .commonplace__container {
+        width: 90%;
+    }
+}
+
+@media(max-width: 880px) {
+    .commonplace__container {
+        width: 100%;
+    }
+}
+
 .content {
     width: 95%;
     margin-left: auto;
