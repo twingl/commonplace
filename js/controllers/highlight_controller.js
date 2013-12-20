@@ -161,6 +161,24 @@
       }
     }
 
+    // card deletion method
+    $scope.deleteHighlight = function(section, index, id) {
+
+      // determine where, from the expanded view's sections, the card needs to be removed from
+      if (section == "related") {
+        $scope.twinglings.splice(index, 1);
+      }
+      else if (section == "other") {
+        $scope.highlights.splice(index, 1);
+      }
+
+      // delete the highlight from the API
+      $http.delete('http://api.twin.gl/v1/highlights/' + id).success(
+        function(data) {
+          //TODO: fail gracefully (i.e. push highlight back into highlights array)
+      })
+    }
+
     //removes a twingling's relationship with the current highlight
     $scope.deleteTwingling = function (twinglingID, index) {
       //removes the card from the "Connected Twinglings" section of the 'deep view'
