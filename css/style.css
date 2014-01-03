@@ -231,7 +231,8 @@ hr {
 
 
 #loading-visor {
-    background: rgba(255, 255, 255, 0.6);
+    background-color: #e4d1ad;
+    opacity: .9;
     display: none;
     z-index: 65535;
     position: absolute;
