@@ -31,17 +31,30 @@
     <script src="/js/controllers/twingling_controller.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/factories/auth.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/filters/shortenedURL.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/vendor/ui-keypress.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43678647-4', 'twin.gl');
+      ga('send', 'pageview');
+    </script>
 
     <link href="//cloud.typography.com/7002032/717782/css/fonts.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link rel='stylesheet' href="/bower_components/typicons/font/typicons.min.css">
+    <link href="/css/spinner.css" rel="stylesheet">
     <link href="/vendor/animate-custom.css" rel="stylesheet">
   </head>
 
   <body ng-controller="AuthenticationController">
     <div id="loading-visor" class="{{loadingStateClass}}">
-        <p>&hellip; loading &hellip;</p>
+        <div class="spinner">
+          <div class="dot1"></div>
+          <div class="dot2"></div>
+        </div>
     </div>
     <div ng-view></div>
   </body>

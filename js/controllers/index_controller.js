@@ -46,18 +46,6 @@
       return (dateFormatted);
     };
 
-
-    //keystroke navigation
-    $scope.keyPress = function($event) {
-      if ($event.keyCode === 37) {
-        $scope.flickBackOnePage();
-      }
-      else if ($event.keyCode === 39) {
-        $scope.flickForwardOnePage();
-      }
-      $event.preventDefault();
-    }
-
     // TODO: will need to change these page flipping IF statements,
     // once things like creating new comments / twinglings repeats the card on today's date
     $scope.flickBackOnePage = function() {
@@ -252,6 +240,7 @@
       }
     }
 
+
     // adds a comment to a highlight
     $scope.addComment = function(index, id, comment) {
       $scope.highlights[$scope.highlights.length-1-index].comments.push({body: comment});
@@ -296,7 +285,6 @@
 
           // if initial page is blank (as in no activity today), go back until there is content
           $scope.pageContentCheck('back');
-          console.log($scope);
           $scope.$parent.loadingState = false;
         }
       );

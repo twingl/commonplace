@@ -9,8 +9,7 @@
     'controllers',
     'directives',
     'wu.masonry',
-    'ngCookies',
-    'ui.keypress'
+    'ngCookies'
   ]);
 
   Commonplace.factories   = angular.module('factories',   []);

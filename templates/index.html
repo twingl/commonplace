@@ -15,8 +15,6 @@
   </div>
 </div>
 
-<div tabindex="0" ui-keydown="{37: 'keyPress($event)', 39: 'keyPress($event)'}">
-
   <div class="search" ng-show="showSearchResults">
     <div class="search-header">
       <div class="search--hide"><i class="icon-remove icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
@@ -47,7 +45,6 @@
     </div>
   </div>
 
-
   <div class="commonplace-container">
 
     <div class="naviagtion-container">
@@ -60,7 +57,6 @@
       <div class="navigation__chevron">
         <i class="typcn  typcn-chevron-right" ng-click="flickForwardOnePage()"></i>
       </div>
-    </div>
 
     <!-- The Payload -->
     <div class="payload-container">
@@ -83,8 +79,11 @@
             <div class="card-actions-row"><button>Add Comment</button><button>Add Twingling</button></div>
           </div>
       </div>
+      <div class="new-comment" ng-show="comment.showThis">
+        <textarea class="new-comment__body" ng-model="comment.new"></textarea>
+        <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
+      </div>
     </div>
-
   </div>
 
 </div>
