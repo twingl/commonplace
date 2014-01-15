@@ -15,8 +15,6 @@
   </div>
 </div>
 
-<div tabindex="0" ui-keydown="{37: 'keyPress($event)', 39: 'keyPress($event)'}">
-
   <div class="search" ng-show="showSearchResults">
     <div class="search-header">
       <div class="search--hide"><i class="icon-remove icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
@@ -48,48 +46,46 @@
   </div>
 
 
-  <div class="commonplace__container">
+<div class="commonplace__container">
 
-    <div class="naviagtion__container">
-      <div class="navigation__chevron">
-        <i class="icon-chevron-left icon-3x" ng-click="flickBackOnePage()"></i>
-      </div>
-      <div class="navigation__date">
-        <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} <span color="grey">({{timeSlice.beginning | date:'MMMM, d'}})</span></h1>
-      </div>
-      <div class="navigation__chevron">
-        <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
-      </div>
+  <div class="naviagtion__container">
+    <div class="navigation__chevron">
+      <i class="icon-chevron-left icon-3x" ng-click="flickBackOnePage()"></i>
     </div>
+    <div class="navigation__date">
+      <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} <span color="grey">({{timeSlice.beginning | date:'MMMM, d'}})</span></h1>
+    </div>
+    <div class="navigation__chevron">
+      <i class="icon-chevron-right icon-3x" ng-click="flickForwardOnePage()"></i>
+    </div>
+  </div>
 
-    <div class="content" masonry='{ transitionDuration: "0" }'>
-      <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
-        <i class="icon-remove-sign card--remove" ng-click="deleteHighlight($index, highlight.id)" title="Delete Highlight"></i>
-        <a href="/#/highlights/{{highlight.id}}" class="card__quote__link">
-          <blockquote class="card__quote">{{highlight.quote}}</blockquote>
-        </a>
-        <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
-        <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
-        <div class="card__actions">
-          <div class="card__actions__left">
-            <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
-            <span class="card__label">Add Comment</span>
-          </div>
-          <div class="card__actions__right">
-            <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(highlight.id, $index) }">
-              <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(highlight.id, $index), 'card__connect--swing__end' : twinglingEnd(highlight.id, $index) }" ng-click="newTwingling('highlights', highlight.id, $index)"></i>
-              <sup class="superscript--small">{{twinglingCount(highlight.twinglings.length)}}</sup>
-            </div>
-            &nbsp;<span class="card__label">Add Twingling</span>
-          </div>
+  <div class="content" masonry='{ transitionDuration: "0" }'>
+    <div class="card masonry-brick" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
+      <i class="icon-remove-sign card--remove" ng-click="deleteHighlight($index, highlight.id)" title="Delete Highlight"></i>
+      <a href="/#/highlights/{{highlight.id}}" class="card__quote__link">
+        <blockquote class="card__quote">{{highlight.quote}}</blockquote>
+      </a>
+      <div class="card__attribution">&mdash; <a href="{{highlight.context_url}}">{{highlight.context_url | ShortenedURL}}</a></div>
+      <div class="card__comment" ng-repeat="comment in highlight.comments">{{comment.body}} <hr></div>
+      <div class="card__actions">
+        <div class="card__actions__left">
+          <i class="icon-plus" ng-click="comment.showThis = !comment.showThis"></i>
+          <span class="card__label">Add Comment</span>
         </div>
-        <div class="new-comment" ng-show="comment.showThis">
-          <textarea class="new-comment__body" ng-model="comment.new"></textarea>
-          <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
+        <div class="card__actions__right">
+          <div class="card__connect--swing" ng-class="{ 'animated swing': twinglingAnimate(highlight.id, $index) }">
+            <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(highlight.id, $index), 'card__connect--swing__end' : twinglingEnd(highlight.id, $index) }" ng-click="newTwingling('highlights', highlight.id, $index)"></i>
+            <sup class="superscript--small">{{twinglingCount(highlight.twinglings.length)}}</sup>
+          </div>
+          &nbsp;<span class="card__label">Add Twingling</span>
         </div>
       </div>
+      <div class="new-comment" ng-show="comment.showThis">
+        <textarea class="new-comment__body" ng-model="comment.new"></textarea>
+        <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
+      </div>
     </div>
-
   </div>
 
 </div>
