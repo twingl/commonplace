@@ -260,7 +260,7 @@ button {
     padding-bottom: 40px;
 }
 
-@media(max-width: 1200px) {
+/*@media(max-width: 1200px) {
     .commonplace__container {
         width: 75%;
     }
@@ -282,7 +282,7 @@ button {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-}
+}*/
 
 /* Commonplace Navigation */
 .naviagtion-container {
@@ -325,7 +325,7 @@ button {
 
 
 .card {
-    max-width: 700px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 60px;
@@ -343,7 +343,8 @@ button {
     }
 
         .primary__quote {
-            font-size: 1.1em;
+            font-family: 'Lustria', serif;
+            font-size: 1.05em;
             font-style: normal;
             padding-left: 35px;
             padding-right: 35px;
@@ -402,7 +403,7 @@ button {
 
             .timeline-entry__body {
                 float: right;
-                font-size: 1em;
+                font-size: .8em;
                 width: 95%;
             }
 
