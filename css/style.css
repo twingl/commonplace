@@ -234,7 +234,7 @@ hr {
     background-color: #e4d1ad;
     opacity: .9;
     display: none;
-    z-index: 6000;
+    z-index: 6500;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -256,7 +256,7 @@ hr {
 
 
 #welcome-message {
-    background-color: #e4d1ad;
+    background-color: #e9e9df;
     display: none;
     z-index: 65535;
     position: absolute;
@@ -270,8 +270,6 @@ hr {
 
     #welcome-message h1 {
         text-align: center;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     #welcome-message p {
