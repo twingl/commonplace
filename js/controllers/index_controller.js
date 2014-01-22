@@ -266,6 +266,12 @@
         function(data) {
           var tempHighlights = data;
 
+          // catch new user
+          if (tempHighlights.length == 0){
+            console.log("No highlights");
+            $scope.$parent.newUser = true;
+          };
+
           //sorts highlights according to date created
           tempHighlights.sort(function(a,b) {
             return new Date(a.created) - new Date(b.created);
