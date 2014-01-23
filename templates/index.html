@@ -71,18 +71,28 @@
       </div>
 
       <!-- Hardcoding comment entires for now, will generalise to include twinglings for example in the next iteration -->
-      <div class="timeline-entry-group">
-        <div class="timeline-entry" ng-repeat="comment in highlight.comments">
-          <div class="timeline-entry__metadata">
-            <i class="typcn  typcn-message"></i>
+      <div class="card-expansion">
+
+        <div class="timeline-group">
+          <div class="timeline-entry  cf" ng-repeat="comment in highlight.comments">
+            <div class="timeline-entry__metadata">
+              <i class="typcn  typcn-message"></i>
+            </div>
+            <div class="timeline-entry__body">
+              {{comment.body}} <small>[Edit] [Delete]</small>
+            </div>
           </div>
-          <div class="timeline-entry__body">{{comment.body}} <small>[Edit] [Delete]</small></div>
         </div>
-        <div class="card-actions-row"><button>Add Comment</button><button>Add Connection</button></div>
+
+        <div class="card-actions">
+          <button ng-click="comment.showThis = !comment.showThis">Add Comment</button><button>Add Connection</button>
+        </div>
+
+        <div class="new-comment" ng-show="comment.showThis">
+          <textarea class="new-comment__body" ng-model="comment.new" placeholder="Your comment..."></textarea>
+          <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Save Comment</button><button class="new-comment__cancel" ng-click="comment.showThis = !comment.showThis">Cancel</button>
+        </div>
+
       </div>
-  </div>
-  <div class="new-comment" ng-show="comment.showThis">
-    <textarea class="new-comment__body" ng-model="comment.new"></textarea>
-    <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
   </div>
 </div>

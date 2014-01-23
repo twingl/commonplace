@@ -277,13 +277,11 @@
             return new Date(a.created) - new Date(b.created);
           });
 
-          //sorts highlights' comments according to date created
-          for (var i = 0; i < tempHighlights.length; i++) {
-            if (tempHighlights[i].comments.length > 1) {
+          //sorts comments according to date created
+          for (var i = tempHighlights.length - 1; i >= 0; i--) {
               tempHighlights[i].comments.sort(function(a,b) {
                 return new Date(a.created) - new Date(b.created);
               });
-            }
           };
 
           $scope.highlights = tempHighlights;
