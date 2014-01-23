@@ -38,7 +38,7 @@
               <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(result.id, $index), 'card__connect--swing__end' : twinglingEnd(result.id, $index) }" ng-click="newTwingling('results', result.id, $index)"></i>
               <sup class="superscript--small">{{twinglingCount(result.twinglings.length)}}</sup>
             </div>
-            &nbsp;<span class="card__label">Add Twingling</span>
+            &nbsp;<span class="card__label">Add Connection</span>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
             <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(highlight.id, $index), 'card__connect--swing__end' : twinglingEnd(highlight.id, $index) }" ng-click="newTwingling('highlights', highlight.id, $index)"></i>
             <sup class="superscript--small">{{twinglingCount(highlight.twinglings.length)}}</sup>
           </div>
-          &nbsp;<span class="card__label">Add Twingling</span>
+          &nbsp;<span class="card__label">Add Connection</span>
         </div>
       </div>
       <div class="new-comment" ng-show="comment.showThis">
