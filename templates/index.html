@@ -45,46 +45,44 @@
     </div>
   </div>
 
-  <div class="commonplace-container">
 
-    <div class="naviagtion-container">
-      <div class="navigation__chevron">
-        <i class="typcn  typcn-chevron-left" ng-click="flickBackOnePage()"></i>
-      </div>
-      <div class="navigation__date">
-        <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h1>
-      </div>
-      <div class="navigation__chevron">
-        <i class="typcn  typcn-chevron-right" ng-click="flickForwardOnePage()"></i>
-      </div>
+<div class="naviagtion-container">
+  <div class="naviagtion-controls">
+    <div class="navigation__chevron">
+      <i class="typcn  typcn-chevron-left" ng-click="flickBackOnePage()"></i>
     </div>
-
-    <!-- The Payload -->
-    <div class="payload-container">
-      <div class="card" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
-         <div class="card-quote-container">
-          <blockquote class="primary__quote">
-            <p>{{highlight.quote}}</p>
-            <span class="source">&mdash; <a href="{{highlight.context_url}}" target="_blank">{{highlight.context_url | ShortenedURL}}</a></span>
-          </blockquote>
-          </div>
-
-          <!-- Hardcoding comment entires for now, will generalise to include twinglings for example in the next iteration -->
-          <div class="timeline-entry-group">
-            <div class="timeline-entry" ng-repeat="comment in highlight.comments">
-              <div class="timeline-entry__metadata">
-                <i class="typcn  typcn-message"></i>
-              </div>
-              <div class="timeline-entry__body">{{comment.body}} <small>[Edit] [Delete]</small></div>
-            </div>
-            <div class="card-actions-row"><button>Add Comment</button><button>Add Connection</button></div>
-          </div>
-      </div>
-      <div class="new-comment" ng-show="comment.showThis">
-        <textarea class="new-comment__body" ng-model="comment.new"></textarea>
-        <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
-      </div>
+    <div class="navigation__date">
+      <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h1>
+    </div>
+    <div class="navigation__chevron">
+      <i class="typcn  typcn-chevron-right" ng-click="flickForwardOnePage()"></i>
     </div>
   </div>
+</div>
 
+<!-- The Payload -->
+<div class="payload-container">
+  <div class="card" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
+     <div class="card-quote-container">
+      <blockquote class="primary__quote">
+        <p>{{highlight.quote}}</p>
+        <span class="source">From: <a href="{{highlight.context_url}}" target="_blank">{{highlight.context_url | ShortenedURL}}</a></span>
+      </blockquote>
+      </div>
+
+      <!-- Hardcoding comment entires for now, will generalise to include twinglings for example in the next iteration -->
+      <div class="timeline-entry-group">
+        <div class="timeline-entry" ng-repeat="comment in highlight.comments">
+          <div class="timeline-entry__metadata">
+            <i class="typcn  typcn-message"></i>
+          </div>
+          <div class="timeline-entry__body">{{comment.body}} <small>[Edit] [Delete]</small></div>
+        </div>
+        <div class="card-actions-row"><button>Add Comment</button><button>Add Connection</button></div>
+      </div>
+  </div>
+  <div class="new-comment" ng-show="comment.showThis">
+    <textarea class="new-comment__body" ng-model="comment.new"></textarea>
+    <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Add Comment</button>
+  </div>
 </div>

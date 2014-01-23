@@ -5,6 +5,7 @@
  * CONTENTS............You’re reading it!
  * RESET...............Set our reset defaults
  * ELEMENTS............Set unclassed elements
+ * VISORS & MESSAGES...Them popups
  * [TODO] OBJECTS......Generic, underlying design patterns
  * COMPONENTS..........Full components
  */
@@ -99,6 +100,7 @@ button {
 
 
 
+
 /*------------------------------------*\
     $OBJECTS
 \*------------------------------------*/
@@ -113,6 +115,63 @@ button {
 
 
 /*------------------------------------*\
+    $VISORS & MESSAGES
+\*------------------------------------*/
+#loading-visor {
+    background-color: #e4d1ad;
+    opacity: .9;
+    display: none;
+    z-index: 6500;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50px;
+}
+
+    #loading-visor.show {
+        display: block;
+    }
+
+    #loading-visor p {
+        text-align: center;
+        width: 300px;
+        height: 100px;
+        padding-top: 125px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+#welcome-message {
+    background-color: #e9e9df;
+    display: none;
+    z-index: 65535;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+    #welcome-message.show {
+        display: block;
+    }
+
+    #welcome-message h1 {
+        text-align: center;
+    }
+
+    #welcome-message p {
+        text-align: left;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+
+
+
+/*------------------------------------*\
     $COMPONENTS
 \*------------------------------------*/
 .header {
@@ -121,6 +180,7 @@ button {
     height: 50px;
     background-color: #ffffff;
     border-bottom: 1px solid #e5e5e5;
+    position: fixed;
 }
 
     .header__nav {
@@ -228,57 +288,6 @@ button {
         color: #aaa;
     }
 
-
-#loading-visor {
-    background-color: #e4d1ad;
-    opacity: .9;
-    display: none;
-    z-index: 6500;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50px;
-}
-
-    #loading-visor.show {
-        display: block;
-    }
-
-    #loading-visor p {
-        text-align: center;
-        width: 300px;
-        height: 100px;
-        padding-top: 125px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
-#welcome-message {
-    background-color: #e9e9df;
-    display: none;
-    z-index: 65535;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-    #welcome-message.show {
-        display: block;
-    }
-
-    #welcome-message h1 {
-        text-align: center;
-    }
-
-    #welcome-message p {
-        text-align: left;
-        width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
 .commonplace__container {
     width: 65%;
     margin-left: auto;
@@ -313,12 +322,23 @@ button {
 
 /* Commonplace Navigation */
 .naviagtion-container {
-    width: 80%;
-    max-width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 50px;
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+    position: fixed;
+    z-index: 50;
+    background-color: #f3e9db;
+    opacity: .95;
 }
+
+    .naviagtion-controls {
+        width: 80%;
+        max-width: 850px;
+        padding-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        position: block;
+    }
 
     .navigation__chevron {
         float: left;
@@ -328,7 +348,7 @@ button {
     }
 
     .navigation__chevron i {
-        font-size: 3.5em;
+        font-size: 3em;
     }
 
     .navigation__date {
@@ -338,16 +358,15 @@ button {
     }
 
         .navigation__date > h1 {
-            margin: 0px;
+            margin-top: 5px;
         }
 
 
 /* Highlight Cards */
 .payload-container {
     width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 50px;
+    margin: 0px auto 0px auto;
+    padding-top: 175px;
 }
 
 
@@ -370,9 +389,10 @@ button {
     }
 
         .primary__quote {
-            font-family: 'Lustria', serif;
-            font-size: 1.05em;
-            font-style: normal;
+            font-family: 'Merriweather', italic;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1.1em;
             padding-left: 35px;
             padding-right: 35px;
             margin: 0px;
@@ -396,13 +416,15 @@ button {
         }
 
         .source {
-            font-style: italic;
-            font-size: .8em;
+            font-family: 'Whitney SSm A', 'Whitney SSm B';
+            font-style: normal;
+            font-size: .7em;
+            color: #777;
         }
 
-        .source a {
-            color: inherit;
-        }
+            .source a {
+                color: inherit;
+            }
 
 
     .timeline-entry-group {
@@ -413,25 +435,27 @@ button {
     }
 
         .timeline-entry {
-            padding: 10px 0px 20px 0px;
+            padding: 10px 0px 20px 30px;
+            clear: both;
         }
 
             .timeline-entry__metadata {
                 float: left;
                 text-align: right;
                 width: 5%;
-                padding-right: 10px;
             }
 
                 .timeline-entry__metadata i {
                     font-size: 1.5em;
+                    line-height: 0em;
                     color: #aaa;
                 }
 
             .timeline-entry__body {
                 float: right;
-                font-size: .8em;
                 width: 95%;
+                font-size: .8em;
+                padding-left: 10px;
             }
 
         .card-actions-row {
