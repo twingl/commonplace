@@ -35,7 +35,7 @@
 </div>
 
 <div class="expanded__twinglings">
-  <h1 class="expanded__twinglings__title">Related Quotes (Twinglings)</h1>
+  <h1 class="expanded__twinglings__title">Related Quotes (Connections)</h1>
   <div class="expanded__twinglings__container" masonry='{ transitionDuration: "0" }'>
     <div class="card masonry-brick" ng-repeat="twingling in twinglings">
       <i class="icon-remove-sign card--remove" ng-click="deleteHighlight('related', $index, twingling.id)" title="Delete Highlight"></i>
@@ -49,7 +49,7 @@
         </div>
         <div class="card__actions__right">
             <i class="icon-minus-sign twingling--remove" ng-click="deleteTwingling(twingling.twinglingID, $index)"></i>
-          <span class="card__label">Remove this Twingling</span>
+          <span class="card__label">Remove this Connection</span>
         </div>
       </div>
     </div>

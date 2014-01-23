@@ -233,7 +233,7 @@ button {
     background-color: #e4d1ad;
     opacity: .9;
     display: none;
-    z-index: 65535;
+    z-index: 6500;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -254,8 +254,35 @@ button {
     }
 
 
-.commonplace-container {
+#welcome-message {
+    background-color: #e9e9df;
+    display: none;
+    z-index: 65535;
+    position: absolute;
     width: 100%;
+    height: 100%;
+}
+
+    #welcome-message.show {
+        display: block;
+    }
+
+    #welcome-message h1 {
+        text-align: center;
+    }
+
+    #welcome-message p {
+        text-align: left;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+.commonplace__container {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 50px;
     padding-bottom: 40px;
 }
