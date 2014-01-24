@@ -250,12 +250,21 @@
       })
     }
 
-    // removes a highlight from the API, but doesn't update the DOM
-    $scope.deleteHighlight = function(index, id) {
-      $scope.highlights.splice(-index-1, 1);
-      $http.delete('http://api.twin.gl/v1/highlights/' + id).success(
+    // removes an object from the API
+    $scope.deleteObject = function(objectType, index, id) {
+      // determine object type so as to update DOM
+      if (objectType == "highlight") {
+        $scope.highlights.splice(-index-1, 1);
+      }
+      // TODO
+      // else if (objectType == "comments") {
+      //   $scope.highlights[$scope.highlights.length-1-index].splice(??);
+      // }
+
+      // delete the object --the added 's' part is probably confusing...
+      $http.delete('http://api.twin.gl/v1/' + objectType + 's/' + id).success(
         function(data) {
-          //TODO: fail gracefully (i.e. push highlight back into highlights array)
+          //TODO: fail gracefully (i.e. if a object is a highlight, push the highlight back into highlights array)
       })
     }
     /* END CONFIGURATION STUFF */
