@@ -394,7 +394,7 @@ button {
 
     .card-quote-container {
         background-color: #FFFDF8;
-        padding: 35px 40px 45px 40px;
+        padding: 45px 40px 35px 40px;
     }
 
         .card-quote-container:hover  .remove-icon {
@@ -433,7 +433,7 @@ button {
         }
 
         .primary__quote p {
-           margin: 15px 0px 7px 0px;
+           margin: 0;
         }
 
         .primary__quote a {
@@ -447,9 +447,11 @@ button {
 
         .source {
             font-family: 'Whitney SSm A', 'Whitney SSm B';
-            font-style: normal;
+            font-style: italic;
             font-size: .7em;
             color: #777;
+            display: block;
+            margin-top: 1em;
         }
 
             .source a {
