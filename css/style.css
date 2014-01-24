@@ -307,37 +307,12 @@ button {
         color: #aaa;
     }
 
-.commonplace__container {
-    width: 65%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 50px;
-    padding-bottom: 40px;
-}
-
-/*@media(max-width: 1200px) {
-    .commonplace__container {
-        width: 75%;
-    }
-}
-
-@media(max-width: 960px) {
-    .commonplace__container {
-        width: 90%;
-    }
-}
-
-@media(max-width: 880px) {
-    .commonplace__container {
-        width: 100%;
-    }
-}
 
 .content {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-}*/
+}
 
 /* Commonplace Navigation */
 .naviagtion-container {
@@ -382,12 +357,30 @@ button {
 
 
 /* Highlight Cards */
+
 .card-container {
     width: 70%;
     margin: 0px auto 0px auto;
     padding-top: 175px;
 }
 
+@media(max-width: 1200px) {
+    .card-container {
+        width: 75%;
+    }
+}
+
+@media(max-width: 960px) {
+    .card-container {
+        width: 90%;
+    }
+}
+
+@media(max-width: 360px) {
+    .card-container {
+        width: 100%;
+    }
+}
 
 .card {
     max-width: 600px;
