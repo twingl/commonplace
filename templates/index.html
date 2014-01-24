@@ -1,3 +1,4 @@
+<!-- Header -->
 <div class="header">
   <div class="header__nav header-logo">
     <a href="/" class="header-logo__img">Twingl</a>
@@ -15,6 +16,7 @@
   </div>
 </div>
 
+  <!-- Search -->
   <div class="search" ng-show="showSearchResults">
     <div class="search-header">
       <div class="search--hide"><i class="icon-remove icon-2x" ng-click="showSearchResults = false; searchTerm = ''"></i></div>
@@ -45,7 +47,7 @@
     </div>
   </div>
 
-
+<!-- Navigation -->
 <div class="naviagtion-container">
   <div class="naviagtion-controls">
     <div class="navigation__chevron">
@@ -60,19 +62,26 @@
   </div>
 </div>
 
-<!-- The Payload -->
-<div class="payload-container">
+<!-- Highlight Cards -->
+<div class="card-container">
   <div class="card" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
+
+    <!-- The Highlight's Quote -->
      <div class="card-quote-container">
+      <div class="card__delete  remove-icon">
+        <i class="typcn  typcn-times"></i>
+      </div>
       <blockquote class="primary__quote">
-        <p><a href="/#/highlights/{{highlight.id}}">{{highlight.quote}}</a></p>
+        <p>
+          <a href="/#/highlights/{{highlight.id}}">{{highlight.quote}}</a>
+        </p>
         <span class="source">From: <a href="{{highlight.context_url}}" target="_blank">{{highlight.context_url | ShortenedURL}}</a></span>
       </blockquote>
       </div>
 
-      <!-- Hardcoding comment entires for now, will generalise to include twinglings for example in the next iteration -->
       <div class="card-expansion">
 
+        <!-- Hardcoding timeline entries as comments for now, will generalise to include Connections in the next iteration -->
         <div class="timeline-group">
           <div class="timeline-entry  cf" ng-repeat="comment in highlight.comments">
             <div class="timeline-entry__metadata">
@@ -81,16 +90,18 @@
             <div class="timeline-entry__body">
               {{comment.body}}
             </div>
-            <div class="timeline-entry__delete">
+            <div class="timeline-entry__delete  remove-icon">
               <i class="typcn  typcn-times" ng-click=""></i>
             </div>
           </div>
         </div>
 
+        <!-- Add Comment, Add Connection -->
         <div class="card-actions">
           <button ng-click="comment.showThis = !comment.showThis">Add Comment</button><button>Add Connection</button>
         </div>
 
+        <!-- Create Comment Module -->
         <div class="new-comment" ng-show="comment.showThis">
           <textarea class="new-comment__body" ng-model="comment.new" placeholder="Your comment..."></textarea>
           <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.new); comment.showThis = !comment.showThis">Save Comment</button><button class="new-comment__cancel" ng-click="comment.showThis = !comment.showThis">Cancel</button>

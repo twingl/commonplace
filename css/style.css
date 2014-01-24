@@ -123,8 +123,14 @@ button {
     color: inherit;
 }
 
+.remove-icon {
+    color: #d5d5d5;
+    display: none;
+}
 
-
+    .remove-icon i:hover {
+        color: #c2484f;
+    }
 
 
 /*------------------------------------*\
@@ -376,7 +382,7 @@ button {
 
 
 /* Highlight Cards */
-.payload-container {
+.card-container {
     width: 70%;
     margin: 0px auto 0px auto;
     padding-top: 175px;
@@ -397,6 +403,18 @@ button {
         border-top-right-radius: 10px;
         padding: 10px 20px 15px 20px;
     }
+
+        .card-quote-container:hover  .remove-icon {
+            display:block;
+        }
+
+        .card__delete {
+            font-size: 2em;
+            float: right;
+            position: relative;
+            top: -15px;
+            right: -15px;
+        }
 
         .primary__quote {
             font-family: 'Merriweather', italic;
@@ -463,7 +481,7 @@ button {
                 padding-bottom: 5px;
             }
 
-            .timeline-entry:hover  .timeline-entry__delete {
+            .timeline-entry:hover  .remove-icon {
                 display: block;
             }
 
@@ -495,21 +513,11 @@ button {
                     float: right;
                     text-align: right;
                     width: 5%;
-                    color: #d5d5d5;
-                    display: none;
                 }
-
-                    .timeline-entry__delete i:hover {
-                        color: #c2484f;
-                    }
 
         .card-actions {
             padding-bottom: 5px;
         }
-
-            .card-actions button {
-
-            }
 
         .new-comment {
             padding-top: 10px;
