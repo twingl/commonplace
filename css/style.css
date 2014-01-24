@@ -425,6 +425,15 @@ button {
            margin: 15px 0px 7px 0px;
         }
 
+        .primary__quote a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+            .primary__quote a:hover {
+                text-decoration: underline;
+            }
+
         .source {
             font-family: 'Whitney SSm A', 'Whitney SSm B';
             font-style: normal;
@@ -454,24 +463,45 @@ button {
                 padding-bottom: 5px;
             }
 
+            .timeline-entry:hover  .timeline-entry__delete {
+                display: block;
+            }
+
                 .timeline-entry__metadata {
                     float: left;
                     text-align: right;
                     width: 5%;
+                    color: #aaa;
                 }
 
-                    .timeline-entry__metadata i {
-                        font-size: 1.5em;
-                        line-height: .7em;
+                    .timeline-entry__metadata i:hover {
                         color: #aaa;
                     }
 
+                .timeline-entry i {
+                    font-size: 1.5em;
+                    line-height: .7em;
+                }
+
                 .timeline-entry__body {
-                    float: right;
-                    width: 95%;
+                    float: left;
+                    width: 90%;
                     font-size: .8em;
                     padding-left: 10px;
+                    padding-right: 10px;
                 }
+
+                .timeline-entry__delete {
+                    float: right;
+                    text-align: right;
+                    width: 5%;
+                    color: #d5d5d5;
+                    display: none;
+                }
+
+                    .timeline-entry__delete i:hover {
+                        color: #c2484f;
+                    }
 
         .card-actions {
             padding-bottom: 5px;

@@ -65,7 +65,7 @@
   <div class="card" ng-repeat="highlight in highlights | filter:inTimeSlice | orderBy:'-created'">
      <div class="card-quote-container">
       <blockquote class="primary__quote">
-        <p>{{highlight.quote}}</p>
+        <p><a href="/#/highlights/{{highlight.id}}">{{highlight.quote}}</a></p>
         <span class="source">From: <a href="{{highlight.context_url}}" target="_blank">{{highlight.context_url | ShortenedURL}}</a></span>
       </blockquote>
       </div>
@@ -79,7 +79,10 @@
               <i class="typcn  typcn-message"></i>
             </div>
             <div class="timeline-entry__body">
-              {{comment.body}} <small>[Edit] [Delete]</small>
+              {{comment.body}}
+            </div>
+            <div class="timeline-entry__delete">
+              <i class="typcn  typcn-times" ng-click=""></i>
             </div>
           </div>
         </div>
