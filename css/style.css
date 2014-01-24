@@ -386,7 +386,7 @@ button {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 60px;
+    margin-bottom: 60px;
 }
 
     .card-quote-container {
@@ -410,11 +410,9 @@ button {
         }
 
         .primary__quote {
-            font-family: 'Merriweather', italic;
-            font-weight: 300;
-            font-style: italic;
+            font-family: 'Mercury SSm A', 'Mercury SSm B'; font-weight: 400; font-style: normal;
             font-size: 1.1em;
-            line-height: 1.5em;
+            line-height: 1.4em;
             padding-left: 35px;
             padding-right: 35px;
             margin: 0px;
