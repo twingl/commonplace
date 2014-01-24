@@ -69,7 +69,7 @@
     <!-- The Highlight's Quote -->
      <div class="card-quote-container">
       <div class="card__delete  remove-icon">
-        <i class="typcn  typcn-times"></i>
+        <i class="typcn  typcn-times" ng-click="deleteHighlight($index, highlight.id)" title="Delete Highlight"></i>
       </div>
       <blockquote class="primary__quote">
         <p>
@@ -91,7 +91,7 @@
               {{comment.body}}
             </div>
             <div class="timeline-entry__delete  remove-icon">
-              <i class="typcn  typcn-times" ng-click=""></i>
+              <i class="typcn  typcn-times" ng-click="" title="Remove Item"></i>
             </div>
           </div>
         </div>
