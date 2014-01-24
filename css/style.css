@@ -394,27 +394,24 @@ button {
 
     .card-quote-container {
         background-color: #FFFDF8;
-        padding: 45px 40px 35px 40px;
+        padding: 45px 80px 40px 80px;
+        position: relative; 
     }
 
         .card-quote-container:hover  .remove-icon {
-            display:block;
+            display: block;
         }
 
         .card__delete {
             font-size: 2em;
-            float: right;
-            position: relative;
-            top: -15px;
-            right: -15px;
+            position: absolute;
+            top: 0;
+            right: 7px;
         }
 
         .primary__quote {
             font-family: 'Mercury SSm A', 'Mercury SSm B'; font-weight: 400; font-style: normal;
-            font-size: 1.1em;
             line-height: 1.4em;
-            padding-left: 35px;
-            padding-right: 35px;
             margin: 0px;
             color: rgba(28, 20, 20, 0.78);
         }
@@ -423,13 +420,13 @@ button {
             font-family: 'Mercury SSm A', 'Mercury SSm B';
             font-weight: 700;
             font-style: normal;
-            font-size: 4.2em;
+            font-size: 3.2em;
             color: rgba(231, 231, 231, 1);
             content: "\201C";
             float: left;
-            position: relative;
-            margin-left: -0.78em;
-            margin-top: 0.278em;
+            position: absolute;
+            top: 24px;
+            left: 14px;
         }
 
         .primary__quote p {
