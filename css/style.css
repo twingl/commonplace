@@ -414,9 +414,11 @@ button {
             font-weight: 300;
             font-style: italic;
             font-size: 1.1em;
+            line-height: 1.5em;
             padding-left: 35px;
             padding-right: 35px;
             margin: 0px;
+            color: rgba(28, 20, 20, 0.78);
         }
 
         .primary__quote p:before {
