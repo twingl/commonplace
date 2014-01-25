@@ -46,7 +46,8 @@ body {
     font-size: 1em;
     line-height: 1.4;
     text-rendering: optimizeLegibility;
-    background-color: #f3e9db;
+    background: #4F1B4B;
+    background: linear-gradient(135deg, #4F1B4B 0%,#4F2716 100%);
 }
 
 i {
@@ -315,17 +316,17 @@ button {
 }
 
 /* Commonplace Navigation */
-.naviagtion-container {
+.navigation-container {
     width: 100%;
     height: 100px;
     margin-top: 50px;
     position: fixed;
     z-index: 50;
-    background-color: #f3e9db;
+    background-color: #4F1B4B;
     opacity: .95;
 }
 
-    .naviagtion-controls {
+    .navigation-controls {
         width: 80%;
         max-width: 850px;
         padding-top: 30px;
@@ -458,7 +459,6 @@ button {
 
     .card-expansion {
         background-color: #f6f0e5;
-        border: 1px solid #f6f0e5;
         padding: 0px 50px 15px 50px;
     }
 
