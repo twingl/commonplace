@@ -96,6 +96,11 @@
               <i class="typcn  typcn-times" ng-click="deleteObject('comment', comment.id, $parent.$index, $index)" title="Remove Item"></i>
             </div>
           </div>
+
+          <div ng-controller="LinkController">
+            <button ng-click="stageResource('highlight', highlight.id, highlight)">Stage Twingling</button>
+          </div>
+          &nbsp;<span class="card__label">Add Connection</span>
         </div>
 
         <!-- Add Comment, Add Connection -->
@@ -111,4 +116,20 @@
 
       </div>
   </div>
+
+  <div id="link-interface" ng-show="showInterface()" ng-controller="LinkController">
+
+    <div id="link-origin">
+      <p>{{origin().quote}}</p>
+      <a href="{{origin().context_url}}">{{origin().context_url}}</a>
+    </div>
+
+    <div id="link-termination">
+      <p>{{termination().quote}}</p>
+      <a href="{{termination().context_url}}">{{termination().context_url}}</a>
+    </div>
+
+    <button ng-disabled="!enableCommit()" ng-click="commitLink()">Create Link</button>
+  </div>
+
 </div>

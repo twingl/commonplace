@@ -8,6 +8,7 @@
     'filters',
     'controllers',
     'directives',
+    'services',
     'wu.masonry',
     'ngCookies'
   ]);
@@ -16,5 +17,6 @@
   Commonplace.filters     = angular.module('filters',     []);
   Commonplace.controllers = angular.module('controllers', []);
   Commonplace.directives  = angular.module('directives',  []);
+  Commonplace.services    = angular.module('services',    []);
 
 })();
