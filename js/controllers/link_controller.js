@@ -9,7 +9,7 @@
     $scope.stageResource = function(type, id, object) {
       if (linkService.origin() === undefined) {
         var terminations = linkService.terminations();
-        if (Object.keys(terminations).indexOf(type + "-" + id) < 0) //FIXME style
+        if (Object.keys(terminations).indexOf(type + "-" + id) < 0) //FIXME style, law of demeter violation
           linkService.setOrigin(type, id, object); //FIXME should not need to supply object
       } else {
         // Only stage termination point if we don't already have one and
