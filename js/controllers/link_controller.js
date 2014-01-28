@@ -59,7 +59,7 @@
     };
 
     $scope.commitLink = function() {
-      console.log("Commit stub: Set working state on button, call service.commit");
+      linkService.commitTerminations();
     };
 
     $scope.print = function() { return linkService.print(); };

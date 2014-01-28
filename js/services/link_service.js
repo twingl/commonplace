@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.services.factory('linkService', function() {
+  Commonplace.services.factory('linkService', ['$http', function($http) {
     // The Link service.
     // This is designed to create links from an `origin` resource (highlight,
     // comment) to one or more `termination` resources.
@@ -68,8 +68,24 @@
 
       // Creates links on the server corresponding to what's staged
       LinkService.commitTerminations = function() {
-        if (origin !== undefined && Object.keys(terminations).length > 0) {
-          //stub
+        var that = this;
+        var keys = Object.keys(terminations);
+        if (origin !== undefined && keys.length > 0) {
+          for (var i = 0; i < keys.length; i++) {
+            var termination = terminations[keys[i]];
+            var link = {
+              start_id:   origin.id,
+              start_type: origin.type,
+              end_id:     termination.id,
+              end_type:   termination.type
+            };
+            $http.post('http://api.twin.gl/v1/twinglings', link)
+              .success(function(data) {
+                that.unstageTermination(termination.type, termination.id);
+                // If we have cleared all of our terminations, remove the origin
+                if (Object.keys(terminations).length === 0) that.clearOrigin();
+              });
+          }
         } else {
           return false;
         }
@@ -79,6 +95,6 @@
     });
 
     return new LinkService();
-  });
+  }]);
 
 })();
