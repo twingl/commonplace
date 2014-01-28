@@ -119,14 +119,16 @@
 
   <div id="link-interface" ng-show="showInterface()" ng-controller="LinkController">
 
-    <div id="link-origin">
+    <div id="link-origin" ng-show="origin()">
       <p>{{origin().quote}}</p>
       <a href="{{origin().context_url}}">{{origin().context_url}}</a>
+      <a ng-click="clearOrigin()">remove</a>
     </div>
 
-    <div id="link-termination">
+    <div id="link-termination" ng-show="termination()">
       <p>{{termination().quote}}</p>
       <a href="{{termination().context_url}}">{{termination().context_url}}</a>
+      <a ng-click="clearTermination()">remove</a>
     </div>
 
     <button ng-disabled="!enableCommit()" ng-click="commitLink()">Create Link</button>
