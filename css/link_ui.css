@@ -43,6 +43,7 @@
     width         : 40px;
     height        : 40px;
     border-radius : 20px;
+    transition    : 0.2s all;
   }
 
   .link_ui__orb { z-index: 10; }
