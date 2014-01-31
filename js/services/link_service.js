@@ -67,7 +67,7 @@
 
 
       // Creates links on the server corresponding to what's staged
-      LinkService.commitTerminations = function() {
+      LinkService.commitTerminations = function(success, error) {
         var that = this;
         var keys = Object.keys(terminations);
         if (origin !== undefined && keys.length > 0) {
@@ -80,11 +80,8 @@
               end_type:   termination.type
             };
             $http.post('http://api.twin.gl/v1/twinglings', link)
-              .success(function(data) {
-                that.unstageTermination(termination.type, termination.id);
-                // If we have cleared all of our terminations, remove the origin
-                if (Object.keys(terminations).length === 0) that.clearOrigin();
-              });
+              .success(function(data) { success(); })
+              .error(function(data) { error(); });
           }
         } else {
           return false;

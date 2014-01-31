@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.controllers.controller('LinkController', ['$scope', 'linkService', function($scope, linkService) {
+  Commonplace.controllers.controller('LinkController', ['$scope', '$timeout', 'linkService', function($scope, $timeout, linkService) {
 
     // Stage a resource for twingling.
     // If there is nothing in the origin of the service, the resource will be
@@ -58,8 +58,49 @@
       return $scope.origin() && $scope.termination();
     };
 
+    $scope.uiStatus = function() {
+      if ($scope.commited) {
+        $scope.state = ($scope.success === true) ? "success" : "error";
+        if (!$scope.timeout) {
+          $scope.timeout = true;
+          $timeout(function() {
+            $scope.commited = false;
+            $scope.working = false;
+            $scope.timeout = false;
+            if ($scope.success === true) {
+              $scope.success = undefined;
+              $scope.clearOrigin();
+              $scope.clearTermination();
+            }
+          }, 2000)
+        }
+      }
+      else if ($scope.working) {
+        $scope.state = "working";
+      }
+      else if ($scope.enableCommit()) {
+        $scope.state = "pending";
+      }
+      else {
+        $scope.state = "ineligible";
+      }
+      return $scope.state;
+    };
+
     $scope.commitLink = function() {
-      linkService.commitTerminations();
+      if ($scope.enableCommit()) {
+        $scope.working = true;
+        linkService.commitTerminations(
+          function() {
+            $scope.commited = true;
+            $scope.success = true;
+          },
+          function() {
+            $scope.commited = true;
+            $scope.success = false;
+          }
+        );
+      }
     };
 
     $scope.print = function() { return linkService.print(); };

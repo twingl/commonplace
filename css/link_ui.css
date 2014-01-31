@@ -1,0 +1,206 @@
+/* Link UI styles */
+
+
+/**
+ * Override the AngularJS ng-hide style as display: none; breaks our layout
+ *
+ * There is a note in link_ui__termination along with a fix for Angular <1.2.x
+ */
+.link_ui .ng-hide {
+  opacity   : 0;
+  transition: 0.2s all;
+}
+
+.link_ui {
+  position      : fixed;
+  margin        : 0px;
+  bottom        : 20px;
+  left          : 50%;
+  margin-left   : -250px;
+  border-radius : 2px;
+  border        : 0px;
+  width         : 500px;
+  height        : 145px;
+  padding       : 0px;
+  transition    : 0.2s all;
+
+  -webkit-box-shadow: 0 0 4em rgba(0, 0, 0, 0.3);
+  box-shadow        : 0 0 4em rgba(0, 0, 0, 0.3);
+}
+.link_ui.ineligible, .ineligible .link_ui__orb,
+.link_ui.pending, .pending .link_ui__orb { background: #cdbbc5; }
+.link_ui.working, .working .link_ui__orb { background: #e0ca7c; }
+.link_ui.success, .success .link_ui__orb { background: #94c175; }
+.link_ui.error,   .error   .link_ui__orb { background: #c2484f; }
+
+
+  .link_ui__orb,
+  .link_ui__corona {
+    position      : absolute;
+    left          : 50%;
+    top           : 50%;
+    margin        : -20px 0px 0px -20px;
+    width         : 40px;
+    height        : 40px;
+    border-radius : 20px;
+  }
+
+  .link_ui__orb { z-index: 10; }
+
+  .ineligible .link_ui__orb {
+    margin        : -9px 0px 0px -9px;
+    width         : 18px;
+    height        : 18px;
+    border-radius : 9px;
+  }
+
+  .pending .link_ui__orb:hover {
+    cursor        : pointer;
+    margin        : -25px 0px 0px -25px;
+    width         : 50px;
+    height        : 50px;
+    border-radius : 25px;
+
+    -webkit-transition: 0.2s;
+    -moz-transition   : 0.2s;
+    transition        : 0.2s;
+  }
+
+  .pending .link_ui__corona {
+    -webkit-animation: pulsate 1.5s infinite;
+    -moz-animation   : pulsate 1.5s infinite;
+    animation        : pulsate 1.5s infinite;
+    z-index          : 1;
+  }
+
+  .link_ui__card {
+    position      : relative;
+    display       : inline-block;
+    border-radius : 0px;
+    border        : 0px;
+    width         : 249px;
+    height        : 145px;
+    padding       : 0px;
+    margin        : 0px;
+    background    : #ffffff;
+    vertical-align: top;
+    transition    : 0.2s all;
+  }
+
+  /* Quotation mark - adapted from highlight card, but with float factored out. */
+  .link_ui__card .quote::before {
+      display    : inline-block;
+      position   : absolute;
+      top        : 0px;
+      left       : 10px;
+
+      font-family: 'Mercury SSm A', 'Mercury SSm B';
+      font-size  : 2.8em;
+      font-weight: 700;
+      font-style : normal;
+      color      : rgba(231, 231, 231, 1);
+      content    : "\201C";
+  }
+
+    .link_ui__card .unstage:hover {
+      cursor: pointer;
+      color : #c2484f;
+    }
+    .link_ui__card .unstage {
+      display    : inline-block;
+      position   : absolute;
+      top        : 4px;
+      right      : 10px;
+
+      font-family: 'Mercury SSm A', 'Mercury SSm B';
+      font-size  : 1.8em;
+      font-weight: 700;
+      font-style : normal;
+      color      : rgba(231, 231, 231, 1);
+    }
+
+    .link_ui__card .quote {
+      display     : inline-block;
+      margin      : 28px 36px;
+      font-family : 'Mercury SSm A', 'Mercury SSm B';
+      font-size   : 13px;
+      font-weight : 400;
+      font-style  : normal;
+      color       : rgba(28, 20, 20, 0.58);
+      overflow    : hidden;
+      max-height  : 88px;
+    }
+
+  .link_ui__origin { /* The left card */
+    border-top-left-radius    : 2px;
+    border-bottom-left-radius : 2px;
+    margin-right              :-1px;
+  }
+
+  .link_ui__termination { /* The right card */
+    /**
+     * Remove this float when we use ng 1.2.x as we can override how Angular
+     * hides things (as at the top of the file)
+     */
+    float                     : right;
+    border-top-right-radius   : 2px;
+    border-bottom-right-radius: 2px;
+    margin-left               :-1px;
+  }
+
+@-webkit-keyframes pulsate {
+  0% {
+    background    : rgba(205, 187, 197, 0.7);
+    margin        : -20px 0px 0px -20px;
+    width         : 40px;
+    height        : 40px;
+  }
+
+  50% {
+    border-radius : 35px;
+    background    : rgba(205, 187, 197, 0);
+    margin        : -35px 0px 0px -35px;
+    width         : 70px;
+    height        : 70px;
+  }
+
+  100% {}
+}
+
+@-moz-keyframes pulsate {
+  0% {
+    background    : rgba(205, 187, 197, 0.7);
+    margin        : -20px 0px 0px -20px;
+    width         : 40px;
+    height        : 40px;
+  }
+
+  50% {
+    border-radius : 35px;
+    background    : rgba(205, 187, 197, 0);
+    margin        : -35px 0px 0px -35px;
+    width         : 70px;
+    height        : 70px;
+  }
+
+  100% {}
+}
+
+@keyframes pulsate {
+  0% {
+    background    : rgba(205, 187, 197, 0.7);
+    margin        : -20px 0px 0px -20px;
+    width         : 40px;
+    height        : 40px;
+  }
+
+  50% {
+    border-radius : 35px;
+    background    : rgba(205, 187, 197, 0);
+    margin        : -35px 0px 0px -35px;
+    width         : 70px;
+    height        : 70px;
+  }
+
+  100% {}
+}

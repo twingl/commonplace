@@ -117,21 +117,17 @@
       </div>
   </div>
 
-  <div id="link-interface" ng-show="showInterface()" ng-controller="LinkController">
-
-    <div id="link-origin" ng-show="origin()">
-      <p>{{origin().quote}}</p>
-      <a href="{{origin().context_url}}">{{origin().context_url}}</a>
-      <a ng-click="clearOrigin()">remove</a>
+  <div class="link_ui {{uiStatus()}}" ng-show="showInterface()" ng-controller="LinkController">
+    <div class="link_ui__orb" ng-disabled="!enableCommit()" ng-click="commitLink()"></div>
+    <div class="link_ui__corona"></div>
+    <div class="link_ui__card link_ui__origin" ng-show="origin()">
+      <a class="unstage typcn typcn-cancel" ng-click="clearOrigin()"></a>
+      <p class="quote">{{origin().quote}}</p>
     </div>
-
-    <div id="link-termination" ng-show="termination()">
-      <p>{{termination().quote}}</p>
-      <a href="{{termination().context_url}}">{{termination().context_url}}</a>
-      <a ng-click="clearTermination()">remove</a>
+    <div class="link_ui__card link_ui__termination" ng-show="termination()">
+      <a class="unstage typcn typcn-cancel" ng-click="clearTermination()"></a>
+      <p class="quote">{{termination().quote}}</p>
     </div>
-
-    <button ng-disabled="!enableCommit()" ng-click="commitLink()">Create Link</button>
   </div>
 
 </div>
