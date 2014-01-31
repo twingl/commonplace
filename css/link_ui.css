@@ -8,7 +8,10 @@
  */
 .link_ui .ng-hide {
   opacity   : 0;
-  transition: 0.2s all;
+
+  -webkit-transition: 0.2s;
+  -moz-transition   : 0.2s;
+  transition        : 0.2s;
 }
 
 .link_ui {
@@ -22,7 +25,10 @@
   width         : 500px;
   height        : 145px;
   padding       : 0px;
-  transition    : 0.2s all;
+
+  -webkit-transition: 0.2s;
+  -moz-transition   : 0.2s;
+  transition        : 0.2s;
 
   -webkit-box-shadow: 0 0 4em rgba(0, 0, 0, 0.3);
   box-shadow        : 0 0 4em rgba(0, 0, 0, 0.3);
@@ -43,7 +49,10 @@
     width         : 40px;
     height        : 40px;
     border-radius : 20px;
-    transition    : 0.2s all;
+
+    -webkit-transition: 0.2s;
+    -moz-transition   : 0.2s;
+    transition        : 0.2s;
   }
 
   .link_ui__orb { z-index: 10; }
@@ -61,10 +70,6 @@
     width         : 50px;
     height        : 50px;
     border-radius : 25px;
-
-    -webkit-transition: 0.2s;
-    -moz-transition   : 0.2s;
-    transition        : 0.2s;
   }
 
   .pending .link_ui__corona {
@@ -85,7 +90,10 @@
     margin        : 0px;
     background    : #ffffff;
     vertical-align: top;
-    transition    : 0.2s all;
+
+    -webkit-transition: 0.2s;
+    -moz-transition   : 0.2s;
+    transition        : 0.2s;
   }
 
   /* Quotation mark - adapted from highlight card, but with float factored out. */
