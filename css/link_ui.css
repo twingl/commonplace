@@ -14,6 +14,8 @@
   transition        : 0.2s;
 }
 
+.link_ui__occlusion_fix { margin-bottom: 200px; }
+
 .link_ui {
   position      : fixed;
   margin        : 0px;
