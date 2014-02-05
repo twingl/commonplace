@@ -388,14 +388,14 @@ button {
     margin-right: auto;
     margin-bottom: 60px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
-    border-radius: 2px;
+    border-radius: 7px;
     overflow: hidden;
 }
 
     .card-quote-container {
         background-color: #FFFDF8;
-        padding: 45px 80px 40px 80px;
-        position: relative; 
+        padding: 45px 80px 25px 80px;
+        position: relative;
     }
 
         .card-quote-container:hover  .remove-icon {
@@ -421,12 +421,12 @@ button {
             font-weight: 700;
             font-style: normal;
             font-size: 3.2em;
-            color: rgba(231, 231, 231, 1);
+            color: rgba(221, 221, 221, 1);
             content: "\201C";
             float: left;
             position: absolute;
-            top: 24px;
-            left: 14px;
+            top: 40px;
+            left: 45px;
         }
 
         .primary__quote p {
@@ -462,12 +462,16 @@ button {
     }
 
         .timeline-group {
-            padding: 5px 0px 10px 0px;
+            padding: 5px 0px 15px 0px;
         }
+
+            .timeline-group > div {
+                padding-top: 10px;
+            }
+
 
             .timeline-entry {
                 padding-top: 20px;
-                padding-bottom: 5px;
             }
 
             .timeline-entry:hover  .remove-icon {

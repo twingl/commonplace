@@ -55,7 +55,7 @@
               <i class="icon-bolt card__connect" ng-class="{ 'card__connect--swing__start' : twinglingStart(result.id, $index), 'card__connect--swing__end' : twinglingEnd(result.id, $index) }" ng-click="newTwingling('results', result.id, $index)"></i>
               <sup class="superscript--small">{{twinglingCount(result.twinglings.length)}}</sup>
             </div>
-            &nbsp;<span class="card__label">Add Connection</span>
+            &nbsp;<span class="card__label">Add Link</span>
           </div>
         </div>
       </div>
@@ -98,9 +98,9 @@
           </div>
         </div>
 
-        <!-- Add Comment, Add Connection -->
+        <!-- Add Comment, Add Link -->
         <div class="card-actions">
-          <button ng-click="comment.showThis = !comment.showThis">Add Comment</button><button>Add Connection</button>
+          <button ng-click="comment.showThis = !comment.showThis">Add Comment</button><button>Add Link</button>
         </div>
 
         <!-- Create Comment Module -->
