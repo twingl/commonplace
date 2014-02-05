@@ -241,33 +241,29 @@ button {
             margin-right: auto;
         }
 
-                .search-box__icon {
-                    color: #ccc;
-                }
-
-                .search-box__input {
-                    font-size: 1em;
-                    height: 45px;
-                    width: 95%;
-                    border-style: none;
-                    margin-top: -50px;
-                }
-
-    .header a, a:visited {
-        text-decoration: none;
-    }
+            .search-box__input {
+              font-size: 1em;
+              height: 45px;
+              width: 95%;
+              border-style: none;
+              margin-top: -50px;
+            }
 
     .header__sign-out {
         width: 9%;
         float: right;
         text-align: center;
-        font-size: .85em;
-        padding-top: 15px;
+        font-size: .75em;
+        padding-top: 17px;
     }
 
-        .header__sign-out__icon {
-            color: #ccc;
+        .header__sign-out a, a:visited {
+            text-decoration: none;
+            color: inherit;
         }
+
+
+
 
 
 .search {
@@ -313,26 +309,15 @@ button {
     }
 
 
-.content {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-}
+
+
+
 
 /* Commonplace Navigation */
 .navigation-container {
-
+    height: 50px;
 
 }
-
-    /*.navigation-controls {
-        width: 80%;
-        max-width: 850px;
-        padding-top: 30px;
-        margin-left: auto;
-        margin-right: auto;
-        position: block;
-    }*/
 
     .navigation__chevron {
         float: left;
@@ -351,9 +336,13 @@ button {
         text-align: center;
     }
 
-        .navigation__date > h1 {
-            margin-top: 5px;
+        .navigation__date > h2 {
+            margin-top: 11px;
+            margin-bottom: 0px;
         }
+
+
+
 
 
 /* Highlight Cards */

@@ -7,13 +7,12 @@
     <div class="header__nav header__search">
       <div class="header__search__box">
         <form ng-submit="search(searchTerm)">
-            <span class="typcn  typcn-zoom <!-- search-box__icon -->" ng-click="search(searchTerm)"></span>
             <input type="search" class="search-box__input" ng-model="searchTerm" tabindex="1" placeholder="Search..." autofocus>
         </form>
       </div>
     </div>
     <div class="header__nav header__sign-out">
-      <i class="typcn  typcn-power <!-- icon-signout header__sign-out__icon -->" ng-click="signOut()"></i> <a href="" ng-click="signOut()">Sign Out</a>
+      <a href="" ng-click="signOut()">Sign Out</a>
     </div>
   </div>
 
@@ -23,7 +22,7 @@
       <i class="typcn  typcn-chevron-left" ng-click="flickBackOnePage()"></i>
     </div>
     <div class="navigation__date">
-      <h1 class="navigation__date__text">{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h1>
+      <h2>{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h2>
     </div>
     <div class="navigation__chevron">
       <i class="typcn  typcn-chevron-right" ng-click="flickForwardOnePage()"></i>
