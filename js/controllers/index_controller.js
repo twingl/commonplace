@@ -15,7 +15,7 @@
 
     if ($routeParams.date !== "") {
       selectedDate = new Date($routeParams.date);
-    }
+    };
 
     $scope.timeSlice.beginning = new Date(selectedDate);
     $scope.timeSlice.beginning.setHours(0,0,0,0);
@@ -26,7 +26,7 @@
     $scope.inTimeSlice = function(item) {
       var date = new Date(item.created);
       return (date > $scope.timeSlice.beginning && date < $scope.timeSlice.end);
-    }
+    };
 
     // Helper for avoiding blank pages
     $scope.pageContentCheck = function (direction) {
@@ -37,7 +37,7 @@
       else if (pageItemCount === 0 && direction !== "forward") {
         $scope.flickBackOnePage();
       }
-    }
+    };
 
 
     //convert date to URL parmeter accepted format
@@ -54,7 +54,7 @@
         $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() - 1 );
         $scope.pageContentCheck('back');
       }
-    }
+    };
 
     $scope.flickForwardOnePage = function() {
       if ($scope.timeSlice.end < new Date($scope.highlights[$scope.highlights.length-1].created)) {
@@ -62,7 +62,8 @@
         $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() + 1 );
         $scope.pageContentCheck('forward');
       }
-    }
+    };
+
 
     $scope.search = function(term) {
       $scope.searchResults.length = 0; //clears previous search results
@@ -133,7 +134,8 @@
 
           $scope.showSearchResults = true;
       });
-    }
+    };
+
 
     //displays the number of twinglings of a card
     $scope.twinglingCount = function (count) {
@@ -143,7 +145,8 @@
       else {
         return "";
       }
-    }
+    };
+
 
     //adds a twingling between two highlights
     $scope.twingling = {
@@ -151,7 +154,7 @@
       start_id: "",
       end_type: "highlights",
       end_id: ""
-    }
+    };
 
     //twingling animation variables for ng-class
     $scope.twinglingInProgress = false;
@@ -169,7 +172,8 @@
       else {
         return false;
       }
-    }
+    };
+
 
     $scope.twinglingStart = function (id, index) {
       if ($scope.twinglingInProgress && id == $scope.selectedStartId && index == $scope.selectedStartIndex) {
@@ -178,7 +182,8 @@
       else {
         return false;
       }
-    }
+    };
+
 
     $scope.twinglingEnd = function (id, index) {
       if ($scope.twinglingInProgress && id !== $scope.selectedStartId && index !== $scope.selectedStartIndex) {
@@ -190,7 +195,8 @@
       else {
         return false;
       }
-    }
+    };
+
 
     $scope.newTwingling = function (origin, id, index) {
       //if highlight is the start point...
@@ -238,17 +244,22 @@
           $scope.selectedStartId = -1;
         });
       }
-    }
+    };
 
 
     // adds a comment to a highlight
     $scope.addComment = function(index, id, comment) {
+
+      // update the DOM
       $scope.highlights[$scope.highlights.length-1-index].comments.push({body: comment});
+
+      // post to the API
       $http.post('http://api.twin.gl/v1/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
         function(data) {
           //TODO: fail gracefully
-      })
-    }
+      });
+    };
+
 
     // removes an object from the API
     $scope.deleteObject = function(objectType, id, parentIndex, childIndex) {
