@@ -55,14 +55,6 @@ i {
     cursor: pointer;
 }
 
-    i:hover {
-        color: #000;
-    }
-
-    .icon--grey {
-        color: #ccc;
-    }
-
 a, a:visited {
     text-decoration: underline;
 }
@@ -316,31 +308,41 @@ button {
 
 /* Commonplace Navigation */
 .navigation-container {
-    height: 50px;
-
+    width: 100%;
 }
 
-    .navigation__chevron {
-        float: left;
-        color: #ccc;
-        width: 6%;
-        text-align: center;
+    .navigation-contents {
+      width: 50%;
+      height: 50px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .navigation__chevron i {
-        font-size: 3em;
+    .navigation-contents i {
+      font-size: 2em;
+      color: #ccc;
+      position: absolute;
+      bottom: 8px;
     }
 
-    .navigation__date {
-        float: left;
-        width: 88%;
-        text-align: center;
-    }
-
-        .navigation__date > h2 {
-            margin-top: 11px;
-            margin-bottom: 0px;
+        .navigation-contents i:hover {
+            color: #000;
         }
+
+        .navigation__chevron--left {
+           left: 20%;
+        }
+
+        .navigation__chevron--right {
+           right: 20%;
+        }
+
+    .navigation-contents h2 {
+      text-align: center;
+      padding-top: 8px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
 
 
 
@@ -393,7 +395,7 @@ button {
         }
 
         .card__delete {
-            font-size: 2em;
+            font-size: 1.5em;
             position: absolute;
             top: 0;
             right: 7px;
@@ -416,7 +418,7 @@ button {
             float: left;
             position: absolute;
             top: 40px;
-            left: 45px;
+            left: 44px;
         }
 
         .primary__quote p {
@@ -464,29 +466,29 @@ button {
                 padding-top: 20px;
             }
 
-            .timeline-entry:hover  .remove-icon {
-                display: block;
-            }
+                .timeline-entry:hover  .remove-icon {
+                    display: inline-block;
+                }
+
+                .timeline-entry i {
+                    font-size: 1em;
+                }
 
                 .timeline-entry__metadata {
                     float: left;
                     text-align: right;
-                    width: 5%;
+                    width: 4%;
                     color: #aaa;
                 }
 
-                    .timeline-entry__metadata i:hover {
-                        color: #aaa;
-                    }
-
-                .timeline-entry i {
-                    font-size: 1.5em;
-                    line-height: .7em;
+                .timeline-entry__metadata i {
+                    display: inline-block;
+                    vertical-align: top;
                 }
 
                 .timeline-entry__body {
                     float: left;
-                    width: 90%;
+                    width: 92%;
                     font-size: .8em;
                     padding-left: 10px;
                     padding-right: 10px;
@@ -495,7 +497,7 @@ button {
                 .timeline-entry__delete {
                     float: right;
                     text-align: right;
-                    width: 5%;
+                    width: 4%;
                 }
 
         .card-actions {
