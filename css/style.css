@@ -505,15 +505,14 @@ button {
         }
 
         .new-comment {
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding: 2px 0px 10px 2px;
         }
 
             .new-comment__body {
                 width: 100%;
                 height: 75px;
                 resize: none;
-                border: 1px solid #666;
+                border: 1px solid #555;
                 background: white;
                 font-size: .8em;
                 color: #222;
@@ -521,8 +520,8 @@ button {
             }
 
             .new-comment__submit {
-                color: #666;
-                border-color: #666;
+                color: #555;
+                border-color: #555;
                 margin-left: 0px;
             }
         /*      .card__connect--swing {

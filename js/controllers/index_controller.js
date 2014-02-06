@@ -5,9 +5,6 @@
 
     $scope.highlights = [];
 
-    $scope.showCardActions = true;
-    $scope.showNewCommentSection = false;
-
     //time-chunking
     $scope.timeSlice = {
       beginning: null,
@@ -253,8 +250,8 @@
     // adds a comment to a highlight
     $scope.addComment = function(index, id, comment) {
       // show Card Actions, hide New Comment section
-      $scope.showCardActions = true;
-      $scope.showNewCommentSection = false;
+      $scope.highlights[$scope.highlights.length-1-index].hideCardActions = false;
+      $scope.highlights[$scope.highlights.length-1-index].showNewCommentSection = false;
 
       // update the DOM
       $scope.highlights[$scope.highlights.length-1-index].comments.push({body: comment});

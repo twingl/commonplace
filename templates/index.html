@@ -94,14 +94,14 @@
         </div>
 
         <!-- Add Comment, Add Link -->
-        <div class="card-actions" ng-show="showCardActions">
-          <button ng-click="showNewCommentSection = true; showCardActions = false">Add Comment</button><button>Add Link</button>
+        <div class="card-actions" ng-hide="highlight.hideCardActions">
+          <button ng-click="highlight.showNewCommentSection = true; highlight.hideCardActions = true">Add Comment</button><button>Add Link</button>
         </div>
 
         <!-- Create Comment Module -->
-        <div class="new-comment" ng-show="showNewCommentSection">
+        <div class="new-comment" ng-show="highlight.showNewCommentSection">
           <textarea class="new-comment__body" ng-model="comment.text" placeholder="Your comment..."></textarea>
-          <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.text)">Save Comment</button><button class="new-comment__cancel" ng-click="showNewCommentSection = false; showCardActions = true">Cancel</button>
+          <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.text)">Save Comment</button><button class="new-comment__cancel" ng-click="highlight.showNewCommentSection = false; highlight.hideCardActions = false">Cancel</button>
         </div>
 
       </div>
