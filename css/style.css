@@ -34,21 +34,25 @@
 /*------------------------------------*\
     $ELEMENTS
 \*------------------------------------*/
-html, button, input, select, textarea {
-    color: #222;
+
+html {
     height: 100%;
 }
 
 body {
+    height: 100%;
     margin: 0px;
     font-family: 'Whitney SSm A', 'Whitney SSm B';
     font-weight: 400;
     font-style: normal;
     font-size: 1em;
+    color: #222;
     line-height: 1.4;
     text-rendering: optimizeLegibility;
     background: #4F1B4B;
     background: linear-gradient(135deg, #4F1B4B 0%,#4F2716 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 i {
