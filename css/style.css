@@ -501,7 +501,7 @@ button {
                 }
 
         .card-actions {
-            padding-bottom: 5px;
+            margin: 0px 0px 5px 28px;
         }
 
         .new-comment {
