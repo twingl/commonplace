@@ -353,7 +353,7 @@ button {
 .card-container {
     width: 70%;
     margin: 0px auto 0px auto;
-    padding-top: 175px;
+    padding: 175px 0px 60px 0px;
 }
 
 @media(max-width: 1200px) {
