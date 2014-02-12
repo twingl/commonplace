@@ -76,8 +76,7 @@
       </blockquote>
       </div>
 
-      <div class="card-expansion">
-
+      <div class="card-feed-container">
         <!-- Hardcoding timeline entries as comments for now, will generalise to include Connections in the next iteration -->
         <div class="timeline-group">
           <div class="timeline-entry  cf" ng-repeat="comment in highlight.comments">
@@ -92,8 +91,10 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Add Comment, Add Link -->
+      <!-- Add Comment, Add Link -->
+      <div class="card-actions-container">
         <div class="card-actions" ng-hide="highlight.hideCardActions">
           <button ng-click="highlight.showNewCommentSection = true; highlight.hideCardActions = true">Add Comment</button><button>Add Link</button>
         </div>
@@ -103,7 +104,7 @@
           <textarea class="new-comment__body" ng-model="comment.text" placeholder="Your comment..."></textarea>
           <button class="new-comment__submit" ng-click="addComment($index, highlight.id, comment.text)">Save Comment</button><button class="new-comment__cancel" ng-click="highlight.showNewCommentSection = false; highlight.hideCardActions = false">Cancel</button>
         </div>
-
       </div>
+
   </div>
 </div>

@@ -448,22 +448,24 @@ button {
             }
 
 
-    .card-expansion {
+    .card-feed-container {
         background-color: #f6f0e5;
-        padding: 0px 50px 15px 50px;
+        padding: 0px 50px 0px 50px;
     }
 
         .timeline-group {
-            padding: 5px 0px 15px 0px;
+            padding: 0px 0px 0px 0px;
         }
-
-            .timeline-group > div {
-                padding-top: 10px;
+            .timeline-entry:first-child {
+                padding-top: 20px;
             }
-
 
             .timeline-entry {
                 padding-top: 20px;
+            }
+
+            .timeline-entry:last-child {
+                padding-bottom: 15px;
             }
 
                 .timeline-entry:hover  .remove-icon {
@@ -500,8 +502,14 @@ button {
                     width: 4%;
                 }
 
+    .card-actions-container {
+        background-color: #f2e9d8;
+        padding: 20px 80px 15px 78px;
+        width: 100%;
+    }
+
         .card-actions {
-            margin: 0px 0px 5px 28px;
+            padding-bottom: 5px;
         }
 
         .new-comment {
