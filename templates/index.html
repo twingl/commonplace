@@ -76,16 +76,16 @@
         <span class="source">from <a href="{{highlight.context_url}}" target="_blank">{{highlight.context_url | ShortenedURL}}</a></span>
       </blockquote>
       </div>
-
+      
+      <!-- The Card's Feed -->
       <div class="card-feed-container">
-        <!-- Hardcoding timeline entries as comments for now, will generalise to include Connections in the next iteration -->
         <div class="timeline-group">
-          <div class="timeline-entry  cf" ng-repeat="comment in highlight.comments">
+          <div class="timeline-entry  cf" ng-repeat="object in highlight.card_feed">
             <div class="timeline-entry__metadata">
-              <i class="fa  fa-comment-o"></i>
+              <i class="fa" ng:class="{true:'fa-comment-o',false:'fa-link'}[object.type=='comment']"></i>
             </div>
             <div class="timeline-entry__body">
-              {{comment.body}}
+              {{object.body}}
             </div>
             <div class="timeline-entry__delete  remove-icon">
               <i class="fa  fa-times" ng-click="deleteObject('comment', comment.id, $parent.$index, $index)" title="Remove Item"></i>
