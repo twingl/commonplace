@@ -90,9 +90,7 @@
               <span ng-switch-when="twingling">{{object.twingledHighlightID}}</span>
             </div>
             <div class="timeline-entry__delete  remove-icon">
-              <i class="fa  fa-times"></i>
-              <!-- ~ REQUIRES GENERALISATION ~
-              ng-click="deleteObject('comment', comment.id, $parent.$index, $index)" title="Remove Item" -->
+              <i class="fa  fa-times" ng-click="deleteObject(object.type, object.id, $parent.$index, $index)" title="Remove Item"></i>
             </div>
           </div>
         </div>

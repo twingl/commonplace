@@ -196,8 +196,8 @@
       if (objectType == "highlight") {
         $scope.highlights.splice(-parentIndex-1, 1);
       }
-      else if (objectType == "comment") {
-          $scope.highlights[$scope.highlights.length-1-parentIndex].comments.splice(childIndex, 1);
+      else if (objectType == "comment" || objectType == "twingling") {
+          $scope.highlights[$scope.highlights.length-1-parentIndex].card_feed.splice(childIndex, 1);
       };
 
       // delete the object --the added 's' part is probably confusing...
@@ -249,6 +249,7 @@
 
                   // Set commentCardFeedObject
                   commentCardFeedObject.type = "comment";
+                  commentCardFeedObject.id = tempHighlights[i].comments[j].id;
                   commentCardFeedObject.created = tempHighlights[i].comments[j].created;
                   commentCardFeedObject.body = tempHighlights[i].comments[j].body;
 
@@ -267,7 +268,6 @@
 
                   // Remove current highlight from twingling pairs
                   var twingledHighlightId = "";
-                  var created_at = tempHighlights[i].twinglings[k].created;
                   var end_object_id = tempHighlights[i].twinglings[k].end_id;
                   
                   if (end_object_id !== tempHighlights[i].id) {
@@ -279,7 +279,8 @@
 
                   // Set twinglingCardFeedObject
                   twinglingCardFeedObject.type = "twingling";
-                  twinglingCardFeedObject.created = created_at;
+                  twinglingCardFeedObject.id = tempHighlights[i].twinglings[k].id;
+                  twinglingCardFeedObject.created = tempHighlights[i].twinglings[k].created;
                   twinglingCardFeedObject.twingledHighlightID = twingledHighlightId;
 
                   // Push object to cardFeed
