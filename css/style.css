@@ -429,7 +429,7 @@ button {
             float: left;
             position: absolute;
             top: 40px;
-            left: 44px;
+            left: 42px;
         }
 
         .primary__quote p {
@@ -489,7 +489,7 @@ button {
 
                 .timeline-entry__metadata {
                     float: left;
-                    text-align: right;
+                    text-align: left;
                     width: 4%;
                     color: #aaa;
                 }
@@ -515,13 +515,17 @@ button {
 
     .card-actions-container {
         background-color: #f2e9d8;
-        padding: 20px 80px 15px 78px;
+        padding: 20px 80px 15px 80px;
         width: 100%;
     }
 
         .card-actions {
             padding-bottom: 5px;
         }
+
+            .card-actions > button {
+                margin-left: 0px;
+            }
 
         .new-comment {
             padding: 2px 0px 10px 2px;
