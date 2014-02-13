@@ -3,9 +3,13 @@
 
   Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
 
-    $scope.highlights = [];
+    //
+    // CONFIGURATION STUFF
+    //
 
-    //time-chunking
+    $scope.highlights = [];
+    $scope.searchResults = [];
+
     $scope.timeSlice = {
       beginning: null,
       end: null
@@ -51,6 +55,10 @@
 
 
 
+    //
+    // NAVIGATION
+    //
+
     // TODO: will need to change these page flipping IF statements,
     // once things like creating new comments / twinglings repeats the card on today's date
     $scope.flickBackOnePage = function() {
@@ -72,7 +80,11 @@
 
 
 
-    // Search
+
+    //
+    // SEARCH
+    //
+
     $scope.search = function(term) {
       $scope.searchResults.length = 0; //clears previous search results
       var tempSearchResults = [];
@@ -148,7 +160,10 @@
 
 
 
-    // adds a comment to a highlight
+    //
+    // COMMENT CREATION
+    //
+
     $scope.addComment = function(index, id, comment) {
       // show Card Actions, hide New Comment section
       $scope.highlights[$scope.highlights.length-1-index].hideCardActions = false;
@@ -168,7 +183,10 @@
 
 
 
-    // removes an object from the API
+    //
+    // TWINGL OBJECT DELETION
+    //
+
     $scope.deleteObject = function(objectType, id, parentIndex, childIndex) {
       // determine object type so as to update DOM
       if (objectType == "highlight") {
@@ -189,7 +207,10 @@
 
 
 
-    // pulls all the current user's highlights
+    // 
+    // PULL HIGHLIGHTS
+    //
+
     $scope.$parent.loadingState = true;
     $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
         function(data) {
@@ -222,8 +243,9 @@
         }
       );
 
-    //search
-    $scope.searchResults = [];
+
+
+
 
   }]);
 
