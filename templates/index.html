@@ -70,9 +70,7 @@
         <i class="fa  fa-times-circle" ng-click="deleteObject('highlight', highlight.id, $index)" title="Delete Highlight"></i>
       </div>
       <blockquote class="primary__quote">
-        <p>
-          <a href="/#/highlights/{{highlight.id}}">{{highlight.quote}}</a>
-        </p>
+        <p>{{highlight.quote}}</p>
         <span class="source">from <a href="{{highlight.context_url}}" target="_blank">{{highlight.context_url | ShortenedURL}}</a></span>
       </blockquote>
       </div>

@@ -487,6 +487,10 @@ button {
                     font-size: 1em;
                 }
 
+                    .timeline-entry i:hover {
+                        cursor: default;
+                    }
+
                 .timeline-entry__metadata {
                     float: left;
                     text-align: left;
