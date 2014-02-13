@@ -135,14 +135,13 @@ button {
     $VISORS & MESSAGES
 \*------------------------------------*/
 #loading-visor {
-    background-color: #e4d1ad;
-    opacity: .9;
+    background-color: rgba(255, 255, 255, .25);
     display: none;
     z-index: 6500;
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 50px;
+    top: 100px;
 }
 
     #loading-visor.show {
