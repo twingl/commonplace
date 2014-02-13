@@ -116,11 +116,11 @@
     <div class="link_ui__orb" ng-disabled="!enableCommit()" ng-click="commitLink()"></div>
     <div class="link_ui__corona"></div>
     <div class="link_ui__card link_ui__origin" ng-show="origin()">
-      <a class="unstage typcn typcn-cancel" ng-click="clearOrigin()"></a>
+      <i class="unstage  fa  fa-minus-square" ng-click="clearOrigin()" title="Remove this quote"></i>
       <p class="quote">{{origin().quote}}</p>
     </div>
     <div class="link_ui__card link_ui__termination" ng-show="termination()">
-      <a class="unstage typcn typcn-cancel" ng-click="clearTermination()"></a>
+      <i class="unstage  fa  fa-minus-square" ng-click="clearTermination()" title="Remove this quote"></i>
       <p class="quote">{{termination().quote}}</p>
     </div>
   </div>
