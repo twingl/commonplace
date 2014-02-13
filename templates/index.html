@@ -96,16 +96,14 @@
               <i class="typcn  typcn-times" ng-click="deleteObject('comment', comment.id, $parent.$index, $index)" title="Remove Item"></i>
             </div>
           </div>
-
-          <div ng-controller="LinkController">
-            <button ng-click="stageResource('highlight', highlight.id, highlight)">Stage Twingling</button>
-          </div>
-          &nbsp;<span class="card__label">Add Connection</span>
         </div>
 
         <!-- Add Comment, Add Connection -->
         <div class="card-actions">
-          <button ng-click="comment.showThis = !comment.showThis">Add Comment</button><button>Add Connection</button>
+          <button ng-click="comment.showThis = !comment.showThis">Add Comment</button>
+          <div style="display: inline-block" ng-controller="LinkController">
+            <button ng-click="stageResource('highlight', highlight.id, highlight)">Add Link</button>
+          </div>
         </div>
 
         <!-- Create Comment Module -->
