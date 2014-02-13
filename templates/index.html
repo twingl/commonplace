@@ -96,7 +96,10 @@
       <!-- Add Comment, Add Link -->
       <div class="card-actions-container">
         <div class="card-actions" ng-hide="highlight.hideCardActions">
-          <button ng-click="highlight.showNewCommentSection = true; highlight.hideCardActions = true">Add Comment</button><button>Add Link</button>
+          <button ng-click="highlight.showNewCommentSection = true; highlight.hideCardActions = true">Add Comment</button>
+          <div style="display: inline-block" ng-controller="LinkController">
+            <button ng-click="stageResource('highlight', highlight.id, highlight)">Add Link</button>
+          </div>
         </div>
 
         <!-- Create Comment Module -->
@@ -107,4 +110,20 @@
       </div>
 
   </div>
+
+  <div class="link_ui {{uiStatus()}}" ng-show="showInterface()" ng-controller="LinkController">
+    <div class="link_ui__orb" ng-disabled="!enableCommit()" ng-click="commitLink()"></div>
+    <div class="link_ui__corona"></div>
+    <div class="link_ui__card link_ui__origin" ng-show="origin()">
+      <a class="unstage typcn typcn-cancel" ng-click="clearOrigin()"></a>
+      <p class="quote">{{origin().quote}}</p>
+    </div>
+    <div class="link_ui__card link_ui__termination" ng-show="termination()">
+      <a class="unstage typcn typcn-cancel" ng-click="clearTermination()"></a>
+      <p class="quote">{{termination().quote}}</p>
+    </div>
+  </div>
+
+  <div class="link_ui__occlusion_fix" ng-show="showInterface()" ng-controller="LinkController"></div>
+
 </div>
