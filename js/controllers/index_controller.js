@@ -3,6 +3,10 @@
 
   Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
 
+
+
+
+
     //
     // CONFIGURATION STUFF
     //
@@ -216,26 +220,91 @@
         function(data) {
           var tempHighlights = data;
 
-          // catch new user
+          // Catch instance where user has no highlights
           if (tempHighlights.length == 0){
             console.log("No highlights");
             $scope.$parent.newUser = true;
           };
 
-          //sorts highlights according to date created
+          // Sort highlights according to date created
           tempHighlights.sort(function(a,b) {
             return new Date(a.created) - new Date(b.created);
           });
 
-          //sorts comments according to date created
+
+
+          // Loop though the highlights array
           for (var i = tempHighlights.length - 1; i >= 0; i--) {
-              tempHighlights[i].comments.sort(function(a,b) {
+
+
+              // Create card_feed variable
+              var cardFeed = [];
+
+
+              // Push comments to cardFeed, if there's any
+              if (tempHighlights[i].comments.length !== 0) {
+                for (var j = 0; j <= tempHighlights[i].comments.length - 1; j++) {
+                  // Staging variable
+                  var commentCardFeedObject = {};
+
+                  // Set commentCardFeedObject
+                  commentCardFeedObject.type = "comment";
+                  commentCardFeedObject.created = tempHighlights[i].comments[j].created;
+                  commentCardFeedObject.body = tempHighlights[i].comments[j].body;
+
+                  // Push object to cardFeed
+                  cardFeed.push(commentCardFeedObject);
+
+                };
+              };
+
+
+              // Push twinglings to cardFeed, if there's any
+              if (tempHighlights[i].twinglings.length !== 0) {
+                for (var k = 0; k <= tempHighlights[i].twinglings.length - 1; k++) {
+                  // Staging variable
+                  var twinglingCardFeedObject = {};
+
+                  // Remove current highlight from twingling pairs
+                  var twingledHighlightId = "";
+                  var created_at = tempHighlights[i].twinglings[k].created;
+                  var end_object_id = tempHighlights[i].twinglings[k].end_id;
+                  
+                  if (end_object_id !== tempHighlights[i].id) {
+                    twingledHighlightId = end_object_id;
+                  }
+                  else {
+                    twingledHighlightId = tempHighlights[i].twinglings[k].start_id;
+                  }
+
+                  // Set twinglingCardFeedObject
+                  twinglingCardFeedObject.type = "twingling";
+                  twinglingCardFeedObject.created = created_at;
+                  twinglingCardFeedObject.twingledHighlightID = twingledHighlightId;
+
+                  // Push object to cardFeed
+                  cardFeed.push(twinglingCardFeedObject);
+
+                };
+              };
+
+
+              // Sort cardFeed according to date created
+              cardFeed.sort(function(a,b) {
                 return new Date(a.created) - new Date(b.created);
               });
+
+
+              // Push cardFeed variable to tempHighlights
+              tempHighlights[i].card_feed = cardFeed;
+
           };
+
+
 
           $scope.highlights = tempHighlights;
           console.log($scope.highlights);
+
 
           // if initial page is blank (as in no activity today), go back until there is content
           $scope.pageContentCheck('back');
