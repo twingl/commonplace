@@ -81,14 +81,18 @@
       <div class="card-feed-container">
         <div class="timeline-group">
           <div class="timeline-entry  cf" ng-repeat="object in highlight.card_feed">
-            <div class="timeline-entry__metadata">
-              <i class="fa" ng:class="{true:'fa-comment-o',false:'fa-link'}[object.type=='comment']"></i>
+            <div class="timeline-entry__metadata" ng-switch on="object.type">
+              <i ng-switch-when="comment" class="fa  fa-comment-o"></i>
+              <i ng-switch-when="twingling" class="fa  fa-link"></i>
             </div>
-            <div class="timeline-entry__body">
-              {{object.body}}
+            <div class="timeline-entry__body" ng-switch on="object.type">
+              <span ng-switch-when="comment">{{object.body}}</span>
+              <span ng-switch-when="twingling">{{object.twingledHighlightID}}</span>
             </div>
             <div class="timeline-entry__delete  remove-icon">
-              <i class="fa  fa-times" ng-click="deleteObject('comment', comment.id, $parent.$index, $index)" title="Remove Item"></i>
+              <i class="fa  fa-times"></i>
+              <!-- ~ REQUIRES GENERALISATION ~
+              ng-click="deleteObject('comment', comment.id, $parent.$index, $index)" title="Remove Item" -->
             </div>
           </div>
         </div>

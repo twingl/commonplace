@@ -494,10 +494,10 @@ button {
                     color: #aaa;
                 }
 
-                .timeline-entry__metadata i {
-                    display: inline-block;
-                    vertical-align: top;
-                }
+                    .timeline-entry__metadata i {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
 
                 .timeline-entry__body {
                     float: left;
