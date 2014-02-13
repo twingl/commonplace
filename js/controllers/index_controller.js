@@ -277,9 +277,15 @@
                     twingledHighlightId = tempHighlights[i].twinglings[k].start_id;
                   }
 
-                  // Set twinglingCardFeedObject
+                  // Retrieve twingled quote
+                  var twingledObject = tempHighlights.filter(function (element) { 
+                      return element.id === twingledHighlightId; 
+                    });
+
+                  // Initialise twinglingCardFeedObject
                   twinglingCardFeedObject.type = "twingling";
                   twinglingCardFeedObject.id = tempHighlights[i].twinglings[k].id;
+                  twinglingCardFeedObject.quote = twingledObject[0].quote;
                   twinglingCardFeedObject.created = tempHighlights[i].twinglings[k].created;
                   twinglingCardFeedObject.twingledHighlightID = twingledHighlightId;
 
