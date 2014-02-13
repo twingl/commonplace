@@ -39,12 +39,17 @@
       }
     };
 
-
     //convert date to URL parmeter accepted format
     $scope.formatDate = function (date) {
       var dateFormatted = $filter('date')(date, 'yyyy-MM-dd');
       return (dateFormatted);
     };
+
+    /* END CONFIGURATION STUFF */
+
+
+
+
 
     // TODO: will need to change these page flipping IF statements,
     // once things like creating new comments / twinglings repeats the card on today's date
@@ -65,6 +70,9 @@
     };
 
 
+
+
+    // Search
     $scope.search = function(term) {
       $scope.searchResults.length = 0; //clears previous search results
       var tempSearchResults = [];
@@ -137,114 +145,7 @@
     };
 
 
-    //displays the number of twinglings of a card
-    $scope.twinglingCount = function (count) {
-      if (count > 0) {
-        return count;
-      }
-      else {
-        return "";
-      }
-    };
 
-
-    //adds a twingling between two highlights
-    $scope.twingling = {
-      start_type: "highlights",
-      start_id: "",
-      end_type: "highlights",
-      end_id: ""
-    };
-
-    //twingling animation variables for ng-class
-    $scope.twinglingInProgress = false;
-    $scope.selectedStartOrigin = "";
-    $scope.selectedStartIndex = -1;
-    $scope.selectedStartId = -1;
-
-    $scope.twinglingAnimate = function (id, index) {
-      if ($scope.twinglingInProgress && id !== $scope.selectedStartId && index !== $scope.selectedStartIndex) {
-        return true;
-      }
-      else if ($scope.twinglingInProgress && id !== $scope.selectedStartId && index == $scope.selectedStartIndex) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    };
-
-
-    $scope.twinglingStart = function (id, index) {
-      if ($scope.twinglingInProgress && id == $scope.selectedStartId && index == $scope.selectedStartIndex) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    };
-
-
-    $scope.twinglingEnd = function (id, index) {
-      if ($scope.twinglingInProgress && id !== $scope.selectedStartId && index !== $scope.selectedStartIndex) {
-        return true;
-      }
-      else if ($scope.twinglingInProgress && id !== $scope.selectedStartId && index == $scope.selectedStartIndex) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    };
-
-
-    $scope.newTwingling = function (origin, id, index) {
-      //if highlight is the start point...
-      if ($scope.twingling.start_id == "") {
-        $scope.selectedStartOrigin = origin;
-        $scope.selectedStartIndex = index;
-        $scope.selectedStartId = id;
-        $scope.twinglingInProgress = true;
-        $scope.twingling.start_id = id;
-      }
-      //if highlight is the end point (and if end point != start point)...
-      else if ($scope.twingling.start_id !== id) {
-        $scope.twinglingInProgress = false;
-        $scope.twingling.end_id = id;
-        console.log($scope.twingling);
-
-        //increase real time twingl count: start point
-        if ($scope.selectedStartOrigin == 'highlights') {
-          $scope.highlights[$scope.highlights.length-1-$scope.selectedStartIndex].twinglings.push($scope.twingling);
-        }
-        else if ($scope.selectedStartOrigin == 'results') {
-          $scope.searchResults[$scope.selectedStartIndex].twinglings.push($scope.twingling);
-        }
-
-        //increase real time twingl count: end point
-        if (origin == 'highlights') {
-          $scope.highlights[$scope.highlights.length-1-index].twinglings.push($scope.twingling);
-        }
-        else if (origin == 'results') {
-          $scope.searchResults[index].twinglings.push($scope.twingling);
-        }
-
-        //post twingling object
-        $http.post('http://api.twin.gl/v1/twinglings', $scope.twingling).success(function() {
-          $scope.twingling = {
-            start_type: "highlights",
-            start_id: "",
-            end_type: "highlights",
-            end_id: ""
-          }
-          console.log('Twingling successfully created!');
-          $scope.twinglingInProgress = false;
-          $scope.selectedStartOrigin = "";
-          $scope.selectedStartIndex = -1;
-          $scope.selectedStartId = -1;
-        });
-      }
-    };
 
 
     // adds a comment to a highlight
@@ -264,6 +165,9 @@
     };
 
 
+
+
+
     // removes an object from the API
     $scope.deleteObject = function(objectType, id, parentIndex, childIndex) {
       // determine object type so as to update DOM
@@ -280,7 +184,10 @@
           //TODO: fail gracefully (i.e. if a object is a highlight, push the highlight back into highlights array)
       });
     };
-    /* END CONFIGURATION STUFF */
+
+
+
+
 
     // pulls all the current user's highlights
     $scope.$parent.loadingState = true;

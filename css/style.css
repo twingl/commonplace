@@ -310,7 +310,7 @@ button {
 .navigation-container {
     width: 100%;
     background-color: rgba(255, 255, 255, .85);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .05);
 }
 
     .navigation-contents {
