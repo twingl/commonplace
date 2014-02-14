@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$routeParams', '$filter', '$location', function($scope, $http, $routeParams, $filter, $location) {
+  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$route', '$routeParams', '$filter', '$location', function($scope, $http, $route, $routeParams, $filter, $location) {
 
 
 
@@ -285,9 +285,11 @@
                   // Initialise twinglingCardFeedObject
                   twinglingCardFeedObject.type = "twingling";
                   twinglingCardFeedObject.id = tempHighlights[i].twinglings[k].id;
-                  twinglingCardFeedObject.quote = twingledObject[0].quote;
                   twinglingCardFeedObject.created = tempHighlights[i].twinglings[k].created;
-                  twinglingCardFeedObject.twingledHighlightID = twingledHighlightId;
+                  twinglingCardFeedObject.highlight_id = twingledHighlightId;
+                  twinglingCardFeedObject.highlight_quote = twingledObject[0].quote;
+                  twinglingCardFeedObject.highlight_created = twingledObject[0].created;
+                  
 
                   // Push object to cardFeed
                   cardFeed.push(twinglingCardFeedObject);

@@ -5,16 +5,6 @@
 
     $routeProvider
 
-      .when( '/highlights/:highlight_id', {
-        templateUrl: Commonplace.templates.highlights,
-        controller: 'HighlightController'
-      })
-
-      .when( '/twinglings', {
-        templateUrl: Commonplace.templates.twinglings,
-        controller: 'TwinglingController'
-      })
-
       .when( '/sign_in', {
         templateUrl: Commonplace.templates.signIn,
         controller: 'AuthenticationController'
@@ -22,7 +12,8 @@
 
       .when( '/:date', {
         templateUrl: Commonplace.templates.index,
-        controller: 'IndexController'
+        controller: 'IndexController',
+        reloadOnSearch: false
       })
 
       .otherwise ({
