@@ -90,75 +90,52 @@
     //
 
     $scope.search = function(term) {
-      $scope.searchResults.length = 0; //clears previous search results
-      var tempSearchResults = [];
-      var searchTerm = term.split(' ').join('+');
-      $http.get('http://api.twin.gl/v1/search?q=' + searchTerm).success(
-        function(results) {
-          if (results.length !== 0) {
-            for (var i = 0; i < results.length; i++) {
+          // Clears previous search results
+          $scope.searchResults.length = 0; 
 
-              if (results[i].result_type === "highlights") {
-                $http.get('http://api.twin.gl/v1/highlights/' + results[i].result_object.id + '?expand=comments,twinglings').success(
-          function(highlight) {
-                  var found = false;
-                  for (var j = 0; j < tempSearchResults.length; j++) {
-                    if (tempSearchResults[j].id === highlight.id) {
-                      found = true;
-                    }
-                  };
-                  if (!found){
-                    //sorts highlights' comments according to date created
-                    if (highlight.comments.length > 1) {
-                      highlight.comments.sort(function(a,b) {
-                        return new Date(a.created) - new Date(b.created);
-                      });
-                    };
-                    tempSearchResults.push(highlight);
+          var tempSearchResults = [];
+          var searchTerm = term.split(' ').join('+');
+
+          $http.get('http://api.twin.gl/v1/search?q=' + searchTerm).success(
+            function(results) {
+
+              // If there are results, let the magic begin
+              if (results.length !== 0) {
+
+                for (var i = 0; i < results.length; i++) {
+
+                  var highlightIDToFind = 0;
+
+                  // Determine the highlight_id to pull from highlights array
+                  // Assumes results are highlights or comments
+                  if (results[i].result_type === "highlights") {
+                    highlightIDToFind = results[i].result_object.id;
                   }
-                });
-                $scope.showSearchNotice = false;
+                  else if (results[i].result_type === "comments") {
+                    highlightIDToFind = results[i].result_object.commented_id;
+                  }
+
+                  var highlightObject = $scope.highlights.filter(function (element) {
+                    console.log(highlightIDToFind);
+                    return element.id === highlightIDToFind;
+                  });
+
+                  tempSearchResults.push(highlightObject);
+
+                };
+
+                $scope.searchResults = tempSearchResults;
+                console.log($scope.searchResults);
+
               }
 
-              else if (results[i].result_type === "comments") {
-                $http.get('http://api.twin.gl/v1/highlights/' + results[i].result_object.commented_id + '?expand=comments,twinglings').success(
-          function(highlight) {
-                  var found = false;
-                  for (var j = 0; j < tempSearchResults.length; j++) {
-                    if (tempSearchResults[j].id === highlight.id) {
-                      found = true;
-                    }
-                  };
-                  if (!found){
-                    //sorts highlights' comments according to date created
-                    if (highlight.comments.length > 1) {
-                      highlight.comments.sort(function(a,b) {
-                        return new Date(a.created) - new Date(b.created);
-                      });
-                    };
-                    tempSearchResults.push(highlight);
-                  }
-                });
-                $scope.showSearchNotice = false;
-              }
-
+              // If there lacks results, display a notice to that effect
               else {
-                console.log('Error: Unrecognised search result object type.')
                 $scope.showSearchNotice = true;
-              }
-            };
+              };
 
-            $scope.searchResults = tempSearchResults;
-            console.log($scope.searchResults);
-
-          }
-          else {
-            $scope.showSearchNotice = true;
-          }
-
-          $scope.showSearchResults = true;
-      });
-    };
+          });
+        };
 
 
 
@@ -293,10 +270,6 @@
                     // Push object to cardFeed
                     cardFeed.push(twinglingCardFeedObject);
                   }
-
-
-
-
                 };
               };
 
@@ -313,7 +286,6 @@
           };
 
 
-
           $scope.highlights = tempHighlights;
           console.log($scope.highlights);
 
@@ -323,9 +295,6 @@
           $scope.$parent.loadingState = false;
         }
       );
-
-
-
 
 
   }]);
