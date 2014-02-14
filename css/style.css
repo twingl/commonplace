@@ -511,6 +511,16 @@ button {
                     padding-right: 10px;
                 }
 
+                    .timeline-entry__body a {
+                        font-style: italic;
+                        text-decoration: none;
+                        color: #5d256e;
+                    }
+
+                        .timeline-entry__body a:hover {
+                            text-decoration: underline;
+                        }
+
                 .timeline-entry__delete {
                     float: right;
                     text-align: right;
