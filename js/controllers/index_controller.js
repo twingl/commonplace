@@ -211,7 +211,7 @@
 
 
 
-    // 
+    //
     // PULL HIGHLIGHTS
     //
 
@@ -269,7 +269,7 @@
                   // Remove current highlight from twingling pairs
                   var twingledHighlightId = "";
                   var end_object_id = tempHighlights[i].twinglings[k].end_id;
-                  
+
                   if (end_object_id !== tempHighlights[i].id) {
                     twingledHighlightId = end_object_id;
                   }
@@ -278,21 +278,24 @@
                   }
 
                   // Retrieve twingled quote
-                  var twingledObject = tempHighlights.filter(function (element) { 
-                      return element.id === twingledHighlightId; 
+                  var twingledObject = tempHighlights.filter(function (element) {
+                      return element.id === twingledHighlightId && element.context_url !== undefined;
                     });
 
-                  // Initialise twinglingCardFeedObject
-                  twinglingCardFeedObject.type = "twingling";
-                  twinglingCardFeedObject.id = tempHighlights[i].twinglings[k].id;
-                  twinglingCardFeedObject.created = tempHighlights[i].twinglings[k].created;
-                  twinglingCardFeedObject.highlight_id = twingledHighlightId;
-                  twinglingCardFeedObject.highlight_quote = twingledObject[0].quote;
-                  twinglingCardFeedObject.highlight_created = twingledObject[0].created;
-                  
+                  if (twingledObject.length > 0) {
+                    // Initialise twinglingCardFeedObject
+                    twinglingCardFeedObject.type = "twingling";
+                    twinglingCardFeedObject.id = tempHighlights[i].twinglings[k].id;
+                    twinglingCardFeedObject.created = tempHighlights[i].twinglings[k].created;
+                    twinglingCardFeedObject.highlight_id = twingledHighlightId;
+                    twinglingCardFeedObject.highlight_quote = twingledObject[0].quote;
+                    twinglingCardFeedObject.highlight_created = twingledObject[0].created;
+                    // Push object to cardFeed
+                    cardFeed.push(twinglingCardFeedObject);
+                  }
 
-                  // Push object to cardFeed
-                  cardFeed.push(twinglingCardFeedObject);
+
+
 
                 };
               };
