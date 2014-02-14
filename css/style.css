@@ -135,7 +135,7 @@ button {
     $VISORS & MESSAGES
 \*------------------------------------*/
 #loading-visor {
-    background-color: rgba(255, 255, 255, .25);
+    background-color: rgba(255, 255, 255, .1);
     display: none;
     z-index: 6500;
     position: absolute;
@@ -472,11 +472,11 @@ button {
             }
 
             .timeline-entry {
-                padding-top: 20px;
+                padding-top: 15px;
             }
 
             .timeline-entry:last-child {
-                padding-bottom: 15px;
+                padding-bottom: 5px;
             }
 
                 .timeline-entry:hover  .remove-icon {
@@ -514,7 +514,7 @@ button {
                     .timeline-entry__body a {
                         font-style: italic;
                         text-decoration: none;
-                        color: #5d256e;
+                        color: inherit;
                     }
 
                         .timeline-entry__body a:hover {
@@ -528,7 +528,7 @@ button {
                 }
 
     .card-actions-container {
-        background-color: #f2e9d8;
+        background-color: #f6f0e5;
         padding: 10px 80px 10px 80px;
         width: 100%;
     }
@@ -538,7 +538,7 @@ button {
         }
 
         .new-comment {
-            padding: 2px 0px 10px 0px;
+            padding-top: 2px;
         }
 
             .new-comment__body {
