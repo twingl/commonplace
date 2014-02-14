@@ -12,8 +12,7 @@
 
       .when( '/:date', {
         templateUrl: Commonplace.templates.index,
-        controller: 'IndexController',
-        reloadOnSearch: false
+        controller: 'IndexController'
       })
 
       .otherwise ({
