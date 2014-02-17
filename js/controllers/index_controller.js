@@ -12,7 +12,7 @@
     //
 
     $scope.cards = [];
-    $scope.cardSource = [];
+    $scope.headerNavigationState = [];
     $scope.highlights = [];
     $scope.searchResults = [];
 
@@ -101,7 +101,7 @@
     //
     $scope.cardView = function (view) {
       if (view == "highlights") {
-          $scope.cardSource = "highlights";
+          $scope.headerNavigationState = "highlights";
           $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
       }
       else if (view == "search") {
@@ -116,9 +116,14 @@
     //
 
     $scope.search = function(term) {
+
+          // Show that something is happening
+          $scope.$parent.loadingState = true;
+          $scope.headerNavigationState = 'loading';
+          $scope.cards.length = 0;
+
           // Clears previous search results
           $scope.searchResults.length = 0; 
-
           var searchString = term.split(' ').join('+');
 
           $http.get('http://api.twin.gl/v1/search?q=' + searchString).success(
@@ -145,12 +150,11 @@
                   });
 
                   $scope.searchResults.push(highlightObject[0]);
-                  $scope.searchStatus = "Search results for \"" + term + "\"";
 
                 };
 
-                // Render the cards in the main view     
-                $scope.cardSource = 'search';
+                // Render the cards in the main view
+                $scope.searchStatus = "Search results for \"" + term + "\"";     
                 $scope.cards = $scope.searchResults;
                 console.log($scope.cards);
 
@@ -160,6 +164,13 @@
               else {
                 $scope.searchStatus = "Sorry, there were no results containing \"" + term + "\" found.";
               };
+
+              // Clear the input box
+              $scope.searchTerm = "";
+
+              // Show the outcome
+              $scope.$parent.loadingState = false;
+              $scope.headerNavigationState = 'search';
 
           });
         };
@@ -219,7 +230,10 @@
     // PULL HIGHLIGHTS
     //
 
+    // Show that something is happening
     $scope.$parent.loadingState = true;
+    $scope.headerNavigationState = 'loading';
+
     $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
         function(data) {
           $scope.highlights = data;
@@ -315,7 +329,7 @@
 
           // Render the cards in the main view
           console.log($scope.highlights);
-          $scope.cardSource = 'highlights';
+          $scope.headerNavigationState = 'highlights';
           $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
           
 
