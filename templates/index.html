@@ -62,7 +62,7 @@
           </div>
           <div class="timeline-entry__body" ng-switch on="object.type">
             <span ng-switch-when="comment">{{object.body}}</span>
-            <span ng-switch-when="twingling"><a href="/#/{{formatDate(object.card_created)}}">"{{object.highlight_quote}}"</a></span>
+            <span ng-switch-when="twingling"><a href="/#/{{formatDate(object.highlight_created)}}">"{{object.highlight_quote}}"</a></span>
           </div>
           <div class="timeline-entry__delete  remove-icon">
             <i class="fa  fa-times" ng-click="deleteObject(object.type, object.id, $parent.$index, $index)" title="Remove Item"></i>
