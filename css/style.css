@@ -148,14 +148,8 @@ button {
         display: block;
     }
 
-    #loading-visor p {
-        text-align: center;
-        width: 300px;
-        height: 100px;
-        padding-top: 125px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+
+
 
 
 #welcome-message {
@@ -194,11 +188,11 @@ button {
     z-index: 10;
     width: 100%;
     position: fixed;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .header__menubar {
     height: 50px;
-    background-color: rgba(255, 255, 255, 1);
     border-bottom: 1px solid #e5e5e5;
 }
 
@@ -261,55 +255,9 @@ button {
 
 
 
-.search {
-    z-index: 4;
-    width: 100%;
-    padding-bottom: 20px;
-    background-color: #e3e3d4;
-}
-
-    .search-header {
-
-    }
-
-    .search--hide {
-        width: 25%;
-        padding-top: 30px;
-        padding-left: 100px;
-        float: left;
-    }
-
-    .search__title {
-        width: 75%;
-        text-align: center;
-        margin: 0px;
-        padding-top: 50px;
-        padding-bottom: 20px;
-    }
-
-    .search-results--notice {
-        text-align: center;
-        padding-bottom: 10px;
-    }
-
-    .search-results__list {
-        width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-bottom: 40px;
-    }
-
-    .search-results_twingling {
-        color: #aaa;
-    }
-
-
-
-
 /* Commonplace Navigation */
 .navigation-container {
     width: 100%;
-    background-color: rgba(255, 255, 255, .85);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, .05);
 }
 
@@ -360,22 +308,12 @@ button {
 
 
 
-/* Header Background */
-.header-background {
-    background-color: #ffffff;
-    width: 100%;
-    height: 100px;
-}
-
-
-
-
 
 /* Highlight Cards */
 .card-container {
     width: 70%;
     margin: 0px auto 0px auto;
-    padding: 75px 0px 60px 0px;
+    padding: 150px 0px 60px 0px;
 }
 
 @media(max-width: 1200px) {

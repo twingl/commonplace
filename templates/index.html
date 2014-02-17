@@ -16,31 +16,33 @@
     </div>
   </div>
 
+
   <!-- Navigation -->
   <div class="navigation-container" ng-switch on="headerNavigationState">
     <!-- Time Based -->
-    <div class="navigation-contents" ng-switch-when="highlights">
-      <i class="fa  fa-chevron-circle-left  navigation__chevron--left" ng-click="flickBackOnePage()"></i>
-      <h2>{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h2>
-      <i class="fa  fa-chevron-circle-right  navigation__chevron--right" ng-click="flickForwardOnePage()"></i>
-    </div>
+      <div class="navigation-contents" ng-switch-when="highlights">
+        <i class="fa  fa-chevron-circle-left  navigation__chevron--left" ng-click="flickBackOnePage()"></i>
+        <h2>{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h2>
+        <i class="fa  fa-chevron-circle-right  navigation__chevron--right" ng-click="flickForwardOnePage()"></i>
+      </div>
     <!-- Search Based -->
-    <div class="navigation-contents  navigation-contents--search" ng-switch-when="search">
-      <h2>{{searchStatus}}</h2>
-      <i class="fa  fa-undo" ng-click="cardView('highlights')"></i>
-    </div>
+      <div class="navigation-contents  navigation-contents--search" ng-switch-when="search">
+        <h2>{{searchStatus}}</h2>
+        <i class="fa  fa-undo" ng-click="cardView('highlights')"></i>
+      </div>
+    <!-- Loading -->
+      <div class="navigation-contents" ng-switch-when="loading">
+        <h2>Loading...</h2>
+      </div>
   </div>
 </div>
-
-
-<div class="header-background"></div>
 
 
 <!-- Highlight Cards -->
 <div class="card-container">
   <div class="card" ng-repeat="card in cards">
     <!-- The Highlight's Quote -->
-     <div class="card-quote-container">
+    <div class="card-quote-container">
       <div class="card__delete  remove-icon">
         <i class="fa  fa-times-circle" ng-click="deleteObject('card', card.id, $index)" title="Delete Highlight"></i>
       </div>
@@ -48,45 +50,46 @@
         <p>{{card.quote}}</p>
         <span class="source">from <a href="{{card.context_url}}" target="_blank">{{card.context_url | ShortenedURL}}</a></span>
       </blockquote>
-      </div>
+    </div>
       
-      <!-- The Card's Feed -->
-      <div class="card-feed-container">
-        <div class="timeline-group">
-          <div class="timeline-entry  cf" ng-repeat="object in card.card_feed">
-            <div class="timeline-entry__metadata" ng-switch on="object.type">
-              <i ng-switch-when="comment" class="fa  fa-comment-o"></i>
-              <i ng-switch-when="twingling" class="fa  fa-link"></i>
-            </div>
-            <div class="timeline-entry__body" ng-switch on="object.type">
-              <span ng-switch-when="comment">{{object.body}}</span>
-              <span ng-switch-when="twingling"><a href="/#/{{formatDate(object.card_created)}}">"{{object.highlight_quote}}"</a></span>
-            </div>
-            <div class="timeline-entry__delete  remove-icon">
-              <i class="fa  fa-times" ng-click="deleteObject(object.type, object.id, $parent.$index, $index)" title="Remove Item"></i>
-            </div>
+    <!-- The Card's Feed -->
+    <div class="card-feed-container">
+      <div class="timeline-group">
+        <div class="timeline-entry  cf" ng-repeat="object in card.card_feed">
+          <div class="timeline-entry__metadata" ng-switch on="object.type">
+            <i ng-switch-when="comment" class="fa  fa-comment-o"></i>
+            <i ng-switch-when="twingling" class="fa  fa-link"></i>
+          </div>
+          <div class="timeline-entry__body" ng-switch on="object.type">
+            <span ng-switch-when="comment">{{object.body}}</span>
+            <span ng-switch-when="twingling"><a href="/#/{{formatDate(object.card_created)}}">"{{object.highlight_quote}}"</a></span>
+          </div>
+          <div class="timeline-entry__delete  remove-icon">
+            <i class="fa  fa-times" ng-click="deleteObject(object.type, object.id, $parent.$index, $index)" title="Remove Item"></i>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Add Comment, Add Link -->
-      <div class="card-actions-container">
-        <div class="card-actions" ng-hide="card.hideCardActions">
-          <button ng-click="card.showNewCommentSection = true; card.hideCardActions = true;">Add Comment</button>
-          <div style="display: inline-block" ng-controller="LinkController">
-            <button ng-click="stageResource('card', card.id, card)">Add Link</button>
-          </div>
-        </div>
-
-        <!-- Create Comment Module -->
-        <div class="new-comment" ng-show="card.showNewCommentSection">
-          <textarea class="new-comment__body" ng-model="comment.text" placeholder="Your comment..." tabindex=2></textarea>
-          <button class="new-comment__submit" ng-click="addComment($index, card.id, comment.text)" tabindex=3>Save Comment</button><button class="new-comment__cancel" ng-click="card.showNewCommentSection = false; card.hideCardActions = false" tabindex=4>Cancel</button>
+    <!-- Add Comment, Add Link -->
+    <div class="card-actions-container">
+      <div class="card-actions" ng-hide="card.hideCardActions">
+        <button ng-click="card.showNewCommentSection = true; card.hideCardActions = true;">Add Comment</button>
+        <div style="display: inline-block" ng-controller="LinkController">
+          <button ng-click="stageResource('card', card.id, card)">Add Link</button>
         </div>
       </div>
+
+      <!-- Create Comment Module -->
+      <div class="new-comment" ng-show="card.showNewCommentSection">
+        <textarea class="new-comment__body" ng-model="comment.text" placeholder="Your comment..." tabindex=2></textarea>
+        <button class="new-comment__submit" ng-click="addComment($index, card.id, comment.text)" tabindex=3>Save Comment</button><button class="new-comment__cancel" ng-click="card.showNewCommentSection = false; card.hideCardActions = false" tabindex=4>Cancel</button>
+      </div>
+    </div>
 
   </div>
 
+  <!-- Link UI -->
   <div class="link_ui {{uiStatus()}}" ng-show="showInterface()" ng-controller="LinkController">
     <div class="link_ui__orb" ng-disabled="!enableCommit()" ng-click="commitLink()"></div>
     <div class="link_ui__corona"></div>
