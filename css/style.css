@@ -320,6 +320,13 @@ button {
       margin-right: auto;
     }
 
+        .navigation-contents--search {
+            width: 60%;
+            max-width: 700px;
+            height: 100%;
+        }
+
+
     .navigation-contents i {
       font-size: 2em;
       color: #ccc;
@@ -337,6 +344,10 @@ button {
 
         .navigation__chevron--right {
            right: 20%;
+        }
+
+        .navigation-contents--search i {
+            left: 10%;
         }
 
     .navigation-contents h2 {

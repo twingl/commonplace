@@ -25,9 +25,9 @@
       <i class="fa  fa-chevron-circle-right  navigation__chevron--right" ng-click="flickForwardOnePage()"></i>
     </div>
     <!-- Search Based -->
-    <div class="navigation-contents" ng-switch-when="search">
+    <div class="navigation-contents  navigation-contents--search" ng-switch-when="search">
       <h2>{{searchStatus}}</h2>
-      <!-- <i class="fa  fa-chevron-circle-right  navigation__chevron--right" ng-click="flickForwardOnePage()"></i> -->
+      <i class="fa  fa-undo" ng-click="cardView('highlights')"></i>
     </div>
   </div>
 </div>

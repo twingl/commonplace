@@ -96,6 +96,22 @@
 
 
     //
+    // TODO: Will become cardView model or controller
+    // For now: card array switch
+    //
+    $scope.cardView = function (view) {
+      if (view == "highlights") {
+          $scope.cardSource = "highlights";
+          $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
+      }
+      else if (view == "search") {
+
+      }
+    }
+
+
+
+    //
     // SEARCH
     //
 
