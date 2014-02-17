@@ -71,6 +71,10 @@
       if ($scope.timeSlice.beginning > new Date($scope.highlights[0].created)) {
         $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() - 1 );
         $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() - 1 );
+
+        //filter
+        $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
+
         $scope.pageContentCheck('back');
       }
     };
@@ -79,6 +83,10 @@
       if ($scope.timeSlice.end < new Date($scope.highlights[$scope.highlights.length-1].created)) {
         $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() + 1 );
         $scope.timeSlice.end.setDate( $scope.timeSlice.end.getDate() + 1 );
+
+        // filter
+        $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
+
         $scope.pageContentCheck('forward');
       }
     };
@@ -95,9 +103,9 @@
           // Clears previous search results
           $scope.searchResults.length = 0; 
 
-          var searchTerm = term.split(' ').join('+');
+          var searchString = term.split(' ').join('+');
 
-          $http.get('http://api.twin.gl/v1/search?q=' + searchTerm).success(
+          $http.get('http://api.twin.gl/v1/search?q=' + searchString).success(
             function(results) {
 
               // If there are results, let the magic begin
@@ -121,6 +129,7 @@
                   });
 
                   $scope.searchResults.push(highlightObject[0]);
+                  $scope.searchStatus = "Search results for \"" + term + "\"";
 
                 };
 
@@ -133,7 +142,7 @@
 
               // If there lacks results, display a notice to that effect
               else {
-                $scope.showSearchNotice = true;
+                $scope.searchStatus = "Sorry, there were no results containing \"" + term + "\" found.";
               };
 
           });
@@ -287,11 +296,12 @@
 
           };
 
-          // Render the cards in the main view
-          $scope.cardSource = 'highlights';
-          $scope.cards = $scope.highlights;
-          console.log($scope.cards);
 
+          // Render the cards in the main view
+          console.log($scope.highlights);
+          $scope.cardSource = 'highlights';
+          $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
+          
 
           // if initial page is blank (as in no activity today), go back until there is content
           $scope.pageContentCheck('back');

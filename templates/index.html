@@ -17,11 +17,17 @@
   </div>
 
   <!-- Navigation -->
-  <div class="navigation-container">
-    <div class="navigation-contents">
+  <div class="navigation-container" ng-switch on="cardSource">
+    <!-- Time Based -->
+    <div class="navigation-contents" ng-switch-when="highlights">
       <i class="fa  fa-chevron-circle-left  navigation__chevron--left" ng-click="flickBackOnePage()"></i>
       <h2>{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h2>
       <i class="fa  fa-chevron-circle-right  navigation__chevron--right" ng-click="flickForwardOnePage()"></i>
+    </div>
+    <!-- Search Based -->
+    <div class="navigation-contents" ng-switch-when="search">
+      <h2>{{searchStatus}}</h2>
+      <!-- <i class="fa  fa-chevron-circle-right  navigation__chevron--right" ng-click="flickForwardOnePage()"></i> -->
     </div>
   </div>
 </div>
@@ -32,8 +38,7 @@
 
 <!-- Highlight Cards -->
 <div class="card-container">
-  <div class="card" ng-if="cardSource == 'highlights'" ng-repeat="card in cards | filter:inTimeSlice | orderBy:'-created'">
-  <div class="card" ng-if="cardSource == 'search'" ng-repeat="card in cards">
+  <div class="card" ng-repeat="card in cards">
     <!-- The Highlight's Quote -->
      <div class="card-quote-container">
       <div class="card__delete  remove-icon">
