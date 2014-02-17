@@ -185,16 +185,19 @@
 
     $scope.addComment = function(index, id, comment) {
       // show Card Actions, hide New Comment section
-      $scope.highlights[$scope.highlights.length-1-index].hideCardActions = false;
-      $scope.highlights[$scope.highlights.length-1-index].showNewCommentSection = false;
-
-      // update the DOM
-      $scope.highlights[$scope.highlights.length-1-index].comments.push({body: comment});
+      $scope.cards[index].hideCardActions = false;
+      $scope.cards[index].showNewCommentSection = false;
 
       // post to the API
       $http.post('http://api.twin.gl/v1/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
-        function(data) {
-          //TODO: fail gracefully
+        function(commentObject) {
+
+          // update the DOM
+          $scope.cards[index].card_feed.push({type: "comment", body: comment, id: commentObject.id});
+
+          // If all is well, update the local cache-like array
+          highlightsUpdate('update', id, $scope.cards[index]);
+
       });
     };
 
@@ -207,19 +210,47 @@
     //
 
     $scope.deleteObject = function(objectType, id, parentIndex, childIndex) {
-      // determine object type so as to update DOM
-      if (objectType == "highlight") {
-        $scope.highlights.splice(-parentIndex-1, 1);
-      }
-      else if (objectType == "comment" || objectType == "twingling") {
-          $scope.highlights[$scope.highlights.length-1-parentIndex].card_feed.splice(childIndex, 1);
-      };
 
       // delete the object --the added 's' part is probably confusing...
       $http.delete('http://api.twin.gl/v1/' + objectType + 's/' + id).success(
         function(data) {
-          //TODO: fail gracefully (i.e. if a object is a highlight, push the highlight back into highlights array)
+
+          // determine object type so as to update DOM
+          if (objectType == "highlight") {
+            $scope.cards.splice(parentIndex, 1);
+          }
+          else if (objectType == "comment" || objectType == "twingling") {
+            $scope.cards[parentIndex].card_feed.splice(childIndex, 1);
+          };
+
+          // If all is well, update local cache-like array
+          highlightsUpdate('delete', id, $scope.cards[parentIndex]);
       });
+
+    };
+
+
+
+
+
+    //
+    // HIGHLIGHTS CACHE-LIKE ARRAY UPDATE
+    //
+
+    var highlightsUpdate = function (action, id, object) {
+
+      // Find the whereabouts of the effected card from the array
+      var index = $scope.highlights.map(function(e) { return e.id; }).indexOf(id);
+
+      if (action === "delete") {
+        // Splice the object
+        $scope.highlights.splice(index, 1)
+      }
+      else if (action === "update") {
+        // Replace the object
+        $scope.highlights[index] = object;
+      }
+
     };
 
 
