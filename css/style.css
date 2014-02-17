@@ -272,6 +272,7 @@ button {
             width: 60%;
             max-width: 700px;
             height: 100%;
+            min-height: 50px;
         }
 
 
@@ -286,21 +287,18 @@ button {
             color: #000;
         }
 
-        .navigation__chevron--left {
-           left: 20%;
+        .navigation__icon--left {
+           left: 22.5%;
         }
 
-        .navigation__chevron--right {
-           right: 20%;
+        .navigation__icon--right {
+           right: 22.5%;
         }
 
-        .navigation-contents--search i {
-            left: 10%;
-        }
 
     .navigation-contents h2 {
       text-align: center;
-      padding-top: 8px;
+      padding-top: 9px;
       margin-top: 0px;
       margin-bottom: 0px;
     }

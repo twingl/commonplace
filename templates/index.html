@@ -21,14 +21,14 @@
   <div class="navigation-container" ng-switch on="headerNavigationState">
     <!-- Time Based -->
       <div class="navigation-contents" ng-switch-when="highlights">
-        <i class="fa  fa-chevron-circle-left  navigation__chevron--left" ng-click="flickBackOnePage()"></i>
+        <i class="fa  fa-chevron-circle-left  navigation__icon--left" ng-click="flickBackOnePage()" title="Flick back one page"></i>
         <h2>{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h2>
-        <i class="fa  fa-chevron-circle-right  navigation__chevron--right" ng-click="flickForwardOnePage()"></i>
+        <i class="fa  fa-chevron-circle-right  navigation__icon--right" ng-click="flickForwardOnePage()" title="Flick forward one page"></i>
       </div>
     <!-- Search Based -->
       <div class="navigation-contents  navigation-contents--search" ng-switch-when="search">
+        <i class="fa  fa-arrow-circle-left  navigation__icon--left" ng-click="cardView('highlights')" title="Return to browsing"></i>
         <h2>{{searchStatus}}</h2>
-        <i class="fa  fa-undo" ng-click="cardView('highlights')"></i>
       </div>
     <!-- Loading -->
       <div class="navigation-contents" ng-switch-when="loading">
