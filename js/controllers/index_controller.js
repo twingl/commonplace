@@ -11,6 +11,8 @@
     // CONFIGURATION STUFF
     //
 
+    $scope.cards = [];
+    $scope.cardSource = [];
     $scope.highlights = [];
     $scope.searchResults = [];
 
@@ -93,7 +95,6 @@
           // Clears previous search results
           $scope.searchResults.length = 0; 
 
-          var tempSearchResults = [];
           var searchTerm = term.split(' ').join('+');
 
           $http.get('http://api.twin.gl/v1/search?q=' + searchTerm).success(
@@ -116,16 +117,17 @@
                   }
 
                   var highlightObject = $scope.highlights.filter(function (element) {
-                    console.log(highlightIDToFind);
                     return element.id === highlightIDToFind;
                   });
 
-                  tempSearchResults.push(highlightObject);
+                  $scope.searchResults.push(highlightObject[0]);
 
                 };
 
-                $scope.searchResults = tempSearchResults;
-                console.log($scope.searchResults);
+                // Render the cards in the main view     
+                $scope.cardSource = 'search';
+                $scope.cards = $scope.searchResults;
+                console.log($scope.cards);
 
               }
 
@@ -195,23 +197,23 @@
     $scope.$parent.loadingState = true;
     $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
         function(data) {
-          var tempHighlights = data;
+          $scope.highlights = data;
 
           // Catch instance where user has no highlights
-          if (tempHighlights.length == 0){
+          if ($scope.highlights.length == 0){
             console.log("No highlights");
             $scope.$parent.newUser = true;
           };
 
           // Sort highlights according to date created
-          tempHighlights.sort(function(a,b) {
+          $scope.highlights.sort(function(a,b) {
             return new Date(a.created) - new Date(b.created);
           });
 
 
 
           // Loop though the highlights array
-          for (var i = tempHighlights.length - 1; i >= 0; i--) {
+          for (var i = $scope.highlights.length - 1; i >= 0; i--) {
 
 
               // Create card_feed variable
@@ -219,16 +221,16 @@
 
 
               // Push comments to cardFeed, if there's any
-              if (tempHighlights[i].comments.length !== 0) {
-                for (var j = 0; j <= tempHighlights[i].comments.length - 1; j++) {
+              if ($scope.highlights[i].comments.length !== 0) {
+                for (var j = 0; j <= $scope.highlights[i].comments.length - 1; j++) {
                   // Staging variable
                   var commentCardFeedObject = {};
 
                   // Set commentCardFeedObject
                   commentCardFeedObject.type = "comment";
-                  commentCardFeedObject.id = tempHighlights[i].comments[j].id;
-                  commentCardFeedObject.created = tempHighlights[i].comments[j].created;
-                  commentCardFeedObject.body = tempHighlights[i].comments[j].body;
+                  commentCardFeedObject.id = $scope.highlights[i].comments[j].id;
+                  commentCardFeedObject.created = $scope.highlights[i].comments[j].created;
+                  commentCardFeedObject.body = $scope.highlights[i].comments[j].body;
 
                   // Push object to cardFeed
                   cardFeed.push(commentCardFeedObject);
@@ -238,32 +240,32 @@
 
 
               // Push twinglings to cardFeed, if there's any
-              if (tempHighlights[i].twinglings.length !== 0) {
-                for (var k = 0; k <= tempHighlights[i].twinglings.length - 1; k++) {
+              if ($scope.highlights[i].twinglings.length !== 0) {
+                for (var k = 0; k <= $scope.highlights[i].twinglings.length - 1; k++) {
                   // Staging variable
                   var twinglingCardFeedObject = {};
 
                   // Remove current highlight from twingling pairs
                   var twingledHighlightId = "";
-                  var end_object_id = tempHighlights[i].twinglings[k].end_id;
+                  var end_object_id = $scope.highlights[i].twinglings[k].end_id;
 
-                  if (end_object_id !== tempHighlights[i].id) {
+                  if (end_object_id !== $scope.highlights[i].id) {
                     twingledHighlightId = end_object_id;
                   }
                   else {
-                    twingledHighlightId = tempHighlights[i].twinglings[k].start_id;
+                    twingledHighlightId = $scope.highlights[i].twinglings[k].start_id;
                   }
 
                   // Retrieve twingled quote
-                  var twingledObject = tempHighlights.filter(function (element) {
+                  var twingledObject = $scope.highlights.filter(function (element) {
                       return element.id === twingledHighlightId && element.context_url !== undefined;
                     });
 
                   if (twingledObject.length > 0) {
                     // Initialise twinglingCardFeedObject
                     twinglingCardFeedObject.type = "twingling";
-                    twinglingCardFeedObject.id = tempHighlights[i].twinglings[k].id;
-                    twinglingCardFeedObject.created = tempHighlights[i].twinglings[k].created;
+                    twinglingCardFeedObject.id = $scope.highlights[i].twinglings[k].id;
+                    twinglingCardFeedObject.created = $scope.highlights[i].twinglings[k].created;
                     twinglingCardFeedObject.highlight_id = twingledHighlightId;
                     twinglingCardFeedObject.highlight_quote = twingledObject[0].quote;
                     twinglingCardFeedObject.highlight_created = twingledObject[0].created;
@@ -280,14 +282,15 @@
               });
 
 
-              // Push cardFeed variable to tempHighlights
-              tempHighlights[i].card_feed = cardFeed;
+              // Push cardFeed variable to $scope.highlights
+              $scope.highlights[i].card_feed = cardFeed;
 
           };
 
-
-          $scope.highlights = tempHighlights;
-          console.log($scope.highlights);
+          // Render the cards in the main view
+          $scope.cardSource = 'highlights';
+          $scope.cards = $scope.highlights;
+          console.log($scope.cards);
 
 
           // if initial page is blank (as in no activity today), go back until there is content
