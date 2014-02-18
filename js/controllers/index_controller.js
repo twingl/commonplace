@@ -203,7 +203,11 @@
           // If all is well, update the local cache-like array
           highlightsUpdate('update', id, $scope.cards[index]);
 
+          // Clear the text area
+          $scope.cards[index].commentText = "";
+
       });
+
     };
 
 
