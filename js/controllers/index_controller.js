@@ -153,6 +153,11 @@
 
                 };
 
+                // Check for duplicates
+                $scope.searchResults = $scope.searchResults.filter(function (value, index, self) {
+                  return self.indexOf(value) === index;
+                });
+
                 // Render the cards in the main view
                 $scope.searchStatus = "Search results for \"" + term + "\"";     
                 $scope.cards = $scope.searchResults;
