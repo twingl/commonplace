@@ -38,11 +38,6 @@
       return (date > $scope.timeSlice.beginning && date < $scope.timeSlice.end);
     };
 
-    // Receive a newly created Link from the Link UI
-    $scope.newLinkCreated = function(link) {
-      console.log(link);
-    };
-
     // Helper for avoiding blank pages
     $scope.pageContentCheck = function (direction) {
       var pageItemCount = ($filter('filter')($scope.highlights, $scope.inTimeSlice)).length;
@@ -222,6 +217,47 @@
 
 
 
+
+
+    //
+    // TWINGLING RENDERING HELPER
+    //
+
+    // Receive a newly created Link from the Link UI
+    $scope.newLinkCreated = function(link) {
+
+      // Location of the affected cards
+      var startIndex = $scope.highlights.map(function(e) { return e.id; }).indexOf(link.start_id);
+      var endIndex = $scope.highlights.map(function(e) { return e.id; }).indexOf(link.end_id);
+
+      // Create startTwingling card_feed object (Much of this can be refactored to a twingling card_feed object creation method)
+      var startTwinglingObject = {};
+      startTwinglingObject.type = "twingling";
+      startTwinglingObject.id = link.id;
+      startTwinglingObject.created = link.created;
+      startTwinglingObject.highlight_id = $scope.highlights[startIndex].id;
+      startTwinglingObject.highlight_quote = $scope.highlights[startIndex].quote;
+      startTwinglingObject.highlight_created = $scope.highlights[startIndex].created;
+
+      // Create endTwingling card_feed object (Much of this can be refactored to a twingling card_feed object creation method)
+      var endTwinglingObject = {};
+      endTwinglingObject.type = "twingling";
+      endTwinglingObject.id = link.id;
+      endTwinglingObject.created = link.created;
+      endTwinglingObject.highlight_id = $scope.highlights[endIndex].id;
+      endTwinglingObject.highlight_quote = $scope.highlights[endIndex].quote;
+      endTwinglingObject.highlight_created = $scope.highlights[endIndex].created;
+
+      // Update highlights cache-like array
+      $scope.highlights[startIndex].card_feed.push(endTwinglingObject);
+      $scope.highlights[endIndex].card_feed.push(startTwinglingObject);
+
+    };
+
+
+
+
+
     //
     // COMMENT CREATION
     //
@@ -263,41 +299,56 @@
 
 
     //
-    // TWINGLING RENDERING HELPER
-    //
-
-    $scope.renderNewTwingling = function (object) {
-      console.log(object);
-    }
-
-
-
-
-
-    //
     // TWINGL OBJECT DELETION
     //
 
-    $scope.deleteObject = function(objectType, id, parentIndex, childIndex) {
+    $scope.deleteObject = function(object, parentIndex, childIndex) {
 
       // trigger its loading state
-      triggerObjectLoadingState(objectType, parentIndex, childIndex);
+      triggerObjectLoadingState(object.type, parentIndex, childIndex);
 
 
       // delete the object --the added 's' part is probably confusing...
-      $http.delete('http://api.twin.gl/v1/' + objectType + 's/' + id).success(
+      $http.delete('http://api.twin.gl/v1/' + object.type + 's/' + object.id).success(
         function(data) {
 
           // determine object type so as to update DOM
-          if (objectType == "highlight") {
+          if (object.type == "highlight") {
             $scope.cards.splice(parentIndex, 1);
+            // update local cache-like array
+            highlightsUpdate('delete', object.id, $scope.cards[parentIndex]);
           }
-          else if (objectType == "comment" || objectType == "twingling") {
+          else if (object.type == "comment") {
             $scope.cards[parentIndex].card_feed.splice(childIndex, 1);
+            // update local cache-like array
+            highlightsUpdate('update', object.id, $scope.cards[parentIndex]);
+          }
+          else if (object.type == "twingling") {
+
+            // Splice twingling from current card
+            $scope.cards[parentIndex].card_feed.splice(childIndex, 1);
+            // update local cache-like array
+            highlightsUpdate('update', object.id, $scope.cards[parentIndex]);
+
+
+            // Splice twingling from connected card
+            try { // Splicing the twingling from the cards array
+              var connectedCardIndex = $scope.cards.map(function(e) { return e.id; }).indexOf(object.highlight_id);
+              var connectedCardFeedIndex = $scope.cards[connectedCardIndex].card_feed.map(function(e) { return e.id; }).indexOf(object.id);
+              $scope.cards[connectedCardIndex].card_feed.splice(connectedCardFeedIndex, 1);
+
+              // update local cache-like arra
+              highlightsUpdate('update', object.id, $scope.cards[parentIndex]);
+            }
+            catch(e) { // Failing that, nuke from the highlights array
+              var connectedCardIndex = $scope.highlights.map(function(e) { return e.id; }).indexOf(object.highlight_id);
+              var connectedCardFeedIndex = $scope.highlights[connectedCardIndex].card_feed.map(function(e) { return e.id; }).indexOf(object.id);
+              $scope.highlights[connectedCardIndex].card_feed.splice(connectedCardFeedIndex, 1);
+            };
+
+
           };
 
-          // If all is well, update local cache-like array
-          highlightsUpdate('delete', id, $scope.cards[parentIndex]);
       });
 
     };
@@ -358,6 +409,8 @@
           // Loop though the highlights array
           for (var i = $scope.highlights.length - 1; i >= 0; i--) {
 
+              // Set object type
+              $scope.highlights[i].type = "highlight";
 
               // Create card_feed variable
               var cardFeed = [];
