@@ -38,6 +38,11 @@
       return (date > $scope.timeSlice.beginning && date < $scope.timeSlice.end);
     };
 
+    // Receive a newly created Link from the Link UI
+    $scope.newLinkCreated = function(link) {
+      console.log(link);
+    };
+
     // Helper for avoiding blank pages
     $scope.pageContentCheck = function (direction) {
       var pageItemCount = ($filter('filter')($scope.highlights, $scope.inTimeSlice)).length;

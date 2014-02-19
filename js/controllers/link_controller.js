@@ -91,11 +91,12 @@
       if ($scope.enableCommit()) {
         $scope.working = true;
         linkService.commitTerminations(
-          function() {
+          function(data) {
+            $scope.$parent.newLinkCreated(data);
             $scope.commited = true;
             $scope.success = true;
           },
-          function() {
+          function(data) {
             $scope.commited = true;
             $scope.success = false;
           }
