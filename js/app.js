@@ -9,7 +9,6 @@
     'controllers',
     'directives',
     'services',
-    'wu.masonry',
     'ngCookies'
   ]);
 
