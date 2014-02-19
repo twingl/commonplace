@@ -263,6 +263,18 @@
 
 
     //
+    // TWINGLING RENDERING HELPER
+    //
+
+    $scope.renderNewTwingling = function (object) {
+      console.log(object);
+    }
+
+
+
+
+
+    //
     // TWINGL OBJECT DELETION
     //
 
