@@ -324,12 +324,10 @@
             highlightsUpdate('update', object.id, $scope.cards[parentIndex]);
           }
           else if (object.type == "twingling") {
-
             // Splice twingling from current card
             $scope.cards[parentIndex].card_feed.splice(childIndex, 1);
             // update local cache-like array
             highlightsUpdate('update', object.id, $scope.cards[parentIndex]);
-
 
             // Splice twingling from connected card
             try { // Splicing the twingling from the cards array
@@ -485,7 +483,6 @@
 
 
           // Render the cards in the main view
-          console.log($scope.highlights);
           $scope.headerNavigationState = 'highlights';
           $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
           
