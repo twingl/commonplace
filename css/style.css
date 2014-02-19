@@ -130,6 +130,14 @@ button {
         color: #c2484f;
     }
 
+.loading-card {
+    opacity: .3;
+}
+
+.loading-text {
+    color: #aaa;
+}
+
 
 /*------------------------------------*\
     $VISORS & MESSAGES

@@ -190,6 +190,39 @@
 
 
     //
+    // OBJECT LOADING STATE
+    //
+
+    var triggerObjectLoadingState = function (objectType, parentIndex, childIndex, terminate) {
+      
+      // State related variables
+      var objectLocation = "";
+      var loadingClass = "";
+
+      // Determine the object's location and appropriate loading class
+      if (objectType == "comment" || objectType == "twingling") {
+        objectLocation = $scope.cards[parentIndex].card_feed[childIndex];
+        loadingClass = "loading-text";
+      }
+      else if (objectType == "highlight") {
+        objectLocation = $scope.cards[parentIndex];
+        loadingClass = "loading-card";
+      };   
+
+      // If not terminated, trigger loading styling
+      if (terminate == undefined) {
+        objectLocation.loadingState = loadingClass;
+      }
+      // If terminated, remove loading styling
+      else {
+        objectLocation.loadingState = "";
+      };
+
+    };
+
+
+
+    //
     // COMMENT CREATION
     //
 
@@ -198,20 +231,30 @@
       $scope.cards[index].hideCardActions = false;
       $scope.cards[index].showNewCommentSection = false;
 
-      // post to the API
+      // Loading state
+      $scope.cards[index].card_feed.push({type: "comment", body: comment});
+      var cardFeedIndex = $scope.cards[index].card_feed.length-1;
+      triggerObjectLoadingState("comment", index, cardFeedIndex);
+
+      // Post to the API
       $http.post('http://api.twin.gl/v1/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
         function(commentObject) {
 
-          // update the DOM
-          $scope.cards[index].card_feed.push({type: "comment", body: comment, id: commentObject.id});
+          // Display submission success feedback
+          triggerObjectLoadingState("comment", index, cardFeedIndex, "stop");
+
+          // update the DOM with comment.id and comment.created
+
+          $scope.cards[index].card_feed[cardFeedIndex].id = commentObject.id;
+          $scope.cards[index].card_feed[cardFeedIndex].created = commentObject.created;
 
           // If all is well, update the local cache-like array
           highlightsUpdate('update', id, $scope.cards[index]);
 
-          // Clear the text area
-          $scope.cards[index].commentText = "";
-
       });
+
+      // Clear the text area
+      $scope.cards[index].commentText = "";
 
     };
 
@@ -224,6 +267,10 @@
     //
 
     $scope.deleteObject = function(objectType, id, parentIndex, childIndex) {
+
+      // trigger its loading state
+      triggerObjectLoadingState(objectType, parentIndex, childIndex);
+
 
       // delete the object --the added 's' part is probably confusing...
       $http.delete('http://api.twin.gl/v1/' + objectType + 's/' + id).success(
