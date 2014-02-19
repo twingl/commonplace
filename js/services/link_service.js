@@ -80,8 +80,8 @@
               end_type:   termination.type
             };
             $http.post('http://api.twin.gl/v1/twinglings', link)
-              .success(function(data) { success(); })
-              .error(function(data) { error(); });
+              .success(function(data) { success(data); })
+              .error(function(data) { error(data); });
           }
         } else {
           return false;
