@@ -161,12 +161,16 @@ button {
 
 
 #welcome-message {
-    background-color: #e9e9df;
     display: none;
+    background: #4F1B4B;
+    background: linear-gradient(135deg, #4F1B4B 0%,#4F2716 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     z-index: 65535;
     position: absolute;
     width: 100%;
     height: 100%;
+    color: #eee;
 }
 
     #welcome-message.show {
@@ -182,6 +186,10 @@ button {
         width: 500px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    #welcome-message a {
+        color: inherit;
     }
 
 
