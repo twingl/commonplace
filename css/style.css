@@ -142,6 +142,21 @@ button {
 /*------------------------------------*\
     $VISORS & MESSAGES
 \*------------------------------------*/
+#sign-in {
+    text-align: center;
+    color: #eee;
+}
+
+    #sign-in p {
+        text-align: left;
+        width: 550px;
+        padding-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
 #loading-visor {
     background-color: rgba(255, 255, 255, .1);
     display: none;
