@@ -427,6 +427,10 @@
           if ($scope.highlights.length == 0){
             console.log("No highlights");
             $scope.$parent.newUser = true;
+
+            // Track the navigation event
+            analytics.track('Triggers first-timer Message', {});
+
           };
 
           // Sort highlights according to date created
