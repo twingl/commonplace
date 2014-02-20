@@ -62,7 +62,7 @@
           </div>
           <div class="timeline-entry__body" ng-switch on="object.type">
             <span ng-switch-when="comment" ng-class="object.loadingState">{{object.body}}</span>
-            <span ng-switch-when="twingling" ng-class="object.loadingState"><a href="/#/{{formatDate(object.highlight_created)}}">"{{object.highlight_quote}}"</a></span>
+            <span ng-switch-when="twingling" ng-class="object.loadingState"><a href="/#/{{formatDate(object.highlight_created)}}" ng-click="analytics.track('Navigated via Twingling', { location: /#/{{formatDate(object.highlight_created)}} })">"{{object.highlight_quote}}"</a></span>
           </div>
           <div class="timeline-entry__delete  remove-icon">
             <i class="fa  fa-times" ng-click="deleteObject(object, $parent.$index, $index)" title="Remove Item"></i>

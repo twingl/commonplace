@@ -76,6 +76,9 @@
         $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
 
         $scope.pageContentCheck('back');
+
+        // Track the navigation event
+        analytics.track('Navigated Backwards', {});
       }
     };
 
@@ -88,6 +91,9 @@
         $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
 
         $scope.pageContentCheck('forward');
+
+        // Track the navigation event
+        analytics.track('Navigated Forwards', {});
       }
     };
 
@@ -126,6 +132,12 @@
           $scope.searchResults.length = 0; 
           var searchString = term.split(' ').join('+');
 
+          // Track the searching event
+          analytics.track('Executed a Search', {
+              search_string: searchString
+          });
+
+          // Let the hunt begin!
           $http.get('http://api.twin.gl/v1/search?q=' + searchString).success(
             function(results) {
 
@@ -226,6 +238,11 @@
     // Receive a newly created Link from the Link UI
     $scope.newLinkCreated = function(link) {
 
+      // Track the link creation
+      analytics.track('Created a Link', {
+          id: link.id
+      });
+
       // Location of the affected cards
       var startIndex = $scope.highlights.map(function(e) { return e.id; }).indexOf(link.start_id);
       var endIndex = $scope.highlights.map(function(e) { return e.id; }).indexOf(link.end_id);
@@ -272,6 +289,11 @@
       var cardFeedIndex = $scope.cards[index].card_feed.length-1;
       triggerObjectLoadingState("comment", index, cardFeedIndex);
 
+      // Track the new comment
+      analytics.track('Created a Comment', {
+          length: comment.length
+      });
+
       // Post to the API
       $http.post('http://api.twin.gl/v1/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
         function(commentObject) {
@@ -307,6 +329,10 @@
       // trigger its loading state
       triggerObjectLoadingState(object.type, parentIndex, childIndex);
 
+      // Track the object deletion
+      analytics.track('Deleted an Object', {
+          type: object.type
+      });
 
       // delete the object --the added 's' part is probably confusing...
       $http.delete('http://api.twin.gl/v1/' + object.type + 's/' + object.id).success(
