@@ -87,17 +87,17 @@ hr {
 }
 
 button {
-    background: none;
+    background: #eee;
     cursor: pointer;
     text-transform: uppercase;
     font-weight: 600;
-    color: #aaa;
-    border: 1px solid #aaa;
+    color: #4F1B4B;
+    font-size: .9em;
+    border: none;
 }
 
     button:hover {
-        color: #000;
-        border-color: #000;
+        background: #ebe6e0; 
     }
 
 
@@ -147,13 +147,19 @@ button {
     color: #eee;
 }
 
+    #sign-in button {
+        margin-top: 20px;
+        padding: 10px 40px 10px 40px;
+    }
+
     #sign-in p {
         text-align: left;
         width: 550px;
-        padding-top: 25px;
+        margin-top: 50px;
         margin-left: auto;
         margin-right: auto;
     }
+
 
 
 
