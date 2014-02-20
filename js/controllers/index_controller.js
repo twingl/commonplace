@@ -387,10 +387,12 @@
     $scope.$parent.loadingState = true;
     $scope.headerNavigationState = 'loading';
 
+    // Let segment.io know who the user is
     $http.get('http://api.twin.gl/v1/users/me').success( function(res) {
-      console.log(res);
+      analytics.identify(res.id);
     });
 
+    // Pull, then process them highlights
     $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
         function(data) {
           $scope.highlights = data;
