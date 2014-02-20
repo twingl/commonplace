@@ -387,6 +387,10 @@
     $scope.$parent.loadingState = true;
     $scope.headerNavigationState = 'loading';
 
+    $http.get('http://api.twin.gl/v1/users/me').success( function(res) {
+      console.log(res);
+    });
+
     $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
         function(data) {
           $scope.highlights = data;
