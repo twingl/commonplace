@@ -75,12 +75,12 @@
     <div class="card-actions-container">
       <div class="card-actions" ng-hide="card.hideCardActions">
         <button ng-click="card.showNewCommentSection = true; card.hideCardActions = true;">Add Comment</button>
-        <button ng-controller="LinkController" ng-click="stageResource('highlight', card.id, card)">Create Link To...</button>
+        <button ng-controller="LinkController" ng-click="stageResource('highlight', card.id, card)">Link this to...</button>
       </div>
       <!-- Create Comment Module -->
       <div class="new-comment" ng-show="card.showNewCommentSection">
         <textarea class="new-comment__body" ng-model="card.commentText" placeholder="Your comment..." tabindex=2></textarea>
-        <button class="new-comment__submit" ng-click="addComment($index, card.id, card.commentText)" tabindex=3>Save Comment</button><button class="new-comment__cancel" ng-click="card.showNewCommentSection = false; card.hideCardActions = false; card.commentText = ''" tabindex=4>Cancel</button>
+        <button class="new-comment__cancel" ng-click="card.showNewCommentSection = false; card.hideCardActions = false; card.commentText = ''" tabindex=4>Cancel</button><button class="new-comment__submit" ng-click="addComment($index, card.id, card.commentText)" tabindex=3>Save Comment</button>
       </div>
     </div>
 
