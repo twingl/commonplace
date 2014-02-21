@@ -429,8 +429,7 @@
             $scope.$parent.newUser = true;
 
             // Track the navigation event
-            analytics.track('Triggers first-timer Message', {});
-
+            analytics.track('Triggers First-Timer Message', {});
           };
 
           // Sort highlights according to date created
