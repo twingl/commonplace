@@ -87,19 +87,13 @@ hr {
 }
 
 button {
-    background: #eee;
     cursor: pointer;
     text-transform: uppercase;
     font-weight: 600;
-    color: #4F1B4B;
-    font-size: .9em;
+    font-size: .8em;
     border: none;
+    padding: 10px 15px 10px 15px
 }
-
-    button:hover {
-        background: #ebe6e0; 
-    }
-
 
 
 
@@ -148,18 +142,21 @@ button {
 }
 
     #sign-in button {
-        margin-top: 20px;
+        margin: 15px 0px 25px 0px;
         padding: 10px 40px 10px 40px;
+        background: #eee;
     }
+
+        #sign-in button:hover {
+            background: #ebe6e0;
+        }
 
     #sign-in p {
         text-align: left;
         width: 550px;
-        margin-top: 50px;
         margin-left: auto;
         margin-right: auto;
     }
-
 
 
 
@@ -462,7 +459,7 @@ button {
             }
 
             .timeline-entry:last-child {
-                padding-bottom: 5px;
+                padding-bottom: 15px;
             }
 
                 .timeline-entry:hover  .remove-icon {
@@ -515,34 +512,42 @@ button {
 
     .card-actions-container {
         background-color: #f6f0e5;
-        padding: 10px 80px 10px 80px;
         width: 100%;
     }
 
-        .card-actions > button {
-            margin-left: 0px;
+        .card-actions-container button {
+            background: #FFFDF8;
+            color: #888;
+            margin: 0px;
+            width: 50%;
+            border-top: 1px solid #e0d6cd;
+            float: left;
         }
 
+            .card-actions-container button:hover {
+                background: #E9E6E0;
+            }
+
+            .card-actions-container button:first-child, .card-actions-container button:nth-child(2) {
+                border-right: 1px solid #e0d6cd;
+            }
+
         .new-comment {
-            padding-top: 2px;
+
         }
 
             .new-comment__body {
                 width: 100%;
-                height: 75px;
-                resize: none;
-                border: 1px solid #555;
-                background: white;
+                height: 100px;
+                resize: vertical;
+                border: 1px solid #e0d6cd;
+                background: #FFFDF8;
                 font-size: .8em;
                 color: #222;
-                padding: 10px;
+                padding: 20px 80px 20px 80px;
+                margin: 0px;
             }
 
-            .new-comment__submit {
-                color: #555;
-                border-color: #555;
-                margin-left: 0px;
-            }
         /*      .card__connect--swing {
                     float: left;
                     -webkit-animation-duration: 3s;

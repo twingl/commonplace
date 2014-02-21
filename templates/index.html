@@ -75,11 +75,8 @@
     <div class="card-actions-container">
       <div class="card-actions" ng-hide="card.hideCardActions">
         <button ng-click="card.showNewCommentSection = true; card.hideCardActions = true;">Add Comment</button>
-        <div style="display: inline-block" ng-controller="LinkController">
-          <button ng-click="stageResource('highlight', card.id, card)">Add Link</button>
-        </div>
+        <button ng-controller="LinkController" ng-click="stageResource('highlight', card.id, card)">Create Link To...</button>
       </div>
-
       <!-- Create Comment Module -->
       <div class="new-comment" ng-show="card.showNewCommentSection">
         <textarea class="new-comment__body" ng-model="card.commentText" placeholder="Your comment..." tabindex=2></textarea>
