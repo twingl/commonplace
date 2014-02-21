@@ -451,15 +451,15 @@ button {
             padding: 0px 0px 0px 0px;
         }
             .timeline-entry:first-child {
-                padding-top: 20px;
+                padding-top: 30px;
             }
 
             .timeline-entry {
-                padding-top: 15px;
+                padding-top: 25px;
             }
 
             .timeline-entry:last-child {
-                padding-bottom: 15px;
+                padding-bottom: 30px;
             }
 
                 .timeline-entry:hover  .remove-icon {
@@ -490,6 +490,7 @@ button {
                     float: left;
                     width: 92%;
                     font-size: .8em;
+                    line-height: 1.5em;
                     padding-left: 10px;
                     padding-right: 10px;
                 }
