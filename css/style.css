@@ -329,6 +329,12 @@ button {
            right: 22.5%;
         }
 
+        .navigation__icon--back {
+           left: 75px;
+           display: inline-block;
+           vertical-align: middle;
+        }
+
 
     .navigation-contents h2 {
       text-align: center;
