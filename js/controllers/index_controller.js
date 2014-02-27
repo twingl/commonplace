@@ -1,7 +1,7 @@
 ( function() {
   'use strict';
 
-  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$route', '$routeParams', '$filter', '$location', function($scope, $http, $route, $routeParams, $filter, $location) {
+  Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$route', '$routeParams', '$filter', function($scope, $http, $route, $routeParams, $filter) {
 
 
 
@@ -25,7 +25,7 @@
 
     if ($routeParams.date !== "") {
       selectedDate = new Date($routeParams.date);
-    };
+    }
 
     $scope.timeSlice.beginning = new Date(selectedDate);
     $scope.timeSlice.beginning.setHours(0,0,0,0);
@@ -106,14 +106,11 @@
     // For now: card array switch
     //
     $scope.cardView = function (view) {
-      if (view == "highlights") {
+      if (view === "highlights") {
           $scope.headerNavigationState = "highlights";
           $scope.cards = $filter('filter')($scope.highlights, $scope.inTimeSlice);
       }
-      else if (view == "search") {
-
-      }
-    }
+    };
 
 
 
@@ -207,17 +204,17 @@
       var loadingClass = "";
 
       // Determine the object's location and appropriate loading class
-      if (objectType == "comment" || objectType == "twingling") {
+      if (objectType === "comment" || objectType === "twingling") {
         objectLocation = $scope.cards[parentIndex].card_feed[childIndex];
         loadingClass = "loading-text";
       }
-      else if (objectType == "highlight") {
+      else if (objectType === "highlight") {
         objectLocation = $scope.cards[parentIndex];
         loadingClass = "loading-card";
       };   
 
       // If not terminated, trigger loading styling
-      if (terminate == undefined) {
+      if (terminate === undefined) {
         objectLocation.loadingState = loadingClass;
       }
       // If terminated, remove loading styling
@@ -339,17 +336,17 @@
         function(data) {
 
           // determine object type so as to update DOM
-          if (object.type == "highlight") {
+          if (object.type === "highlight") {
             $scope.cards.splice(parentIndex, 1);
             // update local cache-like array
             highlightsUpdate('delete', object.id, $scope.cards[parentIndex]);
           }
-          else if (object.type == "comment") {
+          else if (object.type === "comment") {
             $scope.cards[parentIndex].card_feed.splice(childIndex, 1);
             // update local cache-like array
             highlightsUpdate('update', object.id, $scope.cards[parentIndex]);
           }
-          else if (object.type == "twingling") {
+          else if (object.type === "twingling") {
             // Splice twingling from current card
             $scope.cards[parentIndex].card_feed.splice(childIndex, 1);
             // update local cache-like array
@@ -369,9 +366,7 @@
               var connectedCardFeedIndex = $scope.highlights[connectedCardIndex].card_feed.map(function(e) { return e.id; }).indexOf(object.id);
               $scope.highlights[connectedCardIndex].card_feed.splice(connectedCardFeedIndex, 1);
             };
-
-
-          };
+          }
 
       });
 
@@ -392,7 +387,7 @@
 
       if (action === "delete") {
         // Splice the object
-        $scope.highlights.splice(index, 1)
+        $scope.highlights.splice(index, 1);
       }
       else if (action === "update") {
         // Replace the object
@@ -507,7 +502,7 @@
 
               // Sort cardFeed according to date created
               cardFeed.sort(function(a,b) {
-                return new Date(a.created) - new Date(b.created);
+                return new Date(a.created) - new Date(b.created)
               });
 
 
