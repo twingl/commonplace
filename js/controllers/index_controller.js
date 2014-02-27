@@ -234,6 +234,18 @@
     // TWINGLING RENDERING HELPER
     //
 
+    // Twingling object constructor
+    function makeTwinglingObject (type, id, created, highlight_id, highlight_quote, highlight_created) {
+        return {
+            type: type,
+            id: id,
+            created: created,
+            highlight_id: highlight_id,
+            highlight_quote: highlight_quote,
+            highlight_created: highlight_created
+        };
+    };
+
     // Receive a newly created Link from the Link UI
     $scope.newLinkCreated = function(link) {
 
@@ -246,23 +258,25 @@
       var startIndex = $scope.highlights.map(function(e) { return e.id; }).indexOf(link.start_id);
       var endIndex = $scope.highlights.map(function(e) { return e.id; }).indexOf(link.end_id);
 
-      // Create startTwingling card_feed object (Much of this can be refactored to a twingling card_feed object creation method)
-      var startTwinglingObject = {};
-      startTwinglingObject.type = "twingling";
-      startTwinglingObject.id = link.id;
-      startTwinglingObject.created = link.created;
-      startTwinglingObject.highlight_id = $scope.highlights[startIndex].id;
-      startTwinglingObject.highlight_quote = $scope.highlights[startIndex].quote;
-      startTwinglingObject.highlight_created = $scope.highlights[startIndex].created;
+      // Create startTwingling card_feed object
+      var startTwinglingObject = makeTwinglingObject(
+            "twingling", 
+            link.id, 
+            link.created, 
+            $scope.highlights[startIndex].id, 
+            $scope.highlights[startIndex].quote, 
+            $scope.highlights[startIndex].created
+        );
 
-      // Create endTwingling card_feed object (Much of this can be refactored to a twingling card_feed object creation method)
-      var endTwinglingObject = {};
-      endTwinglingObject.type = "twingling";
-      endTwinglingObject.id = link.id;
-      endTwinglingObject.created = link.created;
-      endTwinglingObject.highlight_id = $scope.highlights[endIndex].id;
-      endTwinglingObject.highlight_quote = $scope.highlights[endIndex].quote;
-      endTwinglingObject.highlight_created = $scope.highlights[endIndex].created;
+      // Create endTwingling card_feed object
+      var endTwinglingObject = makeTwinglingObject(
+            "twingling", 
+            link.id, 
+            link.created, 
+            $scope.highlights[endIndex].id, 
+            $scope.highlights[endIndex].quote, 
+            $scope.highlights[endIndex].created
+        );
 
       // Update highlights cache-like array
       $scope.highlights[startIndex].card_feed.push(endTwinglingObject);
