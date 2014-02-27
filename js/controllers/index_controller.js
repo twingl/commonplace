@@ -66,14 +66,24 @@
     //
 
     // Twingling object constructor
-    function makeTwinglingObject (type, id, created, highlight_id, highlight_quote, highlight_created) {
+    function makeTwinglingObject (id, created, highlight_id, highlight_quote, highlight_created) {
         return {
-            type: type,
+            type: "twingling",
             id: id,
             created: created,
             highlight_id: highlight_id,
             highlight_quote: highlight_quote,
             highlight_created: highlight_created
+        };
+    };
+
+    // Comment object constructor
+    function makeCommentObject (id, created, body){
+        return {
+            type: "comment",
+            id: id,
+            created: created,
+            body: body
         };
     };
 
@@ -268,7 +278,6 @@
 
       // Create startTwingling card_feed object
       var startTwinglingObject = makeTwinglingObject(
-            "twingling", 
             link.id, 
             link.created, 
             $scope.highlights[startIndex].id, 
@@ -278,7 +287,6 @@
 
       // Create endTwingling card_feed object
       var endTwinglingObject = makeTwinglingObject(
-            "twingling", 
             link.id, 
             link.created, 
             $scope.highlights[endIndex].id, 
@@ -301,13 +309,18 @@
     //
 
     $scope.addComment = function(index, id, comment) {
-      // show Card Actions, hide New Comment section
+      // Show Card Actions, hide New Comment section
       $scope.cards[index].hideCardActions = false;
       $scope.cards[index].showNewCommentSection = false;
 
-      // Loading state
-      $scope.cards[index].card_feed.push({type: "comment", body: comment});
+      // Tentatively push comment text
+      var commentObject = makeCommentObject (undefined, undefined, comment);
+      $scope.cards[index].card_feed.push(commentObject);
+
+      // Identify index of newly created comment object
       var cardFeedIndex = $scope.cards[index].card_feed.length-1;
+
+      // Trigger loading state
       triggerObjectLoadingState("comment", index, cardFeedIndex);
 
       // Track the new comment
@@ -323,7 +336,6 @@
           triggerObjectLoadingState("comment", index, cardFeedIndex, "stop");
 
           // update the DOM with comment.id and comment.created
-
           $scope.cards[index].card_feed[cardFeedIndex].id = commentObject.id;
           $scope.cards[index].card_feed[cardFeedIndex].created = commentObject.created;
 
@@ -471,16 +483,13 @@
               // Push comments to cardFeed, if there's any
               if ($scope.highlights[i].comments.length !== 0) {
                 for (var j = 0, lenj = $scope.highlights[i].comments.length; j < lenj; j++) {
-                  // Staging variable
-                  var commentCardFeedObject = {};
-
-                  // Set commentCardFeedObject
-                  commentCardFeedObject.type = "comment";
-                  commentCardFeedObject.id = $scope.highlights[i].comments[j].id;
-                  commentCardFeedObject.created = $scope.highlights[i].comments[j].created;
-                  commentCardFeedObject.body = $scope.highlights[i].comments[j].body;
 
                   // Push object to cardFeed
+                  var commentCardFeedObject = makeCommentObject(
+                        $scope.highlights[i].comments[j].id,
+                        $scope.highlights[i].comments[j].created,
+                        $scope.highlights[i].comments[j].body
+                    );
                   cardFeed.push(commentCardFeedObject);
 
                 };
@@ -510,7 +519,6 @@
                   if (twingledObject.length > 0) {
                     // Initialise twinglingCardFeedObject
                     var twinglingCardFeedObject = makeTwinglingObject(
-                            "twingling",
                             $scope.highlights[i].twinglings[k].id,
                             $scope.highlights[i].twinglings[k].created,
                             twingledHighlightId,
