@@ -455,7 +455,7 @@
           $scope.highlights = data;
 
           // Catch instance where user has no highlights
-          if ($scope.highlights.length == 0){
+          if ($scope.highlights.length === 0){
             console.log("No highlights");
             $scope.$parent.newUser = true;
 
@@ -504,7 +504,7 @@
                   var twingledHighlightId = "";
                   var end_object_id = $scope.highlights[i].twinglings[k].end_id;
 
-                  if (end_object_id !== $scope.highlights[i].id) {
+                  if (end_object_id !=== $scope.highlights[i].id) {
                     twingledHighlightId = end_object_id;
                   }
                   else {
@@ -535,7 +535,7 @@
 
               // Sort cardFeed according to date created
               cardFeed.sort(function(a,b) {
-                return new Date(a.created) - new Date(b.created)
+                return new Date(a.created) - new Date(b.created);
               });
 
 
