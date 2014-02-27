@@ -4,8 +4,9 @@
   window.Commonplace = window.Commonplace || {};
 
   Commonplace.templates = {
+    signIn: "/templates/sign_in.html",
     index: "/templates/index.html",
-    signIn: "/templates/sign_in.html"
+    contexts: "/templates/contexts.html"
   };
 
 })();

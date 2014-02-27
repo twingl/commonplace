@@ -21,6 +21,9 @@
       end: null
     };
 
+    // TODO: CLEAN UP ROUTES and PARAMETERS
+    // console.log($routeParams);
+
     var selectedDate = new Date();
 
     if ($routeParams.date !== "") {

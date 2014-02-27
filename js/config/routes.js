@@ -10,6 +10,11 @@
         controller: 'AuthenticationController'
       })
 
+      .when( '/contexts', {
+        templateUrl: Commonplace.templates.contexts,
+        controller: 'ContextController'
+      })
+
       .when( '/:date', {
         templateUrl: Commonplace.templates.index,
         controller: 'IndexController'
