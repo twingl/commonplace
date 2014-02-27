@@ -62,6 +62,26 @@
 
 
     //
+    // CONSTRUCTORS
+    //
+
+    // Twingling object constructor
+    function makeTwinglingObject (type, id, created, highlight_id, highlight_quote, highlight_created) {
+        return {
+            type: type,
+            id: id,
+            created: created,
+            highlight_id: highlight_id,
+            highlight_quote: highlight_quote,
+            highlight_created: highlight_created
+        };
+    };
+
+
+
+
+
+    //
     // NAVIGATION
     //
 
@@ -233,18 +253,6 @@
     //
     // TWINGLING RENDERING HELPER
     //
-
-    // Twingling object constructor
-    function makeTwinglingObject (type, id, created, highlight_id, highlight_quote, highlight_created) {
-        return {
-            type: type,
-            id: id,
-            created: created,
-            highlight_id: highlight_id,
-            highlight_quote: highlight_quote,
-            highlight_created: highlight_created
-        };
-    };
 
     // Receive a newly created Link from the Link UI
     $scope.newLinkCreated = function(link) {
@@ -482,8 +490,6 @@
               // Push twinglings to cardFeed, if there's any
               if ($scope.highlights[i].twinglings.length !== 0) {
                 for (var k = 0, lenk = $scope.highlights[i].twinglings.length; k < lenk; k++) {
-                  // Staging variable
-                  var twinglingCardFeedObject = {};
 
                   // Remove current highlight from twingling pairs
                   var twingledHighlightId = "";
@@ -503,12 +509,15 @@
 
                   if (twingledObject.length > 0) {
                     // Initialise twinglingCardFeedObject
-                    twinglingCardFeedObject.type = "twingling";
-                    twinglingCardFeedObject.id = $scope.highlights[i].twinglings[k].id;
-                    twinglingCardFeedObject.created = $scope.highlights[i].twinglings[k].created;
-                    twinglingCardFeedObject.highlight_id = twingledHighlightId;
-                    twinglingCardFeedObject.highlight_quote = twingledObject[0].quote;
-                    twinglingCardFeedObject.highlight_created = twingledObject[0].created;
+                    var twinglingCardFeedObject = makeTwinglingObject(
+                            "twingling",
+                            $scope.highlights[i].twinglings[k].id,
+                            $scope.highlights[i].twinglings[k].created,
+                            twingledHighlightId,
+                            twingledObject[0].quote,
+                            twingledObject[0].created
+                        );
+
                     // Push object to cardFeed
                     cardFeed.push(twinglingCardFeedObject);
                   }
