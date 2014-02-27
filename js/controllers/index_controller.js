@@ -504,7 +504,7 @@
                   var twingledHighlightId = "";
                   var end_object_id = $scope.highlights[i].twinglings[k].end_id;
 
-                  if (end_object_id !=== $scope.highlights[i].id) {
+                  if (end_object_id !== $scope.highlights[i].id) {
                     twingledHighlightId = end_object_id;
                   }
                   else {
