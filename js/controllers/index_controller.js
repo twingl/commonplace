@@ -143,7 +143,7 @@
               // If there are results, let the magic begin
               if (results.length !== 0) {
 
-                for (var i = 0; i < results.length; i++) {
+                for (var i = 0, len = results.length; i < len; i++) {
 
                   var highlightIDToFind = 0;
 
@@ -451,7 +451,7 @@
 
 
           // Loop though the highlights array
-          for (var i = $scope.highlights.length - 1; i >= 0; i--) {
+          for (var i = 0, leni = $scope.highlights.length; i < leni ; i++) {
 
               // Set object type
               $scope.highlights[i].type = "highlight";
@@ -462,7 +462,7 @@
 
               // Push comments to cardFeed, if there's any
               if ($scope.highlights[i].comments.length !== 0) {
-                for (var j = 0; j <= $scope.highlights[i].comments.length - 1; j++) {
+                for (var j = 0, lenj = $scope.highlights[i].comments.length; j < lenj; j++) {
                   // Staging variable
                   var commentCardFeedObject = {};
 
@@ -481,7 +481,7 @@
 
               // Push twinglings to cardFeed, if there's any
               if ($scope.highlights[i].twinglings.length !== 0) {
-                for (var k = 0; k <= $scope.highlights[i].twinglings.length - 1; k++) {
+                for (var k = 0, lenk = $scope.highlights[i].twinglings.length; k < lenk; k++) {
                   // Staging variable
                   var twinglingCardFeedObject = {};
 
