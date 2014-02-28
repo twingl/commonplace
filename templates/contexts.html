@@ -1,6 +1,6 @@
 <div ng-controller="ContextController" style="color: white">
     <h1>Contexts</h1>
     <div ng-repeat="context in contexts">
-        <a href="/#/contexts/">{{context.url | CleanedURL}} <span style="color: red">{{context.type}}</span>
+        {{context.url | CleanURL}} <span style="color: red">{{context.type}}</span>
     </div>
 </div>

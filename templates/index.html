@@ -48,7 +48,7 @@
       </div>
       <blockquote class="primary__quote">
         <p>{{card.quote}}</p>
-        <span class="source">from <a href="{{card.context_url}}" target="_blank">{{card.context_url | ShortenedURL}}</a></span>
+        <span class="source">from <a href="{{card.context_url}}" target="_blank">{{card.context_url | CleanURL | ShortURL}}</a></span>
       </blockquote>
     </div>
       
