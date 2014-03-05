@@ -77,10 +77,10 @@
         };
     };
 
-    // Comment object constructor
-    function makeCommentObject (id, created, body){
+    // Note object constructor
+    function makeNoteObject (id, created, body){
         return {
-            type: "comment",
+            type: "note",
             id: id,
             created: created,
             body: body
@@ -96,7 +96,7 @@
     //
 
     // TODO: will need to change these page flipping IF statements,
-    // once things like creating new comments / twinglings repeats the card on today's date
+    // once things like creating new notes / twinglings repeats the card on today's date
     $scope.flickBackOnePage = function() {
       if ($scope.timeSlice.beginning > new Date($scope.highlights[0].created)) {
         $scope.timeSlice.beginning.setDate( $scope.timeSlice.beginning.getDate() - 1 );
@@ -178,12 +178,12 @@
                   var highlightIDToFind = 0;
 
                   // Determine the highlight_id to pull from highlights array
-                  // Assumes results are highlights or comments
+                  // Assumes results are highlights or notes
                   if (results[i].result_type === "highlights") {
                     highlightIDToFind = results[i].result_object.id;
                   }
-                  else if (results[i].result_type === "comments") {
-                    highlightIDToFind = results[i].result_object.commented_id;
+                  else if (results[i].result_type === "notes") {
+                    highlightIDToFind = results[i].result_object.annotated_id;
                   }
 
                   var highlightObject = $scope.highlights.filter(function (element) {
@@ -236,7 +236,7 @@
       var loadingClass = "";
 
       // Determine the object's location and appropriate loading class
-      if (objectType === "comment" || objectType === "twingling") {
+      if (objectType === "note" || objectType === "twingling") {
         objectLocation = $scope.cards[parentIndex].card_feed[childIndex];
         loadingClass = "loading-text";
       }
@@ -305,39 +305,39 @@
 
 
     //
-    // COMMENT CREATION
+    // NOTE CREATION
     //
 
-    $scope.addComment = function(index, id, comment) {
-      // Show Card Actions, hide New Comment section
+    $scope.addNote = function(index, id, note) {
+      // Show Card Actions, hide New Note section
       $scope.cards[index].hideCardActions = false;
-      $scope.cards[index].showNewCommentSection = false;
+      $scope.cards[index].showNewNoteSection = false;
 
-      // Tentatively push comment text
-      var commentObject = makeCommentObject (undefined, undefined, comment);
-      $scope.cards[index].card_feed.push(commentObject);
+      // Tentatively push note text
+      var noteObject = makeNoteObject (undefined, undefined, note);
+      $scope.cards[index].card_feed.push(noteObject);
 
-      // Identify index of newly created comment object
+      // Identify index of newly created note object
       var cardFeedIndex = $scope.cards[index].card_feed.length-1;
 
       // Trigger loading state
-      triggerObjectLoadingState("comment", index, cardFeedIndex);
+      triggerObjectLoadingState("note", index, cardFeedIndex);
 
-      // Track the new comment
-      analytics.track('Created a Comment', {
-          length: comment.length
+      // Track the new note
+      analytics.track('Created a Note', {
+          length: note.length
       });
 
       // Post to the API
-      $http.post('http://api.twin.gl/v1/highlights/' + id + '/comments', '{"body":"' + comment + '"}').success(
-        function(commentObject) {
+      $http.post('http://api.twin.gl/v1/highlights/' + id + '/notes', '{"body":"' + note + '"}').success(
+        function(noteObject) {
 
           // Display submission success feedback
-          triggerObjectLoadingState("comment", index, cardFeedIndex, "stop");
+          triggerObjectLoadingState("note", index, cardFeedIndex, "stop");
 
-          // update the DOM with comment.id and comment.created
-          $scope.cards[index].card_feed[cardFeedIndex].id = commentObject.id;
-          $scope.cards[index].card_feed[cardFeedIndex].created = commentObject.created;
+          // update the DOM with note.id and note.created
+          $scope.cards[index].card_feed[cardFeedIndex].id = noteObject.id;
+          $scope.cards[index].card_feed[cardFeedIndex].created = noteObject.created;
 
           // If all is well, update the local cache-like array
           highlightsUpdate('update', id, $scope.cards[index]);
@@ -345,7 +345,7 @@
       });
 
       // Clear the text area
-      $scope.cards[index].commentText = "";
+      $scope.cards[index].noteText = "";
 
     };
 
@@ -377,7 +377,7 @@
             // update local cache-like array
             highlightsUpdate('delete', object.id, $scope.cards[parentIndex]);
           }
-          else if (object.type === "comment") {
+          else if (object.type === "note") {
             $scope.cards[parentIndex].card_feed.splice(childIndex, 1);
             // update local cache-like array
             highlightsUpdate('update', object.id, $scope.cards[parentIndex]);
@@ -450,7 +450,7 @@
     });
 
     // Pull, then process them highlights
-    $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=comments,twinglings').success(
+    $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=notes,twinglings').success(
         function(data) {
           $scope.highlights = data;
 
@@ -480,17 +480,17 @@
               var cardFeed = [];
 
 
-              // Push comments to cardFeed, if there's any
-              if ($scope.highlights[i].comments.length !== 0) {
-                for (var j = 0, lenj = $scope.highlights[i].comments.length; j < lenj; j++) {
+              // Push notes to cardFeed, if there's any
+              if ($scope.highlights[i].notes.length !== 0) {
+                for (var j = 0, lenj = $scope.highlights[i].notes.length; j < lenj; j++) {
 
                   // Push object to cardFeed
-                  var commentCardFeedObject = makeCommentObject(
-                        $scope.highlights[i].comments[j].id,
-                        $scope.highlights[i].comments[j].created,
-                        $scope.highlights[i].comments[j].body
+                  var noteCardFeedObject = makeNoteObject(
+                        $scope.highlights[i].notes[j].id,
+                        $scope.highlights[i].notes[j].created,
+                        $scope.highlights[i].notes[j].body
                     );
-                  cardFeed.push(commentCardFeedObject);
+                  cardFeed.push(noteCardFeedObject);
 
                 };
               };
