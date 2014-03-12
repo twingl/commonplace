@@ -41,6 +41,18 @@
 .link_ui.success, .success .link_ui__orb { background: #94c175; }
 .link_ui.error,   .error   .link_ui__orb { background: #c2484f; }
 
+  .link_ui__orb:before {
+    width       : 16px;
+    text-align  : center;
+    position    : absolute;
+    left        : 50%;
+    top         : 50%;
+    font-size   : 18px;
+    margin-left : -8px;
+    margin-top  : -8px;
+    color       : white;
+  }
+
 
   .link_ui__orb,
   .link_ui__corona {
