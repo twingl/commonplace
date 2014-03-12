@@ -4,7 +4,14 @@
   Commonplace.controllers.controller('IndexController', ['$scope', '$http', '$route', '$routeParams', '$filter', function($scope, $http, $route, $routeParams, $filter) {
 
 
-
+    $scope.share = function(card) {
+      card.shareDisabled = true;
+      $http.get('http://api.twin.gl/v1/highlights/'+card.id+'/permalink')
+        .success(function (res) {
+          card.shareDisabled = false;
+          card.shareLink = res.public_url;
+        });
+    };
 
 
     //
@@ -472,7 +479,6 @@
 
           // Loop though the highlights array
           for (var i = 0, leni = $scope.highlights.length; i < leni ; i++) {
-
               // Set object type
               $scope.highlights[i].type = "highlight";
 

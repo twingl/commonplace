@@ -55,6 +55,11 @@
     <!-- The Card's Feed -->
     <div class="card-feed-container">
       <div class="timeline-group">
+        <div class="timeline-entry  cf" ng-hide="!card.shareLink">
+          <div class="timeline-entry__body share-link">
+            <span><a href="{{card.shareLink}}" target="_blank" ng-click="analytics.track('Opened share link', { location: /#/{{formatDate(object.highlight_created)}} })">{{card.shareLink}}</a></span>
+          </div>
+        </div>
         <div class="timeline-entry  cf" ng-repeat="object in card.card_feed">
           <div class="timeline-entry__metadata" ng-switch on="object.type">
             <i ng-switch-when="note" class="fa  fa-comment-o"></i>
@@ -75,6 +80,7 @@
     <div class="card-actions-container">
       <div class="card-actions" ng-hide="card.hideCardActions">
         <button ng-click="card.showNewNoteSection = true; card.hideCardActions = true;">Add Comment</button>
+        <button ng-click="share(card)" ng-disabled="card.shareDisabled">Share</button>
         <button ng-controller="LinkController" ng-click="stageResource('highlight', card.id, card)">Link this to...</button>
       </div>
       <!-- Create Note Module -->

@@ -522,15 +522,33 @@ button {
         width: 100%;
     }
 
+        .card-actions-container button:first-child,
+        .card-actions-container button:last-child {
+          width: 33%;
+        }
+
+        .share-link a:before {
+          content: "Share this URL: ";
+        }
+
+        .share-link a {
+          font-weight: bold;
+          text-align: center;
+          width: 100%;
+          display: block;
+          font-size: 1.25em;
+        }
+
         .card-actions-container button {
             background: #FFFDF8;
             color: #888;
             margin: 0px;
-            width: 50%;
+            width: 34%;
             border-top: 1px solid #e0d6cd;
             float: left;
         }
 
+            .card-actions-container button[disabled='disabled'],
             .card-actions-container button:hover {
                 background: #E9E6E0;
             }
