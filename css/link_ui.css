@@ -138,6 +138,9 @@
     }
 
   .link_ui__origin { /* The left card */
+    position: absolute;
+    top: 0;
+    left: 0;
     border-top-left-radius    : 2px;
     border-bottom-left-radius : 2px;
     margin-right              :-1px;
@@ -148,7 +151,9 @@
      * Remove this float when we use ng 1.2.x as we can override how Angular
      * hides things (as at the top of the file)
      */
-    float                     : right;
+    position: absolute;
+    top: 0;
+    right: 0;
     border-top-right-radius   : 2px;
     border-bottom-right-radius: 2px;
     margin-left               :-1px;
