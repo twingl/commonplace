@@ -21,8 +21,12 @@
     $scope.cards = [];
     $scope.headerNavigationState = [];
     $scope.highlights = [];
-    $scope.submittedSearchTerm = "";
+
+    $scope.searchStatus = "";
+    $scope.formattedSearchTerm = "";
     $scope.searchResults = [];
+    
+    $scope.contextStatus = "";
 
     $scope.timeSlice = {
       beginning: null,
@@ -147,7 +151,7 @@
       $scope.contextStatus = "Highlights from " + $filter('CleanURL')(context);
 
       // Filter
-      $scope.cards = $filter('filter')($scope.highlights, {context_url: contextString});
+      $scope.cards = $filter('filter')($scope.highlights, {context_url: context});
 
       //Track the navigation event
       analytics.track('Filtered Cards by Context', {});

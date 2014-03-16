@@ -30,7 +30,7 @@
         <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
         <h2>{{searchStatus}}</h2>
       </div>
-    <!-- Search Based -->
+    <!-- Context Based -->
       <div class="navigation-contents  navigation-contents--search" ng-switch-when="context">
         <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
         <h2>{{contextStatus}}</h2>
@@ -63,7 +63,7 @@
       </div>
       <blockquote class="primary__quote">
         <p>{{card.quote}}</p>
-        <span class="source">from <a href="{{card.context_url}}" target="_blank">{{card.context_url | CleanURL | ShortURL}}</a></span>
+        <span class="source">from <a ng-click="filterContext(card.context_url)">{{card.context_url | CleanURL | ShortURL}}</a></span>
       </blockquote>
     </div>
       
