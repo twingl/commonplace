@@ -138,6 +138,10 @@
       }
     };
 
+
+    //
+    // Filter according to context
+    //
     $scope.filterContext = function(context) {
       $scope.headerNavigationState = "context";
       $scope.contextStatus = "Highlights from " + $filter('CleanURL')(context);

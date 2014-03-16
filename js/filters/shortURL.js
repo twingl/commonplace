@@ -6,8 +6,11 @@
     return function(input) {
       if (input.length > 60) {
         var shortURL = input.substring(0,50) + "...";
+        return shortURL;
       }
-      return shortURL;
+      else {
+        return input;
+      };
     };
 
   });
