@@ -37,6 +37,16 @@
   </div>
 </div>
 
+<!-- Context Cards -->
+<div ng-switch on="headerNavigationState">
+  <div ng-controller="ContextController" class="contexts-container" ng-switch-when="search">
+    <h1>_____ Articles _____</h1>
+    <div ng-repeat="context in contexts">
+      <a ng-click="filterContext(context.url)">{{context.url | CleanURL}}</a> <span style="color: red">{{context.type}}</span>
+    </div>
+    <h1>_____ Highlights _____</h1>
+  </div>
+</div>
 
 <!-- Highlight Cards -->
 <div class="card-container">

@@ -137,7 +137,15 @@
       }
     };
 
+    $scope.filterContext = function(context) {
 
+      //filter
+      $scope.cards = $filter('filter')($scope.highlights, {context_url: context});
+
+      // TODO: REMOVE ANALYTICS COMMENT-OUT
+      //Track the navigation event
+      // analytics.track('Filtered Cards by Context', {});
+    };
 
 
 
