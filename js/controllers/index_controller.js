@@ -138,6 +138,8 @@
     };
 
     $scope.filterContext = function(context) {
+      $scope.headerNavigationState = "context";
+      $scope.contextStatus = "Highlights from " + $filter('CleanURL')(context);
 
       //filter
       $scope.cards = $filter('filter')($scope.highlights, {context_url: context});

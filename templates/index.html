@@ -30,6 +30,11 @@
         <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
         <h2>{{searchStatus}}</h2>
       </div>
+    <!-- Search Based -->
+      <div class="navigation-contents  navigation-contents--search" ng-switch-when="context">
+        <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
+        <h2>{{contextStatus}}</h2>
+      </div>
     <!-- Loading -->
       <div class="navigation-contents" ng-switch-when="loading">
         <h2>Loading...</h2>
@@ -42,7 +47,7 @@
   <div ng-controller="ContextController" class="contexts-container" ng-switch-when="search">
     <h1>_____ Articles _____</h1>
     <div ng-repeat="context in contexts">
-      <a ng-click="filterContext(context.url)">{{context.url | CleanURL}}</a> <span style="color: red">{{context.type}}</span>
+      <a href="" ng-click="filterContext(context.url)">{{context.url | CleanURL}}</a> <span style="color: red">{{context.type}}</span>
     </div>
     <h1>_____ Highlights _____</h1>
   </div>
