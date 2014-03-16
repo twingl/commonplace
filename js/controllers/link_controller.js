@@ -87,6 +87,21 @@
       return $scope.state;
     };
 
+    $scope.orbIcon = function() {
+      switch ($scope.uiStatus()) {
+        case "working":
+          return "fa-ellipsis-h";
+        case "pending":
+          return "fa-link";
+        case "ineligible":
+          return "";
+        case "success":
+          return "fa-check";
+        case "error":
+          return "fa-exclamation";
+      }
+    };
+
     $scope.commitLink = function() {
       if ($scope.enableCommit()) {
         $scope.working = true;

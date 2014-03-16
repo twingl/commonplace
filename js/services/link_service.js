@@ -4,7 +4,7 @@
   Commonplace.services.factory('linkService', ['$http', function($http) {
     // The Link service.
     // This is designed to create links from an `origin` resource (highlight,
-    // comment) to one or more `termination` resources.
+    // note) to one or more `termination` resources.
     var LinkService = (function() {
       var terminations = {};
       var origin = undefined;

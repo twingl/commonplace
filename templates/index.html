@@ -55,13 +55,18 @@
     <!-- The Card's Feed -->
     <div class="card-feed-container">
       <div class="timeline-group">
+        <div class="timeline-entry  cf" ng-hide="!card.shareLink">
+          <div class="timeline-entry__body share-link">
+            <span><a href="{{card.shareLink}}" target="_blank" ng-click="analytics.track('Opened share link', { location: /#/{{formatDate(object.highlight_created)}} })">{{card.shareLink}}</a></span>
+          </div>
+        </div>
         <div class="timeline-entry  cf" ng-repeat="object in card.card_feed">
           <div class="timeline-entry__metadata" ng-switch on="object.type">
-            <i ng-switch-when="comment" class="fa  fa-comment-o"></i>
+            <i ng-switch-when="note" class="fa  fa-comment-o"></i>
             <i ng-switch-when="twingling" class="fa  fa-link"></i>
           </div>
           <div class="timeline-entry__body" ng-switch on="object.type">
-            <span ng-switch-when="comment" ng-class="object.loadingState">{{object.body}}</span>
+            <span ng-switch-when="note" ng-class="object.loadingState">{{object.body}}</span>
             <span ng-switch-when="twingling" ng-class="object.loadingState"><a href="/#/{{formatDate(object.highlight_created)}}" ng-click="analytics.track('Navigated via Twingling', { location: /#/{{formatDate(object.highlight_created)}} })">"{{object.highlight_quote}}"</a></span>
           </div>
           <div class="timeline-entry__delete  remove-icon">
@@ -71,16 +76,17 @@
       </div>
     </div>
 
-    <!-- Add Comment, Add Link -->
+    <!-- Add Note, Add Link -->
     <div class="card-actions-container">
       <div class="card-actions" ng-hide="card.hideCardActions">
-        <button ng-click="card.showNewCommentSection = true; card.hideCardActions = true;">Add Comment</button>
+        <button ng-click="card.showNewNoteSection = true; card.hideCardActions = true;">Add Comment</button>
+        <button ng-click="share(card)" ng-disabled="card.shareDisabled">Share</button>
         <button ng-controller="LinkController" ng-click="stageResource('highlight', card.id, card)">Link this to...</button>
       </div>
-      <!-- Create Comment Module -->
-      <div class="new-comment" ng-show="card.showNewCommentSection">
-        <textarea class="new-comment__body" ng-model="card.commentText" placeholder="Your comment..." tabindex=2></textarea>
-        <button class="new-comment__cancel" ng-click="card.showNewCommentSection = false; card.hideCardActions = false; card.commentText = ''" tabindex=4>Cancel</button><button class="new-comment__submit" ng-click="addComment($index, card.id, card.commentText)" tabindex=3>Save Comment</button>
+      <!-- Create Note Module -->
+      <div class="new-note" ng-show="card.showNewNoteSection">
+        <textarea class="new-note__body" ng-model="card.noteText" placeholder="Your note..." tabindex=2></textarea>
+        <button class="new-note__cancel" ng-click="card.showNewNoteSection = false; card.hideCardActions = false; card.noteText = ''" tabindex=4>Cancel</button><button class="new-note__submit" ng-click="addNote($index, card.id, card.noteText)" tabindex=3>Save Comment</button>
       </div>
     </div>
 
@@ -88,7 +94,7 @@
 
   <!-- Link UI -->
   <div class="link_ui {{uiStatus()}}" ng-show="showInterface()" ng-controller="LinkController">
-    <div class="link_ui__orb" ng-disabled="!enableCommit()" ng-click="commitLink()"></div>
+    <div class="link_ui__orb fa {{orbIcon()}}" ng-disabled="!enableCommit()" ng-click="commitLink()"></div>
     <div class="link_ui__corona"></div>
     <div class="link_ui__card link_ui__origin" ng-show="origin()">
       <i class="unstage  fa  fa-minus-square" ng-click="clearOrigin()" title="Remove this quote"></i>
