@@ -21,6 +21,7 @@
     $scope.cards = [];
     $scope.headerNavigationState = [];
     $scope.highlights = [];
+    $scope.submittedSearchTerm = "";
     $scope.searchResults = [];
 
     $scope.timeSlice = {
@@ -144,9 +145,8 @@
       //filter
       $scope.cards = $filter('filter')($scope.highlights, {context_url: context});
 
-      // TODO: REMOVE ANALYTICS COMMENT-OUT
       //Track the navigation event
-      // analytics.track('Filtered Cards by Context', {});
+      analytics.track('Filtered Cards by Context', {});
     };
 
 
@@ -175,6 +175,7 @@
           // Show that something is happening
           $scope.$parent.loadingState = true;
           $scope.headerNavigationState = 'loading';
+          $scope.submittedSearchTerm = term;
           $scope.cards.length = 0;
 
           // Clears previous search results
@@ -220,7 +221,7 @@
                 });
 
                 // Render the cards in the main view
-                $scope.searchStatus = "Search results for \"" + term + "\"";     
+                $scope.searchStatus = "Search results for \"" + $scope.submittedSearchTerm + "\"";     
                 $scope.cards = $scope.searchResults;
                 console.log($scope.cards);
 
@@ -228,7 +229,7 @@
 
               // If there lacks results, display a notice to that effect
               else {
-                $scope.searchStatus = "Sorry, there were no results containing \"" + term + "\" found.";
+                $scope.searchStatus = "Sorry, there were no results containing \"" + $scope.submittedSearchTerm + "\" found.";
               };
 
               // Clear the input box
