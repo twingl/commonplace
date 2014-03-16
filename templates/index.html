@@ -15,41 +15,41 @@
       <a href="" ng-click="signOut()"><i class="fa fa-sign-out"></i> Sign Out</a>
     </div>
   </div>
-
-
-  <!-- Navigation -->
-  <div class="navigation-container" ng-switch on="headerNavigationState">
-    <!-- Time Based -->
-      <div class="navigation-contents" ng-switch-when="highlights">
-        <i class="fa  fa-chevron-circle-left  navigation__icon--left" ng-click="flickBackOnePage()" title="Flick back one page"></i>
-        <h2>{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h2>
-        <i class="fa  fa-chevron-circle-right  navigation__icon--right" ng-click="flickForwardOnePage()" title="Flick forward one page"></i>
-      </div>
-    <!-- Search Based -->
-      <div class="navigation-contents  navigation-contents--search" ng-switch-when="search">
-        <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
-        <h2>{{searchStatus}}</h2>
-      </div>
-    <!-- Context Based -->
-      <div class="navigation-contents  navigation-contents--search" ng-switch-when="context">
-        <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
-        <h2>{{contextStatus}}</h2>
-      </div>
-    <!-- Loading -->
-      <div class="navigation-contents" ng-switch-when="loading">
-        <h2>Loading...</h2>
-      </div>
-  </div>
 </div>
+
+<!-- Navigation -->
+<div class="navigation-container" ng-switch on="headerNavigationState">
+  <!-- Time Based -->
+    <div class="navigation-contents" ng-switch-when="highlights">
+      <i class="fa  fa-chevron-circle-left  navigation__icon--left" ng-click="flickBackOnePage()" title="Flick back one page"></i>
+      <h2>{{timeSlice.beginning | date:'EEEE'}} ({{timeSlice.beginning | date:'MMMM, d'}})</h2>
+      <i class="fa  fa-chevron-circle-right  navigation__icon--right" ng-click="flickForwardOnePage()" title="Flick forward one page"></i>
+    </div>
+  <!-- Search Based -->
+    <div class="navigation-contents  navigation-contents--search" ng-switch-when="search">
+      <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
+      <h2>{{searchStatus}}</h2>
+    </div>
+  <!-- Context Based -->
+    <div class="navigation-contents  navigation-contents--search" ng-switch-when="context">
+      <i class="fa  fa-arrow-circle-left  navigation__icon--back" ng-click="cardView('highlights')" title="Return to browsing"></i>
+      <h2>{{contextStatus}}</h2>
+    </div>
+  <!-- Loading -->
+    <div class="navigation-contents" ng-switch-when="loading">
+      <h2>Loading...</h2>
+    </div>
+</div>
+
 
 <!-- Context Cards -->
 <div ng-switch on="headerNavigationState">
   <div ng-controller="ContextController" class="contexts-container" ng-switch-when="search">
-    <h1>_____ Articles _____</h1>
+    <h2><span>Articles</span></h2>
     <div ng-repeat="context in contexts | filter:formattedSearchTerm">
       <a href="" ng-click="filterContext(context.url)">{{context.url | CleanURL}}</a> <span style="color: red">{{context.type}}</span>
     </div>
-    <h1>_____ Highlights _____</h1>
+    <h2><span>Highlights</span></h2>
   </div>
 </div>
 
@@ -63,7 +63,7 @@
       </div>
       <blockquote class="primary__quote">
         <p>{{card.quote}}</p>
-        <span class="source">from <a ng-click="filterContext(card.context_url)">{{card.context_url | CleanURL | ShortURL}}</a></span>
+        <span class="source">from <a href="" ng-click="filterContext(card.context_url)">{{card.context_url | CleanURL | ShortURL}}</a></span>
       </blockquote>
     </div>
       

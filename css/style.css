@@ -96,7 +96,6 @@ button {
 }
 
 
-
 /*------------------------------------*\
     $OBJECTS
 \*------------------------------------*/
@@ -130,6 +129,11 @@ button {
 
 .loading-text {
     color: #aaa;
+}
+
+h2 span:before, h2 span:after {
+    content: "  _________  ";
+    /* TODO: Make the line a boarder-top / pretty */
 }
 
 
@@ -291,8 +295,11 @@ button {
 
 /* Commonplace Navigation */
 .navigation-container {
+    padding-top: 50px;
     width: 100%;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, .05);
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 50px;
 }
 
     .navigation-contents {
@@ -314,7 +321,7 @@ button {
       font-size: 2em;
       color: #ccc;
       position: absolute;
-      bottom: 8px;
+      top: 60px;
     }
 
         .navigation-contents i:hover {
@@ -351,16 +358,23 @@ button {
 .contexts-container {
     width: 70%;
     margin: 0px auto;
-    padding: 150px 0px 60px 0px;
+    padding-bottom: 10px;
+    color: #E0E0E0;
 }
 
-    .contexts-container h1 {
+    .contexts-container h2 {
         text-align: center;
+        
+    }
+
+    .contexts-container h2:last-child {
+        margin-top: 100px;
     }
 
     .contexts-container div {
-        color: white;
     }
+
+
 
 
 
@@ -368,7 +382,7 @@ button {
 .card-container {
     width: 70%;
     margin: 0px auto;
-    padding: 150px 0px 60px 0px;
+    padding: 0px 0px 60px 0px;
 }
 
 @media(max-width: 1200px) {
