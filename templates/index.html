@@ -47,7 +47,7 @@
   <div ng-controller="ContextController" class="contexts-container" ng-switch-when="search">
     <h2><span>Articles</span></h2>
     <div ng-repeat="context in contexts | filter:formattedSearchTerm">
-      <a href="" ng-click="filterContext(context.url)">{{context.url | CleanURL}}</a> <span style="color: red">{{context.type}}</span>
+      <span style="color: red">({{context.type}})</span> <a href="" ng-click="filterContext(context.url)">{{context.url | CleanURL}}</a>
     </div>
     <h2><span>Highlights</span></h2>
   </div>

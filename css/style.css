@@ -132,7 +132,7 @@ button {
 }
 
 h2 span:before, h2 span:after {
-    content: "  _________  ";
+    content: " —— ";
     /* TODO: Make the line a boarder-top / pretty */
 }
 
@@ -372,6 +372,8 @@ h2 span:before, h2 span:after {
     }
 
     .contexts-container div {
+        max-width: 600px;
+        margin: 0px auto;
     }
 
 
