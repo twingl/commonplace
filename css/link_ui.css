@@ -167,11 +167,22 @@
     width: 220px;
     text-align: center;
   }
+
     .link_ui__hint .link_ui__icon_hint {
       font-size: 3em;
       opacity: 0.7;
       cursor: default;
     }
+
+  .link_ui__call_to_action {
+    background: rgba(205, 187, 197, 1.0) !important;
+    color: white !important;
+  }
+
+  .link_ui__call_to_action:hover {
+    background: rgba(205, 187, 197, 0.9) !important;
+    color: white !important;
+  }
 
   .link_ui__termination { /* The right card */
     /**

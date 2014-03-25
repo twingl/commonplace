@@ -81,7 +81,7 @@
       <div class="card-actions" ng-hide="card.hideCardActions">
         <button ng-click="card.showNewNoteSection = true; card.hideCardActions = true;">Add Comment</button>
         <button ng-click="share(card)" ng-disabled="card.shareDisabled">Share</button>
-        <button ng-controller="LinkController" ng-click="stageResource('highlight', card.id, card)">Link this to...</button>
+        <button class="{{linkButtonClass(card)}}" ng-controller="LinkController" ng-click="stageResource('highlight', card.id, card)" ng-disabled="linkButtonDisabled(card)" ng-bind-html-unsafe="linkButtonText(card)"></button>
       </div>
       <!-- Create Note Module -->
       <div class="new-note" ng-show="card.showNewNoteSection">
