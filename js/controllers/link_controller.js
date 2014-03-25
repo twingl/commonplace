@@ -22,6 +22,37 @@
       }
     };
 
+    // The copy displayed on the stage link button - changes depending on the
+    // link ui state
+    $scope.linkButtonText = function(card) {
+      if (linkService.origin() && linkService.origin().id === card.id) {
+        return "&nbsp;";
+      } else if (linkService.origin() && Object.keys(linkService.terminations()).length > 0) {
+        return "&nbsp;";
+      } else if (linkService.origin()) {
+        return "<i class='fa fa-link'></i>";
+      }
+      return "<i class='fa fa-link'></i> Link this to";
+    };
+
+    $scope.linkButtonDisabled = function(card) {
+      if (linkService.origin() && linkService.origin().id === card.id) {
+        return true;
+      } else if (linkService.origin() && Object.keys(linkService.terminations()).length > 0) {
+        return true;
+      }
+      return false;
+    }
+
+    $scope.linkButtonClass = function(card) {
+      if (linkService.origin() && linkService.origin().id === card.id) {
+        return "";
+      } else if (linkService.origin() && Object.keys(linkService.terminations()).length === 0) {
+        return "link_ui__call_to_action";
+      }
+      return "";
+    }
+
     // Return the termination object
     $scope.termination = function() {
       var key = Object.keys(linkService.terminations())[0];
