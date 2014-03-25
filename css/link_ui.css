@@ -158,6 +158,21 @@
     margin-right              :-1px;
   }
 
+  .link_ui__hint {
+    z-index: -1;
+    color: white;
+    position: absolute;
+    top: 32px;
+    right: 16px;
+    width: 220px;
+    text-align: center;
+  }
+    .link_ui__hint .link_ui__icon_hint {
+      font-size: 3em;
+      opacity: 0.7;
+      cursor: default;
+    }
+
   .link_ui__termination { /* The right card */
     /**
      * Remove this float when we use ng 1.2.x as we can override how Angular
