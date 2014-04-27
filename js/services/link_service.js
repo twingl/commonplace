@@ -79,7 +79,7 @@
               end_id:     termination.id,
               end_type:   termination.type
             };
-            $http.post('http://api.twin.gl/v1/twinglings', link)
+            $http.post('https://api.twin.gl/v1/twinglings', link)
               .success(function(data) { success(data); })
               .error(function(data) { error(data); });
           }
