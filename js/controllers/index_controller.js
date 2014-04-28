@@ -6,7 +6,7 @@
 
     $scope.share = function(card) {
       card.shareDisabled = true;
-      $http.get('http://api.twin.gl/v1/highlights/'+card.id+'/permalink')
+      $http.get('https://api.twin.gl/v1/highlights/'+card.id+'/permalink')
         .success(function (res) {
           card.shareDisabled = false;
           card.shareLink = res.public_url;
@@ -174,7 +174,7 @@
           });
 
           // Let the hunt begin!
-          $http.get('http://api.twin.gl/v1/search?q=' + searchString).success(
+          $http.get('https://api.twin.gl/v1/search?q=' + searchString).success(
             function(results) {
 
               // If there are results, let the magic begin
@@ -336,7 +336,7 @@
       });
 
       // Post to the API
-      $http.post('http://api.twin.gl/v1/highlights/' + id + '/notes', '{"body":"' + note + '"}').success(
+      $http.post('https://api.twin.gl/v1/highlights/' + id + '/notes', '{"body":"' + note + '"}').success(
         function(noteObject) {
 
           // Display submission success feedback
@@ -375,7 +375,7 @@
       });
 
       // delete the object --the added 's' part is probably confusing...
-      $http.delete('http://api.twin.gl/v1/' + object.type + 's/' + object.id).success(
+      $http.delete('https://api.twin.gl/v1/' + object.type + 's/' + object.id).success(
         function(data) {
 
           // determine object type so as to update DOM
@@ -452,12 +452,12 @@
     $scope.headerNavigationState = 'loading';
 
     // Let segment.io know who the user is
-    $http.get('http://api.twin.gl/v1/users/me').success( function(res) {
+    $http.get('https://api.twin.gl/v1/users/me').success( function(res) {
       analytics.identify(res.id);
     });
 
     // Pull, then process them highlights
-    $http.get('http://api.twin.gl/v1/highlights?context=twingl://mine&;expand=notes,twinglings').success(
+    $http.get('https://api.twin.gl/v1/highlights?context=twingl://mine&;expand=notes,twinglings').success(
         function(data) {
           $scope.highlights = data;
 
