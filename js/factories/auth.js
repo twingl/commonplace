@@ -8,45 +8,45 @@
    *      validity and retrieve a new token if the current one is
    *      invalid/expired
    */
-  Commonplace.app.factory('Auth', ['$q', '$cookieStore', '$timeout', function($q, $cookieStore, $timeout) {
-    var TOKEN_KEY    = 'token',
-        POPUP_TITLE  = 'twingl',
-        OAUTHD_TOKEN = 'vriVw-S06p3A34LnSbGoZ2p0Fhw';
+  Commonplace.app.factory('Auth', ['$q', '$http', '$timeout', function($q, $http, $timeout) {
+    jso_configure({
+      "twingl": {
+        client_id: "d8e24199a67bee4088392f65bf377d1c17f963887fc0afeb294f168d41c99815",
+        redirect_uri: "http://commonplace.twin.gl/sign_in.html",
+        authorization: "https://api.twin.gl/oauth/authorize"
+      }
+    });
 
     var Auth = {
 
       token: function() {
-        return $cookieStore.get(TOKEN_KEY);
+        return { access_token: jso_getToken("twingl") };
       },
 
       authenticate: function() {
+        jso_ensureTokens({ "twingl": false });
+
         var deferred = $q.defer();
-        var token = $cookieStore.get(TOKEN_KEY);
+        var token = jso_getToken("twingl");
+        console.log(token);
 
         if (token) {
           deferred.resolve(token);
         } else {
-          OAuth.initialize(OAUTHD_TOKEN);
-          OAuth.popup(POPUP_TITLE, function(error, result) {
-            if (error) {
-              deferred.reject(error);
-            } else {
-              $cookieStore.put(TOKEN_KEY, result);
-              deferred.resolve(result);
-            }
-            $timeout(function() {}, 50); // Trigger a new $digest cycle
-          });
+          deferred.reject();
         }
 
         return deferred.promise;
       },
 
       isAuthenticated: function() {
-        return ($cookieStore.get(TOKEN_KEY) != undefined)
+        return (jso_getToken("twingl"))
       },
 
       clearAuthentication: function() {
-        $cookieStore.remove(TOKEN_KEY);
+        // invalidate token
+        $http.post("https://api.twin.gl/oauth/revoke", { token: jso_getToken("twingl") });
+        localStorage.removeItem("tokens-twingl");
       }
     };
 
