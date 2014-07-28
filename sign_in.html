@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html ng-app="Commonplace">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Twingl - Your Library</title>
+    <script src="vendor/jso.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      jso_configure({
+        "twingl": {
+          client_id: "d8e24199a67bee4088392f65bf377d1c17f963887fc0afeb294f168d41c99815",
+          redirect_uri: "http://commonplace.twin.gl/sign_in.html",
+          authorization: "https://api.twin.gl/oauth/authorize"
+        }
+      });
+
+      jso_ensureTokens({ "twingl": false });
+
+      window.location.href = "/";
+    </script>
+  </head>
+
+  <body></body>
+</html>

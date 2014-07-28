@@ -24,7 +24,7 @@
           $location.path('/'); // Go on over to the real app
         },
         function(error) { //error
-          console.log("There was an error with the authing process");
+          $location.path('/sign_in.html');
         }
       );
     };
