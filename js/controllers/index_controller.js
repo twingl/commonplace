@@ -487,7 +487,7 @@
 
 
               // Push notes to cardFeed, if there's any
-              if ($scope.highlights[i].notes.length !== 0) {
+              if ($scope.highlights[i].notes && $scope.highlights[i].notes.length !== 0) {
                 for (var j = 0, lenj = $scope.highlights[i].notes.length; j < lenj; j++) {
 
                   // Push object to cardFeed
@@ -503,7 +503,7 @@
 
 
               // Push twinglings to cardFeed, if there's any
-              if ($scope.highlights[i].twinglings.length !== 0) {
+              if ($scope.highlights[i].twinglings && $scope.highlights[i].twinglings.length !== 0) {
                 for (var k = 0, lenk = $scope.highlights[i].twinglings.length; k < lenk; k++) {
 
                   // Remove current highlight from twingling pairs
